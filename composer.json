@@ -1,0 +1,58 @@
+{
+  "name": "core23/doctrine-extensions",
+  "type": "library",
+  "description": "Useful doctrine hooks.",
+  "keywords": [
+    "symfony",
+    "bundle",
+    "doctrine",
+    "hooks",
+    "bridge",
+    "confirmable",
+    "deletable",
+    "lifecycle",
+    "sortable"
+  ],
+  "homepage": "https://core23.de",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Christian Gripp",
+      "email": "mail@core23.de"
+    }
+  ],
+  "require": {
+    "php": "^7.1",
+    "doctrine/common": "~2.8",
+    "doctrine/dbal": "~2.6",
+    "doctrine/orm": "~2.5",
+    "sonata-project/datagrid-bundle": "^2.2"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^2.0",
+    "matthiasnoback/symfony-dependency-injection-test": "^1.1",
+    "phpunit/phpunit": "^5.7",
+    "sllh/php-cs-fixer-styleci-bridge": "^2.0",
+    "sonata-project/core-bundle": "^3.6",
+    "symfony/framework-bundle": "^2.8 || ^3.3",
+    "symfony/phpunit-bridge": "^3.3.12"
+  },
+  "autoload": {
+    "psr-4": {
+      "Core23\\DoctrineExtensions\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Core23\\DoctrineExtensions\\Tests\\": "tests/"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "0.x-dev"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  }
+}
