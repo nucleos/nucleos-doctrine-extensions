@@ -20,7 +20,7 @@ abstract class AbstractListener implements EventSubscriber
      *
      * @return bool
      */
-    final protected function containsTrait(ReflectionClass $reflection, string $class):bool
+    final protected function containsTrait(ReflectionClass $reflection, string $class): bool
     {
         do {
             $traits = $reflection->getTraitNames();

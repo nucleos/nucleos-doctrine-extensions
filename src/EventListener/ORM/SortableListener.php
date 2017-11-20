@@ -79,7 +79,7 @@ final class SortableListener extends AbstractListener
      *
      * @throws MappingException
      */
-    public function loadClassMetadata(LoadClassMetadataEventArgs $eventArgs) : void
+    public function loadClassMetadata(LoadClassMetadataEventArgs $eventArgs): void
     {
         $meta = $eventArgs->getClassMetadata();
 
@@ -103,7 +103,7 @@ final class SortableListener extends AbstractListener
      * @param LifecycleEventArgs $args
      * @param int|null           $oldPosition
      */
-    private function uniquePosition(LifecycleEventArgs $args, ? int $oldPosition = null) : void
+    private function uniquePosition(LifecycleEventArgs $args, ? int $oldPosition = null): void
     {
         $entity = $args->getEntity();
 
@@ -177,7 +177,7 @@ final class SortableListener extends AbstractListener
             $qb->andWhere('e.'.$field.' = :'.$field)->setParameter($field, $value);
         }
 
-        /** @var PositionAwareInterface $result */
+        /* @var PositionAwareInterface $result */
         try {
             $result = $qb->getQuery()->getOneOrNullResult();
         } catch (NonUniqueResultException $ignored) {

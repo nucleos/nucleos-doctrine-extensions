@@ -63,8 +63,8 @@ trait ConfirmableTrait
      *
      * @return bool
      */
-    public function isConfirmed() : bool
+    public function isConfirmed(): bool
     {
-        return $this->confirmedAt !== null;
+        return null !== $this->confirmedAt;
     }
 }

@@ -62,11 +62,12 @@ trait BaseQueryTrait
             $table = $defaultEntity;
 
             // Map entity to table name
-            if (count($fieldSpl) === 2) {
+            if (2 === count($fieldSpl)) {
                 foreach ($aliasMapping as $k => $v) {
                     if ($fieldSpl[0] === $k) {
                         $table = $v;
                         $field = $fieldSpl[1];
+
                         break;
                     }
                 }

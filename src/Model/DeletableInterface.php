@@ -41,5 +41,5 @@ interface DeletableInterface
      *
      * @return bool
      */
-    public function isDeleted() : bool;
+    public function isDeleted(): bool;
 }
