@@ -65,7 +65,7 @@ final class LifecycleDateListener extends AbstractListener
      *
      * @throws MappingException
      */
-    public function loadClassMetadata(LoadClassMetadataEventArgs $eventArgs) : void
+    public function loadClassMetadata(LoadClassMetadataEventArgs $eventArgs): void
     {
         $meta = $eventArgs->getClassMetadata();
 

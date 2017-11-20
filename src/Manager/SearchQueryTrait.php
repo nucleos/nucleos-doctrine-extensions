@@ -47,7 +47,7 @@ trait SearchQueryTrait
      * @param string       $word
      * @param int          $index
      */
-    private function buildLikeExpressions(QueryBuilder $qb, Orx $orx, string $field, string $word, int $index) : void
+    private function buildLikeExpressions(QueryBuilder $qb, Orx $orx, string $field, string $word, int $index): void
     {
         $orx->add(sprintf('%s LIKE :name'.$index.'_any', $field));
         $orx->add(sprintf('%s LIKE :name'.$index.'_pre', $field));
