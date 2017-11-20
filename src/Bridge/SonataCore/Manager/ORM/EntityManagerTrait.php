@@ -9,8 +9,8 @@
 
 namespace Core23\DoctrineExtensions\Bridge\SonataCore\Manager\ORM;
 
-use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 
 trait EntityManagerTrait
@@ -25,7 +25,6 @@ trait EntityManagerTrait
      */
     final protected function createQueryBuilder(string $alias, string $indexBy = null)
     {
-        /* @noinspection PhpUndefinedMethodInspection */
         return $this->getRepository()
             ->createQueryBuilder($alias, $indexBy);
     }
@@ -33,7 +32,7 @@ trait EntityManagerTrait
     /**
      * Returns the related Object Repository.
      *
-     * @return ObjectRepository
+     * @return EntityRepository
      */
     abstract protected function getRepository();
 }
