@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Core23\DoctrineExtensions\Test;
+namespace Core23\DoctrineExtensions\Test\ORM;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\AbstractQuery;

@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Core23\DoctrineExtensions\Manager;
+namespace Core23\DoctrineExtensions\Manager\ORM;
 
 use Doctrine\ORM\QueryBuilder;
 use Sonata\DatagridBundle\Pager\Doctrine\Pager;

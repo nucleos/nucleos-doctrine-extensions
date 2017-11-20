@@ -9,7 +9,7 @@
 
 namespace Core23\DoctrineExtensions\Bridge\SonataCore\Manager\ORM;
 
-use Core23\DoctrineExtensions\Manager\BaseQueryTrait;
+use Core23\DoctrineExtensions\Manager\ORM\BaseQueryTrait;
 use Sonata\CoreBundle\Model\BaseEntityManager as SonataBaseEntityManager;
 
 abstract class AbstractEntityManager extends SonataBaseEntityManager
