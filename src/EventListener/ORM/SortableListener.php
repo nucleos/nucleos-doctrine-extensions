@@ -180,9 +180,9 @@ final class SortableListener extends AbstractListener
         /* @var PositionAwareInterface $result */
         try {
             $result = $qb->getQuery()->getOneOrNullResult();
+
+            return ($result ? $result->getPosition() : 0) + 1;
         } catch (NonUniqueResultException $ignored) {
         }
-
-        return ($result ? $result->getPosition() : 0) + 1;
     }
 }
