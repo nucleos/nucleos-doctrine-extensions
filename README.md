@@ -1,13 +1,13 @@
 What is the Doctrine Extensions PHP library?
 ============================================
-[![Latest Stable Version](https://poser.pugx.org/core23/doctrineextensions/v/stable)](https://packagist.org/packages/core23/doctrineextensions)
-[![Latest Unstable Version](https://poser.pugx.org/core23/doctrineextensions/v/unstable)](https://packagist.org/packages/core23/doctrineextensions)
-[![License](https://poser.pugx.org/core23/doctrineextensions/license)](https://packagist.org/packages/core23/doctrineextensions)
+[![Latest Stable Version](https://poser.pugx.org/core23/doctrine-extensions/v/stable)](https://packagist.org/packages/core23/doctrine-extensions)
+[![Latest Unstable Version](https://poser.pugx.org/core23/doctrine-extensions/v/unstable)](https://packagist.org/packages/core23/doctrine-extensions)
+[![License](https://poser.pugx.org/core23/doctrine-extensions/license)](https://packagist.org/packages/core23/doctrine-extensions)
 
-[![Build Status](https://travis-ci.org/core23/doctrineextensions.svg)](http://travis-ci.org/core23/doctrineextensions)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/core23/doctrineextensions/badges/quality-score.png)](https://scrutinizer-ci.com/g/core23/doctrineextensions/)
-[![Code Climate](https://codeclimate.com/github/core23/doctrineextensions/badges/gpa.svg)](https://codeclimate.com/github/core23/doctrineextensions)
-[![Coverage Status](https://coveralls.io/repos/core23/doctrineextensions/badge.svg)](https://coveralls.io/r/core23/doctrineextensions)
+[![Build Status](https://travis-ci.org/core23/doctrine-extensions.svg)](http://travis-ci.org/core23/doctrine-extensions)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/core23/doctrine-extensions/badges/quality-score.png)](https://scrutinizer-ci.com/g/core23/doctrine-extensions/)
+[![Code Climate](https://codeclimate.com/github/core23/doctrine-extensions/badges/gpa.svg)](https://codeclimate.com/github/core23/doctrine-extensions)
+[![Coverage Status](https://coveralls.io/repos/core23/doctrine-extensions/badge.svg)](https://coveralls.io/r/core23/doctrine-extensions)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/83024b06-03e0-4b04-a011-8ad598d93af4/mini.png)](https://insight.sensiolabs.com/projects/51aa4b42-d229-4994-bb3a-156da22a1375)
 
 [![Donate to this project using Flattr](https://img.shields.io/badge/flattr-donate-yellow.svg)](https://flattr.com/profile/core23)
