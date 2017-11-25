@@ -41,5 +41,5 @@ interface ConfirmableInterface
      *
      * @return bool
      */
-    public function isConfirmed(): bool;
+    public function isConfirmed() : bool;
 }

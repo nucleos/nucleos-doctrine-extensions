@@ -31,7 +31,7 @@ trait SortableTrait
     /**
      * @return int|null
      */
-    public function getPosition(): int
+    public function getPosition() : int
     {
         return $this->position;
     }

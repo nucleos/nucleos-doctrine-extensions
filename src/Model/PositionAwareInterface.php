@@ -32,5 +32,5 @@ interface PositionAwareInterface
      *
      * @return string[]
      */
-    public function getPositionGroup(): array;
+    public function getPositionGroup() : array;
 }

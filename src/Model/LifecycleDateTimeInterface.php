@@ -23,7 +23,7 @@ interface LifecycleDateTimeInterface
      *
      * @return \DateTime|null
      */
-    public function getUpdatedAt(): ? \DateTime;
+    public function getUpdatedAt() : ? \DateTime;
 
     /**
      * Set createdAt.

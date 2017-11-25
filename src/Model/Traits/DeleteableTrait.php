@@ -63,7 +63,7 @@ trait DeleteableTrait
      *
      * @return bool
      */
-    public function isDeleted(): bool
+    public function isDeleted() : bool
     {
         return null !== $this->deletedAt;
     }
