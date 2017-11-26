@@ -39,7 +39,7 @@ trait SortableTrait
     /**
      * @return array
      */
-    public function getPositionGroup(): array
+    public function getPositionGroup() : array
     {
         return array();
     }
