@@ -17,17 +17,18 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Version;
+use PHPUnit\Framework\TestCase;
 
 final class EntityManagerMockFactory
 {
     /**
-     * @param \PHPUnit_Framework_TestCase $test
-     * @param \Closure                    $qbCallback
-     * @param mixed                       $fields
+     * @param TestCase $test
+     * @param \Closure $qbCallback
+     * @param mixed    $fields
      *
      * @return \PHPUnit_Framework_MockObject_MockObject|EntityManagerInterface
      */
-    public static function create(\PHPUnit_Framework_TestCase $test, \Closure $qbCallback, $fields): \PHPUnit_Framework_MockObject_MockObject
+    public static function create(TestCase $test, \Closure $qbCallback, $fields): \PHPUnit_Framework_MockObject_MockObject
     {
         $query = $test->getMockBuilder(AbstractQuery::class)
             ->disableOriginalConstructor()->getMock();

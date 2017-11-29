@@ -183,6 +183,7 @@ final class SortableListener extends AbstractListener
 
             return ($result ? $result->getPosition() : 0) + 1;
         } catch (NonUniqueResultException $ignored) {
+            return 0;
         }
     }
 }
