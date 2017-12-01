@@ -21,4 +21,12 @@ final class Core23DoctrineExtensionsBundle extends Bundle
     {
         return Core23DoctrineExtensionsExtension::class;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPath()
+    {
+        return __DIR__.'/..';
+    }
 }
