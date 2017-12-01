@@ -103,7 +103,7 @@ final class SortableListener extends AbstractListener
      * @param LifecycleEventArgs $args
      * @param int|null           $oldPosition
      */
-    private function uniquePosition(LifecycleEventArgs $args, ? int $oldPosition = null) : void
+    private function uniquePosition(LifecycleEventArgs $args, ? int $oldPosition = null): void
     {
         $entity = $args->getEntity();
 

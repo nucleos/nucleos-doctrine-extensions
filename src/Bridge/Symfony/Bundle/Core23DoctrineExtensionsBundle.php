@@ -17,16 +17,16 @@ final class Core23DoctrineExtensionsBundle extends Bundle
     /**
      * {@inheritdoc}
      */
-    protected function getContainerExtensionClass()
+    public function getPath()
     {
-        return Core23DoctrineExtensionsExtension::class;
+        return __DIR__.'/..';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getPath()
+    protected function getContainerExtensionClass()
     {
-        return __DIR__.'/..';
+        return Core23DoctrineExtensionsExtension::class;
     }
 }
