@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -28,7 +30,7 @@ trait LifecycleDateTimeTrait
      *
      * @return $this
      */
-    public function setCreatedAt(? \DateTime $createdAt)
+    public function setCreatedAt(?\DateTime $createdAt)
     {
         $this->createdAt = $createdAt;
 
@@ -40,7 +42,7 @@ trait LifecycleDateTimeTrait
      *
      * @return \DateTime|null
      */
-    public function getCreatedAt(): ? \DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
@@ -52,7 +54,7 @@ trait LifecycleDateTimeTrait
      *
      * @return $this
      */
-    public function setUpdatedAt(? \DateTime $updatedAt)
+    public function setUpdatedAt(?\DateTime $updatedAt)
     {
         $this->updatedAt = $updatedAt;
 
@@ -64,7 +66,7 @@ trait LifecycleDateTimeTrait
      *
      * @return \DateTime|null
      */
-    public function getUpdatedAt(): ? \DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

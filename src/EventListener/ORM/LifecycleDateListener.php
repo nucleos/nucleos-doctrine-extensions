@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -24,11 +26,11 @@ final class LifecycleDateListener extends AbstractListener
      */
     public function getSubscribedEvents()
     {
-        return array(
+        return [
             Events::prePersist,
             Events::preUpdate,
             Events::loadClassMetadata,
-        );
+        ];
     }
 
     /**
@@ -78,16 +80,16 @@ final class LifecycleDateListener extends AbstractListener
         }
 
         if (!$meta->hasField('createdAt')) {
-            $meta->mapField(array(
+            $meta->mapField([
                 'type'      => 'datetime',
                 'fieldName' => 'createdAt',
-            ));
+            ]);
         }
         if (!$meta->hasField('updatedAt')) {
-            $meta->mapField(array(
+            $meta->mapField([
                 'type'      => 'datetime',
                 'fieldName' => 'updatedAt',
-            ));
+            ]);
         }
     }
 }

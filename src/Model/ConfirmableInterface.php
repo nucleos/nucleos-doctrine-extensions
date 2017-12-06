@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -16,7 +18,7 @@ interface ConfirmableInterface
      *
      * @return \DateTime|null
      */
-    public function getConfirmedAt(): ? \DateTime;
+    public function getConfirmedAt(): ?\DateTime;
 
     /**
      * Set confirmedAt.
@@ -25,7 +27,7 @@ interface ConfirmableInterface
      *
      * @return $this
      */
-    public function setConfirmedAt(? \DateTime $confirmedAt);
+    public function setConfirmedAt(?\DateTime $confirmedAt);
 
     /**
      * Set confirmed.

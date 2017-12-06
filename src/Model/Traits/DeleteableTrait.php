@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -21,7 +23,7 @@ trait DeleteableTrait
      *
      * @return \DateTime|null
      */
-    public function getDeletedAt(): ? \DateTime
+    public function getDeletedAt(): ?\DateTime
     {
         return $this->deletedAt;
     }
@@ -33,7 +35,7 @@ trait DeleteableTrait
      *
      * @return $this
      */
-    public function setDeletedAt(? \DateTime $deletedAt)
+    public function setDeletedAt(?\DateTime $deletedAt)
     {
         $this->deletedAt = $deletedAt;
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -45,7 +47,7 @@ trait BaseQueryTrait
      *
      * @return QueryBuilder
      */
-    public function addOrder(QueryBuilder $builder, array $sort, string $defaultEntity, array $aliasMapping = array(), string $defaultOrder = 'asc'): QueryBuilder
+    public function addOrder(QueryBuilder $builder, array $sort, string $defaultEntity, array $aliasMapping = [], string $defaultOrder = 'asc'): QueryBuilder
     {
         foreach ($sort as $field => $order) {
             if (is_int($field)) {

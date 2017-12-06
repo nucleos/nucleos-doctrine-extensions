@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -16,7 +18,7 @@ interface DeletableInterface
      *
      * @return \DateTime
      */
-    public function getDeletedAt(): ? \DateTime;
+    public function getDeletedAt(): ?\DateTime;
 
     /**
      * Set deletedAt.
@@ -25,7 +27,7 @@ interface DeletableInterface
      *
      * @return $this
      */
-    public function setDeletedAt(? \DateTime $deletedAt);
+    public function setDeletedAt(?\DateTime $deletedAt);
 
     /**
      * Set deleted.

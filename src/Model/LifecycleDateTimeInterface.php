@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -16,14 +18,14 @@ interface LifecycleDateTimeInterface
      *
      * @return \DateTime|null
      */
-    public function getCreatedAt(): ? \DateTime;
+    public function getCreatedAt(): ?\DateTime;
 
     /**
      * Get updatedAt.
      *
      * @return \DateTime|null
      */
-    public function getUpdatedAt(): ? \DateTime;
+    public function getUpdatedAt(): ?\DateTime;
 
     /**
      * Set createdAt.
@@ -32,7 +34,7 @@ interface LifecycleDateTimeInterface
      *
      * @return $this
      */
-    public function setCreatedAt(? \DateTime $createdAt);
+    public function setCreatedAt(?\DateTime $createdAt);
 
     /**
      * Set updatedAt.
@@ -41,5 +43,5 @@ interface LifecycleDateTimeInterface
      *
      * @return $this
      */
-    public function setUpdatedAt(? \DateTime $updatedAt);
+    public function setUpdatedAt(?\DateTime $updatedAt);
 }

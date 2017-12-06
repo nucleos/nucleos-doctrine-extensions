@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -16,7 +18,7 @@ interface PositionAwareInterface
      *
      * @return int|null
      */
-    public function getPosition(): ? int;
+    public function getPosition(): ?int;
 
     /**
      * Set position.
@@ -25,7 +27,7 @@ interface PositionAwareInterface
      *
      * @return $this
      */
-    public function setPosition(? int $position);
+    public function setPosition(?int $position);
 
     /**
      * Get list of position fields.

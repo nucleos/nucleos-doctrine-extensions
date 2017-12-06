@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -28,12 +30,12 @@ final class SortableListener extends AbstractListener
      */
     public function getSubscribedEvents()
     {
-        return array(
+        return [
             Events::prePersist,
             Events::preUpdate,
             Events::preRemove,
             Events::loadClassMetadata,
-        );
+        ];
     }
 
     /**
@@ -92,10 +94,10 @@ final class SortableListener extends AbstractListener
         }
 
         if (!$meta->hasField('position')) {
-            $meta->mapField(array(
+            $meta->mapField([
                 'type'      => 'integer',
                 'fieldName' => 'position',
-            ));
+            ]);
         }
     }
 
@@ -103,7 +105,7 @@ final class SortableListener extends AbstractListener
      * @param LifecycleEventArgs $args
      * @param int|null           $oldPosition
      */
-    private function uniquePosition(LifecycleEventArgs $args, ? int $oldPosition = null): void
+    private function uniquePosition(LifecycleEventArgs $args, ?int $oldPosition = null): void
     {
         $entity = $args->getEntity();
 
@@ -124,8 +126,8 @@ final class SortableListener extends AbstractListener
      */
     private function movePosition(EntityManager $em, PositionAwareInterface $entity, int $direction = 1): void
     {
-        $uow   = $em->getUnitOfWork();
-        $meta  = $em->getClassMetadata(get_class($entity));
+        $uow  = $em->getUnitOfWork();
+        $meta = $em->getClassMetadata(get_class($entity));
 
         $qb = $em->createQueryBuilder()
             ->update($meta->getName(), 'e')

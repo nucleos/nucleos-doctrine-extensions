@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -36,7 +38,7 @@ final class EntityManagerMockFactory
 
         if (Version::compare('2.5.0') < 1) {
             $entityManager = $test->getMockBuilder(EntityManagerInterface::class)->getMock();
-            $qb            = $test->getMockBuilder(QueryBuilder::class)->setConstructorArgs(array($entityManager))->getMock();
+            $qb            = $test->getMockBuilder(QueryBuilder::class)->setConstructorArgs([$entityManager])->getMock();
         } else {
             $qb = $test->getMockBuilder(QueryBuilder::class)->disableOriginalConstructor()->getMock();
         }

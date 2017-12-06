@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -21,7 +23,7 @@ trait ConfirmableTrait
      *
      * @return \DateTime|null
      */
-    public function getConfirmedAt(): ? \DateTime
+    public function getConfirmedAt(): ?\DateTime
     {
         return $this->confirmedAt;
     }
@@ -33,7 +35,7 @@ trait ConfirmableTrait
      *
      * @return $this
      */
-    public function setConfirmedAt(? \DateTime $confirmedAt)
+    public function setConfirmedAt(?\DateTime $confirmedAt)
     {
         $this->confirmedAt = $confirmedAt;
 

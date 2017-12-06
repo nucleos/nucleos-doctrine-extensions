@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * (c) Christian Gripp <mail@core23.de>
  *
@@ -22,9 +24,9 @@ final class DeletableListener extends AbstractListener
      */
     public function getSubscribedEvents()
     {
-        return array(
+        return [
             Events::loadClassMetadata,
-        );
+        ];
     }
 
     /**
@@ -45,11 +47,11 @@ final class DeletableListener extends AbstractListener
         }
 
         if (!$meta->hasField('deletedAt')) {
-            $meta->mapField(array(
+            $meta->mapField([
                 'type'      => 'datetime',
                 'fieldName' => 'deletedAt',
                 'nullable'  => true,
-            ));
+            ]);
         }
     }
 }
