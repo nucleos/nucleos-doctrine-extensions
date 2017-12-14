@@ -6,7 +6,6 @@ What is the Doctrine Extensions PHP library?
 
 [![Build Status](https://travis-ci.org/core23/doctrine-extensions.svg)](http://travis-ci.org/core23/doctrine-extensions)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/core23/doctrine-extensions/badges/quality-score.png)](https://scrutinizer-ci.com/g/core23/doctrine-extensions/)
-[![Code Climate](https://codeclimate.com/github/core23/doctrine-extensions/badges/gpa.svg)](https://codeclimate.com/github/core23/doctrine-extensions)
 [![Coverage Status](https://coveralls.io/repos/core23/doctrine-extensions/badge.svg)](https://coveralls.io/r/core23/doctrine-extensions)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/83024b06-03e0-4b04-a011-8ad598d93af4/mini.png)](https://insight.sensiolabs.com/projects/51aa4b42-d229-4994-bb3a-156da22a1375)
 
