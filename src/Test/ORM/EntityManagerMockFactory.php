@@ -19,6 +19,7 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Version;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class EntityManagerMockFactory
@@ -28,9 +29,9 @@ final class EntityManagerMockFactory
      * @param \Closure $qbCallback
      * @param mixed    $fields
      *
-     * @return \PHPUnit_Framework_MockObject_MockObject|EntityManagerInterface
+     * @return MockObject|EntityManagerInterface
      */
-    public static function create(TestCase $test, \Closure $qbCallback, $fields): \PHPUnit_Framework_MockObject_MockObject
+    public static function create(TestCase $test, \Closure $qbCallback, $fields)
     {
         $query = $test->getMockBuilder(AbstractQuery::class)
             ->disableOriginalConstructor()->getMock();
