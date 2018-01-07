@@ -29,9 +29,9 @@ final class EntityManagerMockFactory
      * @param \Closure $qbCallback
      * @param mixed    $fields
      *
-     * @return MockObject|EntityManagerInterface
+     * @return MockObject|EntityManager
      */
-    public static function create(TestCase $test, \Closure $qbCallback, $fields)
+    public static function create(TestCase $test, \Closure $qbCallback, $fields): MockObject
     {
         $query = $test->getMockBuilder(AbstractQuery::class)
             ->disableOriginalConstructor()->getMock();
