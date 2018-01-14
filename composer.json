@@ -1,61 +1,71 @@
 {
-  "name": "core23/doctrine-extensions",
-  "type": "library",
-  "description": "Useful doctrine hooks.",
-  "keywords": [
-    "symfony",
-    "bundle",
-    "doctrine",
-    "hooks",
-    "bridge",
-    "confirmable",
-    "deletable",
-    "lifecycle",
-    "sortable"
-  ],
-  "homepage": "https://core23.de",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Christian Gripp",
-      "email": "mail@core23.de"
+    "name": "core23/doctrine-extensions",
+    "type": "library",
+    "description": "Useful doctrine hooks.",
+    "keywords": [
+        "symfony",
+        "bundle",
+        "doctrine",
+        "hooks",
+        "bridge",
+        "confirmable",
+        "deletable",
+        "lifecycle",
+        "sortable"
+    ],
+    "homepage": "https://core23.de",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Christian Gripp",
+            "email": "mail@core23.de"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "doctrine/common": "^2.8",
+        "doctrine/dbal": "^2.6",
+        "doctrine/orm": "^2.5",
+        "sonata-project/datagrid-bundle": "^2.3"
+    },
+    "require-dev": {
+        "bamarni/composer-bin-plugin": "^1.2",
+        "matthiasnoback/symfony-dependency-injection-test": "^2.3",
+        "sllh/composer-lint": "^1.0",
+        "sonata-project/core-bundle": "^3.9",
+        "symfony/dependency-injection": "^3.4 || ^4.0",
+        "symfony/expression-language": "^3.4 || ^4.0",
+        "symfony/framework-bundle": "^3.4 || ^4.0",
+        "symfony/phpunit-bridge": "^4.0"
+    },
+    "suggest": {
+        "sonata-project/core-bundle": "If you want to use a entity manager blueprint.",
+        "symfony/framework-bundle": "If you want to use symfony"
+    },
+    "autoload": {
+        "psr-4": {
+            "Core23\\DoctrineExtensions\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Core23\\DoctrineExtensions\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "@composer bin all install --ansi"
+        ],
+        "post-update-cmd": [
+            "@composer bin all update --ansi"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.x-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
     }
-  ],
-  "require": {
-    "php": "^7.1",
-    "doctrine/common": "^2.8",
-    "doctrine/dbal": "^2.6",
-    "doctrine/orm": "^2.5",
-    "sonata-project/datagrid-bundle": "^2.3"
-  },
-  "require-dev": {
-    "matthiasnoback/symfony-dependency-injection-test": "^2.3",
-    "sonata-project/core-bundle": "^3.9",
-    "symfony/dependency-injection": "^3.4 || ^4.0",
-    "symfony/expression-language": "^3.4 || ^4.0",
-    "symfony/framework-bundle": "^3.4 || ^4.0",
-    "symfony/phpunit-bridge": "^4.0"
-  },
-  "suggest": {
-    "sonata-project/core-bundle": "If you want to use a entity manager blueprint.",
-    "symfony/framework-bundle": "If you want to use symfony"
-  },
-  "autoload": {
-    "psr-4": {
-      "Core23\\DoctrineExtensions\\": "src/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Core23\\DoctrineExtensions\\Tests\\": "tests/"
-    }
-  },
-  "extra": {
-    "branch-alias": {
-      "dev-master": "0.x-dev"
-    }
-  },
-  "config": {
-    "sort-packages": true
-  }
 }
