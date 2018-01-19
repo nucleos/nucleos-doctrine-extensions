@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
   <services>
-    <service id="core23.doctrine.orm.listener.confirmable" class="Core23\DoctrineExtensions\EventListener\ORM\ConfirmableListener" public="false">
+    <service id="core23_doctrine.orm.listener.confirmable" class="Core23\DoctrineExtensions\EventListener\ORM\ConfirmableListener" public="false">
       <tag name="doctrine.event_subscriber"/>
     </service>
-    <service id="core23.doctrine.orm.listener.deletable" class="Core23\DoctrineExtensions\EventListener\ORM\DeletableListener" public="false">
+    <service id="core23_doctrine.orm.listener.deletable" class="Core23\DoctrineExtensions\EventListener\ORM\DeletableListener" public="false">
       <tag name="doctrine.event_subscriber"/>
     </service>
-    <service id="core23.doctrine.orm.listener.lifecyledate" class="Core23\DoctrineExtensions\EventListener\ORM\LifecycleDateListener" public="false">
+    <service id="core23_doctrine.orm.listener.lifecyledate" class="Core23\DoctrineExtensions\EventListener\ORM\LifecycleDateListener" public="false">
       <tag name="doctrine.event_subscriber"/>
     </service>
-    <service id="core23.doctrine.orm.listener.sortable" class="Core23\DoctrineExtensions\EventListener\ORM\SortableListener" public="false">
+    <service id="core23_doctrine.orm.listener.sortable" class="Core23\DoctrineExtensions\EventListener\ORM\SortableListener" public="false">
       <tag name="doctrine.event_subscriber"/>
     </service>
   </services>
