@@ -14,7 +14,7 @@ namespace Core23\DoctrineExtensions\Tests\Bridge\Symfony\DependencyInjection;
 use Core23\DoctrineExtensions\Bridge\Symfony\DependencyInjection\Core23DoctrineExtensionsExtension;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 
-class Core23DoctrineExtensionsExtensionTest extends AbstractExtensionTestCase
+final class Core23DoctrineExtensionsExtensionTest extends AbstractExtensionTestCase
 {
     public function testLoadDefault(): void
     {
