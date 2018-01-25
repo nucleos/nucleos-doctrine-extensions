@@ -17,7 +17,7 @@ This library provides adds some useful doctrine hooks and a bridge for symfony.
 ### Installation
 
 ```
-php composer.phar require core23/doctrine-extensions
+composer require core23/doctrine-extensions
 ```
 
 ### Symfony usage
