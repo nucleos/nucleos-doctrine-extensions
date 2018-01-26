@@ -59,7 +59,7 @@ final class EntityManagerMockFactory
         $metadata = $test->getMockBuilder(ClassMetadataInfo::class)->disableOriginalConstructor()->getMock();
         $metadata->expects($test->any())->method('getFieldNames')->will($test->returnValue($fields));
         $metadata->expects($test->any())->method('getName')->will($test->returnValue('className'));
-        $metadata->expects($test->any())->method('getIdentifier')->will($test->returnValue('id'));
+        $metadata->expects($test->any())->method('getIdentifier')->will($test->returnValue(['id']));
         $metadata->expects($test->any())->method('getTableName')->will($test->returnValue('dummy'));
 
         $connection = $test->getMockBuilder(Connection::class)->disableOriginalConstructor()->getMock();
