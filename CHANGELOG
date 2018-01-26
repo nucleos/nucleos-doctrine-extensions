@@ -1,1 +1,42 @@
+26/01/2018 17:00  0.2.0  Transformed repository into a library
+1316f21 Adding stages to travis build
+a2d3bea Fixed return type of getIdentifier in EntityManagerMockFactory
+6a55ecf Replaced composer.phar with composer in docs
+dc8ba76 Make tests final
+7fcfea9 Use correct bundle prefix for serivices and parameters
+ac2a09c Ignore vendor-bin when calling lint
+f486205 Use weak vendors mode
+789981c Added rmt tool
+83a32ed Normalize composer.json file
+1303d93 Cleanup PHPStan ignores
+95e0033 Added dev tools via composer-bin plugin
+f3bf6e6 Sync config
+d120143 Removed old build config
+312cb62 Use global phpunit version when calling RMT
+eef88c0 Bumped sonata dependencies
+b96bb50 Ignore phpstan warning
+afc769c Added correct return type to EntityManagerMockFactory
+0ce0cd1 Added composer suggestions
+d7b3501 Removed PHPUnit from phpstan
+4aeb5aa Removed old PHPUnit 5 code
+bd6a422 Use PHPUnit 6
+732268c Moved all translation to xlf
+d9e0150 Ignore PHPUnit warnings when calling phpstan
+9cb3e53 Added phpstan extension to travis
+263416f Removed hard phpunit dependency
+fd5d018 Removed version information from phpunit.xml.dist
+8d93233 Ignore PHPUnit errors when calling phpstan
+a3330a3 Fixed coveralls build
+f504584 Sync build config
+b96f6a6 Removed code climate status
+9c06725 Fixed file permissions
+7cb2954 Sync config
+769e3df Ignore symfony DI errors when calling phpstan
+07fc9cb Updated travis config for outdated symfony versions
+ce37a9b Bumped symfony deps to >=3.4
+0bfe408 Require latest phpstan version
+82854e9 Fixed CS
+a400359 Sync config
+2eb8a7f Sync config
+80cea35 Apply fixes from StyleCI
 01/12/2017 14:46  0.1.0  Initial Release
