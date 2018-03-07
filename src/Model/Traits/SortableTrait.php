@@ -16,7 +16,7 @@ trait SortableTrait
     /**
      * @var int|null
      */
-    protected $position = 0;
+    protected $position;
 
     /**
      * @param int|null $position
