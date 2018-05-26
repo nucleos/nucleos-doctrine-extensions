@@ -1,3 +1,9 @@
+26/05/2018 06:48  0.2.1  Fixed wrong return types
+26c7eac Removed default value of SortableTrait::$position
+c01ec0c Fixed wrong return type of SortableTrait::getPosition
+3ed9f98 Added old symfony/framework-bundle versions to conflict section
+289fba7 Don't use PHPUnit 7 yet
+9c3d2c0 Improved documentation
 26/01/2018 17:00  0.2.0  Transformed repository into a library
 1316f21 Adding stages to travis build
 a2d3bea Fixed return type of getIdentifier in EntityManagerMockFactory
