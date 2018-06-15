@@ -28,6 +28,9 @@
         "doctrine/orm": "^2.5",
         "sonata-project/datagrid-bundle": "^2.3"
     },
+    "conflict": {
+        "symfony/framework-bundle": "<3.4"
+    },
     "require-dev": {
         "bamarni/composer-bin-plugin": "^1.2",
         "matthiasnoback/symfony-dependency-injection-test": "^2.3",
@@ -37,9 +40,6 @@
         "symfony/expression-language": "^3.4 || ^4.0",
         "symfony/framework-bundle": "^3.4 || ^4.0",
         "symfony/phpunit-bridge": "^4.0"
-    },
-    "conflict": {
-        "symfony/framework-bundle": "<3.4"
     },
     "suggest": {
         "sonata-project/core-bundle": "If you want to use a entity manager blueprint.",
