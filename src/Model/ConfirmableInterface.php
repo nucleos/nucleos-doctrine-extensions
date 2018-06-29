@@ -25,7 +25,7 @@ interface ConfirmableInterface
      *
      * @param \DateTime|null $confirmedAt
      *
-     * @return $this
+     * @return self
      */
     public function setConfirmedAt(?\DateTime $confirmedAt);
 
@@ -34,7 +34,7 @@ interface ConfirmableInterface
      *
      * @param bool $confirmed
      *
-     * @return $this
+     * @return self
      */
     public function setConfirmed(bool $confirmed);
 

@@ -33,7 +33,7 @@ trait ConfirmableTrait
      *
      * @param \DateTime|null $confirmedAt
      *
-     * @return $this
+     * @return self
      */
     public function setConfirmedAt(?\DateTime $confirmedAt)
     {
@@ -47,7 +47,7 @@ trait ConfirmableTrait
      *
      * @param bool $confirmed
      *
-     * @return $this
+     * @return self
      */
     public function setConfirmed(bool $confirmed)
     {

@@ -28,7 +28,7 @@ trait LifecycleDateTimeTrait
      *
      * @param \DateTime|null $createdAt
      *
-     * @return $this
+     * @return self
      */
     public function setCreatedAt(?\DateTime $createdAt)
     {
@@ -52,7 +52,7 @@ trait LifecycleDateTimeTrait
      *
      * @param \DateTime|null $updatedAt
      *
-     * @return $this
+     * @return self
      */
     public function setUpdatedAt(?\DateTime $updatedAt)
     {

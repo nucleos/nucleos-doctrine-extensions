@@ -25,7 +25,7 @@ interface DeletableInterface
      *
      * @param \DateTime|null $deletedAt
      *
-     * @return $this
+     * @return self
      */
     public function setDeletedAt(?\DateTime $deletedAt);
 
@@ -34,7 +34,7 @@ interface DeletableInterface
      *
      * @param bool $deleted
      *
-     * @return $this
+     * @return self
      */
     public function setDeleted(bool $deleted);
 

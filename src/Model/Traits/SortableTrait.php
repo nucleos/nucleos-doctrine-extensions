@@ -21,7 +21,7 @@ trait SortableTrait
     /**
      * @param int|null $position
      *
-     * @return $this
+     * @return self
      */
     public function setPosition(?int $position)
     {

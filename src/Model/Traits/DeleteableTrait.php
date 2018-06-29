@@ -33,7 +33,7 @@ trait DeleteableTrait
      *
      * @param \DateTime|null $deletedAt
      *
-     * @return $this
+     * @return self
      */
     public function setDeletedAt(?\DateTime $deletedAt)
     {
@@ -47,7 +47,7 @@ trait DeleteableTrait
      *
      * @param bool $deleted
      *
-     * @return $this
+     * @return self
      */
     public function setDeleted(bool $deleted)
     {
