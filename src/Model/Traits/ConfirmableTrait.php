@@ -14,7 +14,7 @@ namespace Core23\DoctrineExtensions\Model\Traits;
 trait ConfirmableTrait
 {
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $confirmedAt;
 
