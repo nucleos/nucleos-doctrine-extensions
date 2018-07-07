@@ -1,3 +1,11 @@
+07/07/2018 07:06  0.2.2  PHPDoc fixes
+505d941 PHPDOC: Use specific array
+9060f2e phpstan findings
+a72aed4 PHPDOC: Return self instead of $this
+8898f2d Sync phpstan config
+5bda06c Require latest phpstan version
+77e9a21 Normalize composer.json
+e6189ea Created issue templates
 26/05/2018 06:48  0.2.1  Fixed wrong return types
 26c7eac Removed default value of SortableTrait::$position
 c01ec0c Fixed wrong return type of SortableTrait::getPosition
