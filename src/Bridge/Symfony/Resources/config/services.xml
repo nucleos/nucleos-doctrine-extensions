@@ -13,5 +13,8 @@
     <service id="core23_doctrine.orm.listener.sortable" class="Core23\DoctrineExtensions\EventListener\ORM\SortableListener" public="false">
       <tag name="doctrine.event_subscriber"/>
     </service>
+    <service id="Core23\DoctrineExtensions\EventListener\ORM\UniqueActiveListener" class="Core23\DoctrineExtensions\EventListener\ORM\UniqueActiveListener" public="false">
+      <tag name="doctrine.event_subscriber"/>
+    </service>
   </services>
 </container>

@@ -56,6 +56,13 @@ in your entity class.
 
 If you don't need the symfony framework, you need to register the `Core23\DoctrineExtensions\EventListener\ORM\SortableListener`.
 
+### Unique active entities
+
+If you need entities that should only have one active state, just implement the `Core23\DoctrineExtensions\Model\UniqueActiveInterface`
+in your entity class.
+
+If you don't need the symfony framework, you need to register the `Core23\DoctrineExtensions\EventListener\ORM\UniqueActiveListener`.
+
 ## Symfony usage
 
 If you want to use this library inside symfony, you can use a bridge.
