@@ -89,7 +89,9 @@ final class SortableListener extends AbstractListener
             throw new \LogicException(sprintf('Class metadata was no ORM but %s', get_class($meta)));
         }
 
-        if (!$this->containsTrait($meta->getReflectionClass(), SortableTrait::class)) {
+        $reflClass = $meta->getReflectionClass();
+
+        if (null === $reflClass || !$this->containsTrait($reflClass, SortableTrait::class)) {
             return;
         }
 

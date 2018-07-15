@@ -63,7 +63,9 @@ final class UniqueActiveListener implements EventSubscriber
             throw new \LogicException(sprintf('Class metadata was no ORM but %s', get_class($meta)));
         }
 
-        if (!$meta->getReflectionClass()->implementsInterface(UniqueActiveInterface::class)) {
+        $reflClass = $meta->getReflectionClass();
+
+        if (null === $reflClass || !$reflClass->implementsInterface(UniqueActiveInterface::class)) {
             return;
         }
 

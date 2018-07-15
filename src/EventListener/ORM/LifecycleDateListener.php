@@ -75,7 +75,9 @@ final class LifecycleDateListener extends AbstractListener
             throw new \LogicException(sprintf('Class metadata was no ORM but %s', get_class($meta)));
         }
 
-        if (!$this->containsTrait($meta->getReflectionClass(), LifecycleDateTimeTrait::class)) {
+        $reflClass = $meta->getReflectionClass();
+
+        if (null === $reflClass || !$this->containsTrait($reflClass, LifecycleDateTimeTrait::class)) {
             return;
         }
 

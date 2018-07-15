@@ -42,7 +42,9 @@ final class ConfirmableListener extends AbstractListener
             throw new \LogicException(sprintf('Class metadata was no ORM but %s', get_class($meta)));
         }
 
-        if (!$this->containsTrait($meta->getReflectionClass(), ConfirmableTrait::class)) {
+        $reflClass = $meta->getReflectionClass();
+
+        if (null === $reflClass || !$this->containsTrait($reflClass, ConfirmableTrait::class)) {
             return;
         }
 
