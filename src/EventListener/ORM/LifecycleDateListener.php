@@ -72,7 +72,7 @@ final class LifecycleDateListener extends AbstractListener
         $meta = $eventArgs->getClassMetadata();
 
         if (!$meta instanceof ClassMetadata) {
-            throw new \LogicException(sprintf('Class metadata was no ORM but %s', get_class($meta)));
+            throw new \LogicException(sprintf('Class metadata was no ORM but %s', \get_class($meta)));
         }
 
         $reflClass = $meta->getReflectionClass();

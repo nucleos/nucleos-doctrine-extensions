@@ -27,7 +27,7 @@ abstract class AbstractListener implements EventSubscriber
         do {
             $traits = $reflection->getTraitNames();
 
-            if (in_array($class, $traits)) {
+            if (\in_array($class, $traits)) {
                 return true;
             }
 

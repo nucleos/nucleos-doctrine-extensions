@@ -50,21 +50,21 @@ trait BaseQueryTrait
     public function addOrder(QueryBuilder $builder, array $sort, string $defaultEntity, array $aliasMapping = [], string $defaultOrder = 'asc'): QueryBuilder
     {
         foreach ($sort as $field => $order) {
-            if (is_int($field)) {
+            if (\is_int($field)) {
                 $field = $order;
                 $order = $defaultOrder;
             }
 
             $fieldSpl = explode('.', $field);
 
-            if (count($fieldSpl) > 2) {
+            if (\count($fieldSpl) > 2) {
                 continue;
             }
 
             $table = $defaultEntity;
 
             // Map entity to table name
-            if (2 === count($fieldSpl)) {
+            if (2 === \count($fieldSpl)) {
                 foreach ($aliasMapping as $k => $v) {
                     if ($fieldSpl[0] === $k) {
                         $table = $v;

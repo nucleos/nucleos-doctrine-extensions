@@ -60,7 +60,7 @@ final class UniqueActiveListener implements EventSubscriber
         $meta = $eventArgs->getClassMetadata();
 
         if (!$meta instanceof ClassMetadata) {
-            throw new \LogicException(sprintf('Class metadata was no ORM but %s', get_class($meta)));
+            throw new \LogicException(sprintf('Class metadata was no ORM but %s', \get_class($meta)));
         }
 
         $reflClass = $meta->getReflectionClass();
@@ -87,7 +87,7 @@ final class UniqueActiveListener implements EventSubscriber
         if ($entity instanceof UniqueActiveInterface && $entity->isActive()) {
             $em   = $args->getEntityManager();
             $uow  = $em->getUnitOfWork();
-            $meta = $em->getClassMetadata(get_class($entity));
+            $meta = $em->getClassMetadata(\get_class($entity));
 
             $qb = $em->createQueryBuilder()
                 ->update($meta->getName(), 'e')
@@ -103,7 +103,7 @@ final class UniqueActiveListener implements EventSubscriber
             foreach ($entity->getUniqueActiveFields() as $field) {
                 $value = $propertyAccessor->getValue($entity, $field);
 
-                if (is_object($value) && null === $uow->getSingleIdentifierValue($value)) {
+                if (\is_object($value) && null === $uow->getSingleIdentifierValue($value)) {
                     continue;
                 }
 

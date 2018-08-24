@@ -86,7 +86,7 @@ final class SortableListener extends AbstractListener
         $meta = $eventArgs->getClassMetadata();
 
         if (!$meta instanceof ClassMetadata) {
-            throw new \LogicException(sprintf('Class metadata was no ORM but %s', get_class($meta)));
+            throw new \LogicException(sprintf('Class metadata was no ORM but %s', \get_class($meta)));
         }
 
         $reflClass = $meta->getReflectionClass();
@@ -129,7 +129,7 @@ final class SortableListener extends AbstractListener
     private function movePosition(EntityManager $em, PositionAwareInterface $entity, int $direction = 1): void
     {
         $uow  = $em->getUnitOfWork();
-        $meta = $em->getClassMetadata(get_class($entity));
+        $meta = $em->getClassMetadata(\get_class($entity));
 
         $qb = $em->createQueryBuilder()
             ->update($meta->getName(), 'e')
@@ -148,7 +148,7 @@ final class SortableListener extends AbstractListener
         foreach ($entity->getPositionGroup() as $field) {
             $value = $propertyAccessor->getValue($entity, $field);
 
-            if (is_object($value) && null === $uow->getSingleIdentifierValue($value)) {
+            if (\is_object($value) && null === $uow->getSingleIdentifierValue($value)) {
                 continue;
             }
 
@@ -166,7 +166,7 @@ final class SortableListener extends AbstractListener
      */
     private function getNextPosition(EntityManager $em, PositionAwareInterface $entity): int
     {
-        $meta = $em->getClassMetadata(get_class($entity));
+        $meta = $em->getClassMetadata(\get_class($entity));
 
         $qb = $em->createQueryBuilder()
             ->select('e')
