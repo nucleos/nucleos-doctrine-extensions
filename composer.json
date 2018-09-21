@@ -25,8 +25,10 @@
         "php": "^7.1",
         "doctrine/common": "^2.8",
         "doctrine/dbal": "^2.6",
+        "doctrine/event-manager": "^1.0",
         "doctrine/orm": "^2.5",
-        "sonata-project/datagrid-bundle": "^2.3"
+        "sonata-project/datagrid-bundle": "^2.3",
+        "symfony/property-access": "^3.4 || ^4.0"
     },
     "conflict": {
         "symfony/framework-bundle": "<3.4"
