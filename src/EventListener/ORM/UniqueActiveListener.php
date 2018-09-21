@@ -65,7 +65,7 @@ final class UniqueActiveListener implements EventSubscriber
 
         $reflClass = $meta->getReflectionClass();
 
-        if ( !$reflClass->implementsInterface(UniqueActiveInterface::class)) {
+        if (!$reflClass->implementsInterface(UniqueActiveInterface::class)) {
             return;
         }
 

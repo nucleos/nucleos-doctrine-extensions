@@ -44,7 +44,7 @@ final class ConfirmableListener extends AbstractListener
 
         $reflClass = $meta->getReflectionClass();
 
-        if ( !$this->containsTrait($reflClass, ConfirmableTrait::class)) {
+        if (!$this->containsTrait($reflClass, ConfirmableTrait::class)) {
             return;
         }
 

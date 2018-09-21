@@ -77,7 +77,7 @@ final class LifecycleDateListener extends AbstractListener
 
         $reflClass = $meta->getReflectionClass();
 
-        if ( !$this->containsTrait($reflClass, LifecycleDateTimeTrait::class)) {
+        if (!$this->containsTrait($reflClass, LifecycleDateTimeTrait::class)) {
             return;
         }
 
