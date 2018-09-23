@@ -1,3 +1,14 @@
+23/09/2018 12:27  0.3.0  UniqueActiveListener
+ea42538 Added missing dependencies
+cb4bce5 Fixed CS
+4977bf3 Fixed phpstan findings
+6a419dd Updated .editorconfig
+7dd76ae Fixed CS
+8d4445e TRAVIS: Moved dependencies check to allow failures
+030cf6e Added missing null check
+9cf3293 New extension for unique active entities
+1b1a64e Sync config
+2a9b6ad Added composer-require-checker to build
 07/07/2018 07:06  0.2.2  PHPDoc fixes
 505d941 PHPDOC: Use specific array
 9060f2e phpstan findings
