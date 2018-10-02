@@ -12,9 +12,9 @@ declare(strict_types=1);
 namespace Core23\DoctrineExtensions\Bridge\SonataCore\Manager\ORM;
 
 use Core23\DoctrineExtensions\Manager\ORM\BaseQueryTrait;
-use Sonata\CoreBundle\Model\BaseEntityManager as SonataBaseEntityManager;
+use Sonata\Doctrine\Entity\BaseEntityManager;
 
-abstract class AbstractEntityManager extends SonataBaseEntityManager
+abstract class AbstractEntityManager extends BaseEntityManager
 {
     use EntityManagerTrait, BaseQueryTrait;
 }
