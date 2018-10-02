@@ -9,7 +9,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Core23\DoctrineExtensions\Bridge\SonataCore\Manager\ORM;
+namespace Core23\DoctrineExtensions\Adapter\ORM;
 
 use Core23\DoctrineExtensions\Manager\ORM\BaseQueryTrait;
 use Sonata\Doctrine\Entity\BaseEntityManager;
