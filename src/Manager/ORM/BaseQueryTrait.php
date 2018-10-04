@@ -47,7 +47,7 @@ trait BaseQueryTrait
      *
      * @return QueryBuilder
      */
-    public function addOrder(QueryBuilder $builder, array $sort, string $defaultEntity, array $aliasMapping = [], string $defaultOrder = 'asc'): QueryBuilder
+    final protected function addOrder(QueryBuilder $builder, array $sort, string $defaultEntity, array $aliasMapping = [], string $defaultOrder = 'asc'): QueryBuilder
     {
         foreach ($sort as $field => $order) {
             if (\is_int($field)) {
