@@ -27,7 +27,7 @@ trait SearchQueryTrait
      *
      * @return Composite
      */
-    public function searchWhere(QueryBuilder $qb, string $field, array $values, bool $strict = false): Composite
+    final protected function searchWhere(QueryBuilder $qb, string $field, array $values, bool $strict = false): Composite
     {
         $orx = $qb->expr()->orX();
         foreach ($values as $index => $word) {
