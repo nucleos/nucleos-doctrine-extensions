@@ -39,11 +39,11 @@ trait BaseQueryTrait
     }
 
     /**
-     * @param QueryBuilder $builder
-     * @param array        $sort
-     * @param string       $defaultEntity
-     * @param array        $aliasMapping
-     * @param string       $defaultOrder
+     * @param QueryBuilder              $builder
+     * @param array<int|string, string> $sort
+     * @param string                    $defaultEntity
+     * @param array<string,string>      $aliasMapping
+     * @param string                    $defaultOrder
      *
      * @return QueryBuilder
      */
