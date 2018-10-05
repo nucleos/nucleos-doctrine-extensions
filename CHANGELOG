@@ -1,3 +1,13 @@
+05/10/2018 13:21  1.0.0  Stable release
+29d63f4 Updated release config
+f5bedc3 Removed datagrid pager functionality
+bfb6789 Clean tests
+ecfe003 Reduced visibility of SearchQueryTrait::searchWhere
+29c8507 Reduced visibility of BaseQueryTrait::addOrder
+cb8c4fd Added more specific PHPDoc
+4bbee1b Sorted dependencies
+e116e0f Renamed Bridge\SonataCore\Manager\ORM namespace to Adapter\ORM
+fc3ac08 Replaced CoreBundle dependency with doctrine-extensions
 23/09/2018 12:27  0.3.0  UniqueActiveListener
 ea42538 Added missing dependencies
 cb4bce5 Fixed CS
