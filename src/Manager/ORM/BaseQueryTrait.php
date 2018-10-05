@@ -12,32 +12,9 @@ declare(strict_types=1);
 namespace Core23\DoctrineExtensions\Manager\ORM;
 
 use Doctrine\ORM\QueryBuilder;
-use Sonata\DatagridBundle\Pager\Doctrine\Pager;
-use Sonata\DatagridBundle\Pager\PagerInterface;
-use Sonata\DatagridBundle\ProxyQuery\Doctrine\ProxyQuery;
 
 trait BaseQueryTrait
 {
-    /**
-     * Builds a pager for a given query builder.
-     *
-     * @param QueryBuilder $builder
-     * @param int          $limit
-     * @param int          $page
-     *
-     * @return PagerInterface
-     */
-    public function createPager(QueryBuilder $builder, int $limit, int $page): PagerInterface
-    {
-        $pager = new Pager();
-        $pager->setMaxPerPage($limit);
-        $pager->setQuery(new ProxyQuery($builder));
-        $pager->setPage($page);
-        $pager->init();
-
-        return $pager;
-    }
-
     /**
      * @param QueryBuilder              $builder
      * @param array<int|string, string> $sort
