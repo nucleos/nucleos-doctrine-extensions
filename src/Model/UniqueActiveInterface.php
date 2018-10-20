@@ -14,13 +14,6 @@ namespace Core23\DoctrineExtensions\Model;
 interface UniqueActiveInterface
 {
     /**
-     * Get id.
-     *
-     * @return int|null
-     */
-    public function getId(): ?int;
-
-    /**
      * Set active.
      *
      * @param bool $active

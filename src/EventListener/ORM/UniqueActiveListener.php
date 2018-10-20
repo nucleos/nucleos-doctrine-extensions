@@ -94,11 +94,12 @@ final class UniqueActiveListener implements EventSubscriber
                 ->set('e.active', 'false')
                 ->andWhere('e.active = true');
 
-            if ($entity->getId()) {
-                $qb->andWhere('e.id != :id')->setParameter('id', $entity->getId());
-            }
-
             $propertyAccessor = PropertyAccess::createPropertyAccessor();
+
+            foreach ($meta->getIdentifier() as $key) {
+                $qb->andWhere(sprintf('e.%s != :%s', $key, $key))
+                    ->setParameter($key, $propertyAccessor->getValue($entity, $key));
+            }
 
             foreach ($entity->getUniqueActiveFields() as $field) {
                 $value = $propertyAccessor->getValue($entity, $field);
