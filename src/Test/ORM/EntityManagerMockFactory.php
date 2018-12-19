@@ -35,7 +35,7 @@ final class EntityManagerMockFactory
     {
         $query = $test->getMockBuilder(AbstractQuery::class)
             ->disableOriginalConstructor()->getMock();
-        $query->method('execute')->will($test->returnValue(true));
+        $query->method('execute')->willReturn(true);
 
         if (Version::compare('2.5.0') < 1) {
             $entityManager = $test->getMockBuilder(EntityManagerInterface::class)->getMock();
@@ -44,30 +44,30 @@ final class EntityManagerMockFactory
             $qb = $test->getMockBuilder(QueryBuilder::class)->disableOriginalConstructor()->getMock();
         }
 
-        $qb->method('select')->will($test->returnValue($qb));
-        $qb->method('getQuery')->will($test->returnValue($query));
-        $qb->method('where')->will($test->returnValue($qb));
-        $qb->method('orderBy')->will($test->returnValue($qb));
-        $qb->method('andWhere')->will($test->returnValue($qb));
-        $qb->method('leftJoin')->will($test->returnValue($qb));
+        $qb->method('select')->willReturn($qb);
+        $qb->method('getQuery')->willReturn($query);
+        $qb->method('where')->willReturn($qb);
+        $qb->method('orderBy')->willReturn($qb);
+        $qb->method('andWhere')->willReturn($qb);
+        $qb->method('leftJoin')->willReturn($qb);
 
         $qbCallback($qb);
 
         $repository = $test->getMockBuilder(EntityRepository::class)->disableOriginalConstructor()->getMock();
-        $repository->method('createQueryBuilder')->will($test->returnValue($qb));
+        $repository->method('createQueryBuilder')->willReturn($qb);
 
         $metadata = $test->getMockBuilder(ClassMetadataInfo::class)->disableOriginalConstructor()->getMock();
-        $metadata->method('getFieldNames')->will($test->returnValue($fields));
-        $metadata->method('getName')->will($test->returnValue('className'));
-        $metadata->method('getIdentifier')->will($test->returnValue(['id']));
-        $metadata->method('getTableName')->will($test->returnValue('dummy'));
+        $metadata->method('getFieldNames')->willReturn($fields);
+        $metadata->method('getName')->willReturn('className');
+        $metadata->method('getIdentifier')->willReturn(['id']);
+        $metadata->method('getTableName')->willReturn('dummy');
 
         $connection = $test->getMockBuilder(Connection::class)->disableOriginalConstructor()->getMock();
 
         $em = $test->getMockBuilder(EntityManager::class)->disableOriginalConstructor()->getMock();
-        $em->method('getRepository')->will($test->returnValue($repository));
-        $em->method('getClassMetadata')->will($test->returnValue($metadata));
-        $em->method('getConnection')->will($test->returnValue($connection));
+        $em->method('getRepository')->willReturn($repository);
+        $em->method('getClassMetadata')->willReturn($metadata);
+        $em->method('getConnection')->willReturn($connection);
 
         return $em;
     }
