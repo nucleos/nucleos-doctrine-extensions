@@ -91,7 +91,7 @@ final class SortableListener extends AbstractListener
 
         $reflClass = $meta->getReflectionClass();
 
-        if (!$this->containsTrait($reflClass, SortableTrait::class)) {
+        if (null === $reflClass || !$this->containsTrait($reflClass, SortableTrait::class)) {
             return;
         }
 

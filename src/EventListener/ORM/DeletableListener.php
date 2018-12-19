@@ -44,7 +44,7 @@ final class DeletableListener extends AbstractListener
 
         $reflClass = $meta->getReflectionClass();
 
-        if (!$this->containsTrait($reflClass, DeleteableTrait::class)) {
+        if (null === $reflClass || !$this->containsTrait($reflClass, DeleteableTrait::class)) {
             return;
         }
 
