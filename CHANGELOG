@@ -1,3 +1,19 @@
+30/12/2018 22:04  2.0.0  Support for multiple identifiers
+7cdfb05 Fixed phpunit config for release command
+7334f6f Ignore wrong phpdoc error in phpstan
+405546e Added platform workaround for php-cs-fixer tool
+3674e7c Require latest phpunit bridge
+b6211c8 Require latest phpunit bridge
+7abe59f Improved unit tests
+3efc6bf Catch null error
+a6c53c4 Travis: Test against PHP 7.3
+a40344f Dropped support for PHP 7.1
+231b1f0 Fixed syntax error in editorconfig
+7e36526 Moved test dependencies to vendor-bin
+2f23b58 Added support for generic identifiers
+94635c3 Removed donation from README
+2299021 Changed composer alias to 1.x
+a8b37e1 Updated style config
 05/10/2018 13:21  1.0.0  Stable release
 29d63f4 Updated release config
 f5bedc3 Removed datagrid pager functionality
