@@ -24,19 +24,15 @@ interface DeletableInterface
      * Set deletedAt.
      *
      * @param \DateTime|null $deletedAt
-     *
-     * @return self
      */
-    public function setDeletedAt(?\DateTime $deletedAt);
+    public function setDeletedAt(?\DateTime $deletedAt): void;
 
     /**
      * Set deleted.
      *
      * @param bool $deleted
-     *
-     * @return self
      */
-    public function setDeleted(bool $deleted);
+    public function setDeleted(bool $deleted): void;
 
     /**
      * Get deleted.

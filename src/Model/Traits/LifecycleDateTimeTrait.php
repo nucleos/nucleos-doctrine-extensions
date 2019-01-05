@@ -27,14 +27,10 @@ trait LifecycleDateTimeTrait
      * Set createdAt.
      *
      * @param \DateTime|null $createdAt
-     *
-     * @return self
      */
-    public function setCreatedAt(?\DateTime $createdAt)
+    public function setCreatedAt(?\DateTime $createdAt): void
     {
         $this->createdAt = $createdAt;
-
-        return $this;
     }
 
     /**
@@ -51,14 +47,10 @@ trait LifecycleDateTimeTrait
      * Set modifiedAt.
      *
      * @param \DateTime|null $updatedAt
-     *
-     * @return self
      */
-    public function setUpdatedAt(?\DateTime $updatedAt)
+    public function setUpdatedAt(?\DateTime $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
-
-        return $this;
     }
 
     /**

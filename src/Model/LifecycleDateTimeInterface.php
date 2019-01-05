@@ -31,17 +31,13 @@ interface LifecycleDateTimeInterface
      * Set createdAt.
      *
      * @param \DateTime|null $createdAt
-     *
-     * @return self
      */
-    public function setCreatedAt(?\DateTime $createdAt);
+    public function setCreatedAt(?\DateTime $createdAt): void;
 
     /**
      * Set updatedAt.
      *
      * @param \DateTime|null $updatedAt
-     *
-     * @return self
      */
-    public function setUpdatedAt(?\DateTime $updatedAt);
+    public function setUpdatedAt(?\DateTime $updatedAt): void;
 }

@@ -20,14 +20,10 @@ trait SortableTrait
 
     /**
      * @param int|null $position
-     *
-     * @return self
      */
-    public function setPosition(?int $position)
+    public function setPosition(?int $position): void
     {
         $this->position = $position;
-
-        return $this;
     }
 
     /**

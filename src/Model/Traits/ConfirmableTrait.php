@@ -32,32 +32,24 @@ trait ConfirmableTrait
      * Set confirmedAt.
      *
      * @param \DateTime|null $confirmedAt
-     *
-     * @return self
      */
-    public function setConfirmedAt(?\DateTime $confirmedAt)
+    public function setConfirmedAt(?\DateTime $confirmedAt): void
     {
         $this->confirmedAt = $confirmedAt;
-
-        return $this;
     }
 
     /**
      * Set confirmed.
      *
      * @param bool $confirmed
-     *
-     * @return self
      */
-    public function setConfirmed(bool $confirmed)
+    public function setConfirmed(bool $confirmed): void
     {
         if ($confirmed) {
             $this->setConfirmedAt(new \DateTime());
         } else {
             $this->setConfirmedAt(null);
         }
-
-        return $this;
     }
 
     /**

@@ -32,32 +32,24 @@ trait DeleteableTrait
      * Set deletedAt.
      *
      * @param \DateTime|null $deletedAt
-     *
-     * @return self
      */
-    public function setDeletedAt(?\DateTime $deletedAt)
+    public function setDeletedAt(?\DateTime $deletedAt): void
     {
         $this->deletedAt = $deletedAt;
-
-        return $this;
     }
 
     /**
      * Set deleted.
      *
      * @param bool $deleted
-     *
-     * @return self
      */
-    public function setDeleted(bool $deleted)
+    public function setDeleted(bool $deleted): void
     {
         if ($deleted) {
             $this->setDeletedAt(new \DateTime());
         } else {
             $this->setDeletedAt(null);
         }
-
-        return $this;
     }
 
     /**

@@ -24,19 +24,15 @@ interface ConfirmableInterface
      * Set confirmedAt.
      *
      * @param \DateTime|null $confirmedAt
-     *
-     * @return self
      */
-    public function setConfirmedAt(?\DateTime $confirmedAt);
+    public function setConfirmedAt(?\DateTime $confirmedAt): void;
 
     /**
      * Set confirmed.
      *
      * @param bool $confirmed
-     *
-     * @return self
      */
-    public function setConfirmed(bool $confirmed);
+    public function setConfirmed(bool $confirmed): void;
 
     /**
      * Get deleted.

@@ -24,10 +24,8 @@ interface PositionAwareInterface
      * Set position.
      *
      * @param int|null $position
-     *
-     * @return self
      */
-    public function setPosition(?int $position);
+    public function setPosition(?int $position): void;
 
     /**
      * Get list of position fields.

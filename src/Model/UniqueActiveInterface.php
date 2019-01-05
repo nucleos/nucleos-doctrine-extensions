@@ -17,10 +17,8 @@ interface UniqueActiveInterface
      * Set active.
      *
      * @param bool $active
-     *
-     * @return self
      */
-    public function setActive(bool $active);
+    public function setActive(bool $active): void;
 
     /**
      * Get active.
