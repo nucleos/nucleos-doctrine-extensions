@@ -23,7 +23,7 @@ final class Core23DoctrineExtensionsExtensionTest extends AbstractExtensionTestC
         $this->assertTrue(true);
     }
 
-    protected function getContainerExtensions(): array
+    protected function getContainerExtensions()
     {
         return [
             new Core23DoctrineExtensionsExtension(),
