@@ -9,7 +9,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Core23\DoctrineExtensions\Test\ORM;
+namespace Core23\Doctrine\Test\ORM;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\AbstractQuery;

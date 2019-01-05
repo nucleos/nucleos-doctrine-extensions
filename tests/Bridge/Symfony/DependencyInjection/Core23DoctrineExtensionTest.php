@@ -9,12 +9,12 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Core23\DoctrineExtensions\Tests\Bridge\Symfony\DependencyInjection;
+namespace Core23\Doctrine\Tests\Bridge\Symfony\DependencyInjection;
 
-use Core23\DoctrineExtensions\Bridge\Symfony\DependencyInjection\Core23DoctrineExtensionsExtension;
+use Core23\Doctrine\Bridge\Symfony\DependencyInjection\Core23DoctrineExtension;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 
-final class Core23DoctrineExtensionsExtensionTest extends AbstractExtensionTestCase
+final class Core23DoctrineExtensionTest extends AbstractExtensionTestCase
 {
     public function testLoadDefault(): void
     {
@@ -26,7 +26,7 @@ final class Core23DoctrineExtensionsExtensionTest extends AbstractExtensionTestC
     protected function getContainerExtensions()
     {
         return [
-            new Core23DoctrineExtensionsExtension(),
+            new Core23DoctrineExtension(),
         ];
     }
 }

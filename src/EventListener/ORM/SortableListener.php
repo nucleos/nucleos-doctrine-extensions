@@ -9,10 +9,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Core23\DoctrineExtensions\EventListener\ORM;
+namespace Core23\Doctrine\EventListener\ORM;
 
-use Core23\DoctrineExtensions\Model\PositionAwareInterface;
-use Core23\DoctrineExtensions\Model\Traits\SortableTrait;
+use Core23\Doctrine\Model\PositionAwareInterface;
+use Core23\Doctrine\Model\Traits\SortableTrait;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;

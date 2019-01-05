@@ -9,9 +9,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Core23\DoctrineExtensions\EventListener\ORM;
+namespace Core23\Doctrine\EventListener\ORM;
 
-use Core23\DoctrineExtensions\Model\UniqueActiveInterface;
+use Core23\Doctrine\Model\UniqueActiveInterface;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;

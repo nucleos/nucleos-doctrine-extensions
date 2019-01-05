@@ -9,9 +9,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Core23\DoctrineExtensions\Adapter\ORM;
+namespace Core23\Doctrine\Adapter\ORM;
 
-use Core23\DoctrineExtensions\Manager\ORM\BaseQueryTrait;
+use Core23\Doctrine\Manager\ORM\BaseQueryTrait;
 use Sonata\Doctrine\Entity\BaseEntityManager;
 
 abstract class AbstractEntityManager extends BaseEntityManager

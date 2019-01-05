@@ -9,9 +9,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Core23\DoctrineExtensions\EventListener\ORM;
+namespace Core23\Doctrine\EventListener\ORM;
 
-use Core23\DoctrineExtensions\Model\Traits\DeleteableTrait;
+use Core23\Doctrine\Model\Traits\DeleteableTrait;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\ClassMetadata;

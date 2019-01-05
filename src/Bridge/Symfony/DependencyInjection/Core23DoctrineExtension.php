@@ -9,14 +9,14 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Core23\DoctrineExtensions\Bridge\Symfony\DependencyInjection;
+namespace Core23\Doctrine\Bridge\Symfony\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
-final class Core23DoctrineExtensionsExtension extends Extension
+final class Core23DoctrineExtension extends Extension
 {
     /**
      * {@inheritdoc}

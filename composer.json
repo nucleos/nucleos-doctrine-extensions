@@ -53,12 +53,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Core23\\DoctrineExtensions\\": "src/"
+            "Core23\\Doctrine\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Core23\\DoctrineExtensions\\Tests\\": "tests/"
+            "Core23\\Doctrine\\Tests\\": "tests/"
         }
     },
     "scripts": {

@@ -27,38 +27,38 @@ composer require core23/doctrine-extensions
 
 ### Confirmable entities
 
-If you need entities that needs to be confirmed, just implement the `Core23\DoctrineExtensions\Model\ConfirmableInterface`
+If you need entities that needs to be confirmed, just implement the `Core23\Doctrine\Model\ConfirmableInterface`
 in your entity class.
 
-If you don't need the symfony framework, you need to register the `Core23\DoctrineExtensions\EventListener\ORM\ConfirmableListener`.
+If you don't need the symfony framework, you need to register the `Core23\Doctrine\EventListener\ORM\ConfirmableListener`.
 
 ### Deleteable entities
 
-If you need entities that should be soft deleted, just implement the `Core23\DoctrineExtensions\Model\DeletableInterface`
+If you need entities that should be soft deleted, just implement the `Core23\Doctrine\Model\DeletableInterface`
 in your entity class.
 
-If you don't need the symfony framework, you need to register the `Core23\DoctrineExtensions\EventListener\ORM\DeletableListener`.
+If you don't need the symfony framework, you need to register the `Core23\Doctrine\EventListener\ORM\DeletableListener`.
 
 ### Lifecyle aware enties
 
-If you need lifecyle information (creation / update date), just implement the `Core23\DoctrineExtensions\Model\LifecycleDateTimeInterface`
+If you need lifecyle information (creation / update date), just implement the `Core23\Doctrine\Model\LifecycleDateTimeInterface`
 in your entity class.
 
-If you don't need the symfony framework, you need to register the `Core23\DoctrineExtensions\EventListener\ORM\LifecycleDateListener`.
+If you don't need the symfony framework, you need to register the `Core23\Doctrine\EventListener\ORM\LifecycleDateListener`.
 
 ### Position aware entities
 
-If you need sortable entities, just implement the `Core23\DoctrineExtensions\Model\PositionAwareInterface`
+If you need sortable entities, just implement the `Core23\Doctrine\Model\PositionAwareInterface`
 in your entity class.
 
-If you don't need the symfony framework, you need to register the `Core23\DoctrineExtensions\EventListener\ORM\SortableListener`.
+If you don't need the symfony framework, you need to register the `Core23\Doctrine\EventListener\ORM\SortableListener`.
 
 ### Unique active entities
 
-If you need entities that should only have one active state, just implement the `Core23\DoctrineExtensions\Model\UniqueActiveInterface`
+If you need entities that should only have one active state, just implement the `Core23\Doctrine\Model\UniqueActiveInterface`
 in your entity class.
 
-If you don't need the symfony framework, you need to register the `Core23\DoctrineExtensions\EventListener\ORM\UniqueActiveListener`.
+If you don't need the symfony framework, you need to register the `Core23\Doctrine\EventListener\ORM\UniqueActiveListener`.
 
 ## Symfony usage
 
@@ -73,7 +73,7 @@ Then, enable the bundle by adding it to the list of registered bundles in `bundl
 
 return [
     // ...
-    Core23\DoctrineExtensions\Bridge\Symfony\Bundle\Core23DoctrineExtensionsBundle::class => ['all' => true],
+    Core23\Doctrine\Bridge\Symfony\Bundle\Core23DoctrineBundle::class => ['all' => true],
 ];
 ```
 

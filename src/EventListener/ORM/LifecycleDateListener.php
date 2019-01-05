@@ -9,10 +9,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Core23\DoctrineExtensions\EventListener\ORM;
+namespace Core23\Doctrine\EventListener\ORM;
 
-use Core23\DoctrineExtensions\Model\LifecycleDateTimeInterface;
-use Core23\DoctrineExtensions\Model\Traits\LifecycleDateTimeTrait;
+use Core23\Doctrine\Model\LifecycleDateTimeInterface;
+use Core23\Doctrine\Model\Traits\LifecycleDateTimeTrait;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Events;
