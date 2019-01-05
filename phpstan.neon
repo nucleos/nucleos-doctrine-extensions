@@ -14,4 +14,4 @@ parameters:
         - '#Strict comparison using === between null and ReflectionClass will always evaluate to false.#'
 
         # PHPUnit
-        - '#Method Core23\\DoctrineExtensions\\Test\\ORM\\EntityManagerMockFactory::create\(\) should return Doctrine\\ORM\\EntityManager&PHPUnit\\Framework\\MockObject\\MockObject but returns PHPUnit\\Framework\\MockObject\\MockObject.#'
+        - '#Method Core23\\Doctrine\\Test\\ORM\\EntityManagerMockFactory::create\(\) should return Doctrine\\ORM\\EntityManager&PHPUnit\\Framework\\MockObject\\MockObject but returns PHPUnit\\Framework\\MockObject\\MockObject.#'
