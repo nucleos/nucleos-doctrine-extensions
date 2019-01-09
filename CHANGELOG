@@ -1,3 +1,11 @@
+09/01/2019 20:47  3.0.0  Changed namespace
+facdd87 Updated cs-fixer config
+46f56e4 Fixed phpstan ignore list
+e1baf6d Removed service aliases
+d24d2ab Changed branch alias
+bc17e77 Renamed DoctrineExtensions namespace to Doctrine
+2db054f Removed chaining of models
+20b4bae Use return types
 30/12/2018 22:04  2.0.0  Support for multiple identifiers
 7cdfb05 Fixed phpunit config for release command
 7334f6f Ignore wrong phpdoc error in phpstan
