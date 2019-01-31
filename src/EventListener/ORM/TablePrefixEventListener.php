@@ -135,6 +135,6 @@ final class TablePrefixEventListener implements EventSubscriber
      */
     private function prefixExists(string $name): bool
     {
-        return 0 === strpos($name, $this->prefix);
+        return 0 === strpos($name, (string) $this->prefix);
     }
 }
