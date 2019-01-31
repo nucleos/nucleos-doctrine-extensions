@@ -60,6 +60,13 @@ in your entity class.
 
 If you don't need the symfony framework, you need to register the `Core23\Doctrine\EventListener\ORM\UniqueActiveListener`.
 
+### Table prefix
+
+If you a prefix for all of you application tables and sequences, you could use the  `TablePrefixEventListener`. 
+If the table name does already start with the defined prefix, it will be ignored.
+
+If you don't need the symfony framework, you need to register the `Core23\Doctrine\EventListener\ORM\TablePrefixEventListener`.
+
 ## Symfony usage
 
 If you want to use this library inside symfony, you can use a bridge.
@@ -76,6 +83,20 @@ return [
     Core23\Doctrine\Bridge\Symfony\Bundle\Core23DoctrineBundle::class => ['all' => true],
 ];
 ```
+
+
+### Configure the Bundle
+
+Create a configuration file called `core23_doctrine.yaml`:
+
+```yaml
+# config/packages/core23_doctrine.yaml
+
+core23_doctrine:
+    table:
+        prefix: 'acme_'
+```
+
 
 ## License
 

@@ -16,5 +16,9 @@
     <service id="Core23\Doctrine\EventListener\ORM\UniqueActiveListener" public="false">
       <tag name="doctrine.event_subscriber"/>
     </service>
+    <service id="Core23\Doctrine\EventListener\ORM\TablePrefixEventListener" public="false">
+      <tag name="doctrine.event_subscriber"/>
+      <argument>%core23_doctrine.table.prefix%</argument>
+    </service>
   </services>
 </container>
