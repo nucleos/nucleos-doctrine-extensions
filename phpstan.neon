@@ -13,5 +13,8 @@ parameters:
         - '#Call to an undefined method Doctrine\\Common\\Persistence\\ObjectRepository::createQueryBuilder\(\).#'
         - '#Strict comparison using === between null and ReflectionClass will always evaluate to false.#'
 
+        # Symfony DI
+        - '#Cannot call method end\(\) on Symfony\\Component\\Config\\Definition\\Builder\\NodeParentInterface\|null.#'
+
         # PHPUnit
         - '#PHPDoc tag @return with type Doctrine\\ORM\\EntityManager\|PHPUnit\\Framework\\MockObject\\MockObject is not subtype of native type PHPUnit\\Framework\\MockObject\\MockObject.#'
