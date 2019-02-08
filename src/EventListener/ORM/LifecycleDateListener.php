@@ -85,12 +85,18 @@ final class LifecycleDateListener extends AbstractListener
             $meta->mapField([
                 'type'      => 'datetime',
                 'fieldName' => 'createdAt',
+                'options'   => [
+                    'default' => 'CURRENT_TIMESTAMP'
+                ],
             ]);
         }
         if (!$meta->hasField('updatedAt')) {
             $meta->mapField([
                 'type'      => 'datetime',
                 'fieldName' => 'updatedAt',
+                'options'   => [
+                    'default' => 'CURRENT_TIMESTAMP'
+                ],
             ]);
         }
     }
