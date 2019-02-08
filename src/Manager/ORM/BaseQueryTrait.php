@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Core23\Doctrine\Manager\ORM;
 
 use Doctrine\ORM\QueryBuilder;
+use InvalidArgumentException;
 
 trait BaseQueryTrait
 {
@@ -35,7 +36,7 @@ trait BaseQueryTrait
             $fieldSpl = explode('.', $field);
 
             if (\count($fieldSpl) > 2) {
-                continue;
+                throw new InvalidArgumentException(sprintf('The fieldname "%s" cannot contain more than one dot', $field));
             }
 
             $table = $defaultEntity;
