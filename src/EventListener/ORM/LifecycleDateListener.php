@@ -86,7 +86,7 @@ final class LifecycleDateListener extends AbstractListener
                 'type'      => 'datetime',
                 'fieldName' => 'createdAt',
                 'options'   => [
-                    'default' => 'CURRENT_TIMESTAMP'
+                    'default' => 'CURRENT_TIMESTAMP',
                 ],
             ]);
         }
@@ -95,7 +95,7 @@ final class LifecycleDateListener extends AbstractListener
                 'type'      => 'datetime',
                 'fieldName' => 'updatedAt',
                 'options'   => [
-                    'default' => 'CURRENT_TIMESTAMP'
+                    'default' => 'CURRENT_TIMESTAMP',
                 ],
             ]);
         }
