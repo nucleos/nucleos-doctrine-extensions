@@ -62,7 +62,7 @@ If you don't need the symfony framework, you need to register the `Core23\Doctri
 
 ### Table prefix
 
-If you a prefix for all of you application tables and sequences, you could use the  `TablePrefixEventListener`. 
+If you need a prefix for all of you application tables and sequences, you could use the  `TablePrefixEventListener`. 
 If the table name does already start with the defined prefix, it will be ignored.
 
 If you don't need the symfony framework, you need to register the `Core23\Doctrine\EventListener\ORM\TablePrefixEventListener`.
