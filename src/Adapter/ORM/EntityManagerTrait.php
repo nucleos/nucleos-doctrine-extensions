@@ -23,12 +23,13 @@ trait EntityManagerTrait
      * @param string $alias
      * @param string $indexBy The index for the from
      *
-     * @return QueryBuilder|EntityManager
+     * @return EntityManager|QueryBuilder
      */
     final protected function createQueryBuilder(string $alias, string $indexBy = null)
     {
         return $this->getRepository()
-            ->createQueryBuilder($alias, $indexBy);
+            ->createQueryBuilder($alias, $indexBy)
+        ;
     }
 
     /**

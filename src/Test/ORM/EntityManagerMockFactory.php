@@ -29,7 +29,7 @@ final class EntityManagerMockFactory
      * @param \Closure $qbCallback
      * @param mixed    $fields
      *
-     * @return MockObject|EntityManager
+     * @return EntityManager|MockObject
      */
     public static function create(TestCase $test, \Closure $qbCallback, $fields): MockObject
     {

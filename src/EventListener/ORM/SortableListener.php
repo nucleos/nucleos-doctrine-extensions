@@ -133,7 +133,8 @@ final class SortableListener extends AbstractListener
 
         $qb = $em->createQueryBuilder()
             ->update($meta->getName(), 'e')
-            ->set('e.position', 'e.position + '.$direction);
+            ->set('e.position', 'e.position + '.$direction)
+        ;
 
         if ($direction > 0) {
             $qb->andWhere('e.position <= :position')->setParameter('position', $entity->getPosition());
@@ -172,7 +173,8 @@ final class SortableListener extends AbstractListener
             ->select('e')
             ->from($meta->getName(), 'e')
             ->addOrderBy('e.position', 'DESC')
-            ->setMaxResults(1);
+            ->setMaxResults(1)
+        ;
 
         $propertyAccessor = PropertyAccess::createPropertyAccessor();
 
@@ -181,7 +183,7 @@ final class SortableListener extends AbstractListener
             $qb->andWhere('e.'.$field.' = :'.$field)->setParameter($field, $value);
         }
 
-        /* @var PositionAwareInterface $result */
+        // @var PositionAwareInterface $result
         try {
             $result = $qb->getQuery()->getOneOrNullResult();
 
