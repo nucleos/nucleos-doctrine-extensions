@@ -1,3 +1,18 @@
+17/03/2019 15:58  3.1.0  Add global table prefix
+16869c1 Revert "[MINOR] Added CURRENT_TIMESTAMP as default value for lifecyle fields"
+94b9308 [BUILD] Added weak_vendors when calling phpunit
+c69cccb [PATCH] Updated CS Fixer config and run
+e845a24 [DOCS] Fixed typo in README
+44a482f [PATCH] Fixed CS
+79bc8b4 [MINOR] Throw exception when calling BaseQueryTrait::addOrder with wrong parameters
+43a2ddc [MINOR] Added CURRENT_TIMESTAMP as default value for lifecyle fields
+b8d233a [BUILD] Fixed phpstan ignore list
+6c46c43 [PATCH] Added explicit typecast
+ae87e47 [MINOR] Added new listener to add a global table prefix
+e478ea4 [BUILD] Fixed phpstan ignore list
+eeb89d6 [BUILD] Updated phpstan version
+7fddde7 [BUILD] Fixed symfony test setup
+60318e0 [MINOR] Removed support for outdated symfony versions
 09/01/2019 20:47  3.0.0  Changed namespace
 facdd87 Updated cs-fixer config
 46f56e4 Fixed phpstan ignore list
