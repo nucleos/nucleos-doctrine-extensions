@@ -21,10 +21,31 @@ use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Mapping\MappingException;
 use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\QueryBuilder;
+use Doctrine\ORM\UnitOfWork;
+use LogicException;
 use Symfony\Component\PropertyAccess\PropertyAccess;
+use Symfony\Component\PropertyAccess\PropertyAccessor;
 
 final class SortableListener extends AbstractListener
 {
+    /**
+     * @var PropertyAccessor
+     */
+    private $propertyAccessor;
+
+    /**
+     * @param PropertyAccessor $propertyAccessor
+     */
+    public function __construct(PropertyAccessor $propertyAccessor = null)
+    {
+        if (null === $propertyAccessor) {
+            $propertyAccessor = PropertyAccess::createPropertyAccessor();
+        }
+
+        $this->propertyAccessor = $propertyAccessor;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -43,9 +64,11 @@ final class SortableListener extends AbstractListener
      */
     public function prePersist(LifecycleEventArgs $args): void
     {
-        if ($args->getEntity() instanceof PositionAwareInterface) {
-            $this->uniquePosition($args);
+        if (!$args->getEntity() instanceof PositionAwareInterface) {
+            return;
         }
+
+        $this->uniquePosition($args);
     }
 
     /**
@@ -53,15 +76,17 @@ final class SortableListener extends AbstractListener
      */
     public function preUpdate(PreUpdateEventArgs $args): void
     {
-        if ($args->getEntity() instanceof PositionAwareInterface) {
-            $position = $args->getEntity()->getPosition();
-
-            if ($args->hasChangedField('position')) {
-                $position = $args->getOldValue('position');
-            }
-
-            $this->uniquePosition($args, $position);
+        if (!$args->getEntity() instanceof PositionAwareInterface) {
+            return;
         }
+
+        $position = $args->getEntity()->getPosition();
+
+        if ($args->hasChangedField('position')) {
+            $position = $args->getOldValue('position');
+        }
+
+        $this->uniquePosition($args, $position);
     }
 
     /**
@@ -86,7 +111,7 @@ final class SortableListener extends AbstractListener
         $meta = $eventArgs->getClassMetadata();
 
         if (!$meta instanceof ClassMetadata) {
-            throw new \LogicException(sprintf('Class metadata was no ORM but %s', \get_class($meta)));
+            throw new LogicException(sprintf('Class metadata was no ORM but %s', \get_class($meta)));
         }
 
         $reflClass = $meta->getReflectionClass();
@@ -144,17 +169,7 @@ final class SortableListener extends AbstractListener
             return;
         }
 
-        $propertyAccessor = PropertyAccess::createPropertyAccessor();
-
-        foreach ($entity->getPositionGroup() as $field) {
-            $value = $propertyAccessor->getValue($entity, $field);
-
-            if (\is_object($value) && null === $uow->getSingleIdentifierValue($value)) {
-                continue;
-            }
-
-            $qb->andWhere('e.'.$field.' = :'.$field)->setParameter($field, $value);
-        }
+        $this->addGroupFilter($qb, $entity, $uow);
 
         $qb->getQuery()->execute();
     }
@@ -176,20 +191,32 @@ final class SortableListener extends AbstractListener
             ->setMaxResults(1)
         ;
 
-        $propertyAccessor = PropertyAccess::createPropertyAccessor();
+        $this->addGroupFilter($qb, $entity);
 
-        foreach ($entity->getPositionGroup() as $field) {
-            $value = $propertyAccessor->getValue($entity, $field);
-            $qb->andWhere('e.'.$field.' = :'.$field)->setParameter($field, $value);
-        }
-
-        // @var PositionAwareInterface $result
         try {
             $result = $qb->getQuery()->getOneOrNullResult();
 
-            return ($result ? $result->getPosition() : 0) + 1;
+            return ($result instanceof PositionAwareInterface ? $result->getPosition() : 0) + 1;
         } catch (NonUniqueResultException $ignored) {
             return 0;
+        }
+    }
+
+    /**
+     * @param QueryBuilder           $qb
+     * @param PositionAwareInterface $entity
+     * @param UnitOfWork             $uow
+     */
+    private function addGroupFilter(QueryBuilder $qb, PositionAwareInterface $entity, UnitOfWork $uow = null): void
+    {
+        foreach ($entity->getPositionGroup() as $field) {
+            $value = $this->propertyAccessor->getValue($entity, $field);
+
+            if (\is_object($value) && (null === $uow || null === $uow->getSingleIdentifierValue($value))) {
+                continue;
+            }
+
+            $qb->andWhere('e.'.$field.' = :'.$field)->setParameter($field, $value);
         }
     }
 }

@@ -16,6 +16,7 @@ use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Mapping\MappingException;
+use LogicException;
 
 final class DeletableListener extends AbstractListener
 {
@@ -39,7 +40,7 @@ final class DeletableListener extends AbstractListener
         $meta = $eventArgs->getClassMetadata();
 
         if (!$meta instanceof ClassMetadata) {
-            throw new \LogicException(sprintf('Class metadata was no ORM but %s', \get_class($meta)));
+            throw new LogicException(sprintf('Class metadata was no ORM but %s', \get_class($meta)));
         }
 
         $reflClass = $meta->getReflectionClass();
@@ -48,12 +49,6 @@ final class DeletableListener extends AbstractListener
             return;
         }
 
-        if (!$meta->hasField('deletedAt')) {
-            $meta->mapField([
-                'type'      => 'datetime',
-                'fieldName' => 'deletedAt',
-                'nullable'  => true,
-            ]);
-        }
+        $this->createDateTimeField($meta, 'deletedAt', true);
     }
 }

@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Core23\Doctrine\EventListener\ORM;
 
 use Doctrine\Common\EventSubscriber;
+use Doctrine\ORM\Mapping\ClassMetadata;
 use ReflectionClass;
 
 abstract class AbstractListener implements EventSubscriber
@@ -39,5 +40,23 @@ abstract class AbstractListener implements EventSubscriber
         } while ($reflection = $reflection->getParentClass());
 
         return false;
+    }
+
+    /**
+     * @param ClassMetadata $metadata
+     * @param string        $field
+     * @param bool          $nullable
+     */
+    final protected function createDateTimeField(ClassMetadata $metadata, string $field, bool $nullable): void
+    {
+        if ($metadata->hasField($field)) {
+            return;
+        }
+
+        $metadata->mapField([
+            'type'      => 'datetime',
+            'fieldName' => $field,
+            'nullable'  => $nullable,
+        ]);
     }
 }

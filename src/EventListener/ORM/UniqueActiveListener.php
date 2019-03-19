@@ -18,10 +18,31 @@ use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Mapping\MappingException;
+use Doctrine\ORM\QueryBuilder;
+use Doctrine\ORM\UnitOfWork;
+use LogicException;
 use Symfony\Component\PropertyAccess\PropertyAccess;
+use Symfony\Component\PropertyAccess\PropertyAccessor;
 
 final class UniqueActiveListener implements EventSubscriber
 {
+    /**
+     * @var PropertyAccessor
+     */
+    private $propertyAccessor;
+
+    /**
+     * @param PropertyAccessor $propertyAccessor
+     */
+    public function __construct(PropertyAccessor $propertyAccessor = null)
+    {
+        if (null === $propertyAccessor) {
+            $propertyAccessor = PropertyAccess::createPropertyAccessor();
+        }
+
+        $this->propertyAccessor = $propertyAccessor;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -60,7 +81,7 @@ final class UniqueActiveListener implements EventSubscriber
         $meta = $eventArgs->getClassMetadata();
 
         if (!$meta instanceof ClassMetadata) {
-            throw new \LogicException(sprintf('Class metadata was no ORM but %s', \get_class($meta)));
+            throw new LogicException(sprintf('Class metadata was no ORM but %s', \get_class($meta)));
         }
 
         $reflClass = $meta->getReflectionClass();
@@ -84,36 +105,50 @@ final class UniqueActiveListener implements EventSubscriber
     {
         $entity = $args->getEntity();
 
-        if ($entity instanceof UniqueActiveInterface && $entity->isActive()) {
-            $em   = $args->getEntityManager();
-            $uow  = $em->getUnitOfWork();
-            $meta = $em->getClassMetadata(\get_class($entity));
+        if (!$entity instanceof UniqueActiveInterface) {
+            return;
+        }
 
-            $qb = $em->createQueryBuilder()
-                ->update($meta->getName(), 'e')
-                ->set('e.active', 'false')
-                ->andWhere('e.active = true')
+        if (!$entity->isActive()) {
+            return;
+        }
+
+        $em   = $args->getEntityManager();
+        $uow  = $em->getUnitOfWork();
+        $meta = $em->getClassMetadata(\get_class($entity));
+
+        $qb = $em->createQueryBuilder()
+            ->update($meta->getName(), 'e')
+            ->set('e.active', 'false')
+            ->andWhere('e.active = true')
+        ;
+
+        foreach ($meta->getIdentifier() as $key) {
+            $qb->andWhere(sprintf('e.%s != :%s', $key, $key))
+                ->setParameter($key, $this->propertyAccessor->getValue($entity, $key))
             ;
+        }
 
-            $propertyAccessor = PropertyAccess::createPropertyAccessor();
+        $this->addFieldFilter($qb, $entity, $uow);
 
-            foreach ($meta->getIdentifier() as $key) {
-                $qb->andWhere(sprintf('e.%s != :%s', $key, $key))
-                    ->setParameter($key, $propertyAccessor->getValue($entity, $key))
-                ;
+        $qb->getQuery()->execute();
+    }
+
+    /**
+     * @param QueryBuilder          $qb
+     * @param UniqueActiveInterface $entity
+     * @param UnitOfWork            $uow
+     */
+    private function addFieldFilter(QueryBuilder $qb, UniqueActiveInterface $entity, UnitOfWork $uow): void
+    {
+        foreach ($entity->getUniqueActiveFields() as $field) {
+            $value = $this->propertyAccessor->getValue($entity, $field);
+
+            if (\is_object($value) && null === $uow->getSingleIdentifierValue($value)) {
+                continue;
             }
 
-            foreach ($entity->getUniqueActiveFields() as $field) {
-                $value = $propertyAccessor->getValue($entity, $field);
-
-                if (\is_object($value) && null === $uow->getSingleIdentifierValue($value)) {
-                    continue;
-                }
-
-                $qb->andWhere('e.'.$field.' = :'.$field)->setParameter($field, $value);
-            }
-
-            $qb->getQuery()->execute();
+            $qb->andWhere('e.'.$field.' = :'.$field)->setParameter($field, $value);
         }
     }
 }

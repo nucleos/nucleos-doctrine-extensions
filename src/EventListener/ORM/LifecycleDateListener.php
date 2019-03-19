@@ -18,6 +18,7 @@ use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Mapping\MappingException;
+use LogicException;
 
 final class LifecycleDateListener extends AbstractListener
 {
@@ -72,7 +73,7 @@ final class LifecycleDateListener extends AbstractListener
         $meta = $eventArgs->getClassMetadata();
 
         if (!$meta instanceof ClassMetadata) {
-            throw new \LogicException(sprintf('Class metadata was no ORM but %s', \get_class($meta)));
+            throw new LogicException(sprintf('Class metadata was no ORM but %s', \get_class($meta)));
         }
 
         $reflClass = $meta->getReflectionClass();
@@ -81,17 +82,7 @@ final class LifecycleDateListener extends AbstractListener
             return;
         }
 
-        if (!$meta->hasField('createdAt')) {
-            $meta->mapField([
-                'type'      => 'datetime',
-                'fieldName' => 'createdAt',
-            ]);
-        }
-        if (!$meta->hasField('updatedAt')) {
-            $meta->mapField([
-                'type'      => 'datetime',
-                'fieldName' => 'updatedAt',
-            ]);
-        }
+        $this->createDateTimeField($meta, 'createdAt', false);
+        $this->createDateTimeField($meta, 'updatedAt', false);
     }
 }

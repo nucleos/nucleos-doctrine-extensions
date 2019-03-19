@@ -78,17 +78,7 @@ final class TablePrefixEventListener implements EventSubscriber
         }
 
         foreach ($classMetadata->getAssociationMappings() as $fieldName => $mapping) {
-            if (ClassMetadataInfo::MANY_TO_MANY !== $mapping['type']) {
-                continue;
-            }
-
-            if (isset($classMetadata->associationMappings[$fieldName]['joinTable']['name'])) {
-                $mappedTableName  = $classMetadata->associationMappings[$fieldName]['joinTable']['name'];
-
-                if (!$this->prefixExists($mappedTableName)) {
-                    $classMetadata->associationMappings[$fieldName]['joinTable']['name'] = $this->prefix.$mappedTableName;
-                }
-            }
+            $this->evaluteMapping($classMetadata, $mapping, $fieldName);
         }
     }
 
@@ -116,15 +106,7 @@ final class TablePrefixEventListener implements EventSubscriber
         $classMetadata->setSequenceGeneratorDefinition($newDefinition);
 
         if (isset($classMetadata->idGenerator)) {
-            $sequenceGenerator = new SequenceGenerator(
-                $em->getConfiguration()->getQuoteStrategy()->getSequenceName(
-                    $newDefinition,
-                    $classMetadata,
-                    $em->getConnection()->getDatabasePlatform()
-                ),
-                $newDefinition['allocationSize']
-            );
-            $classMetadata->setIdGenerator($sequenceGenerator);
+            $this->addSequenceGenerator($classMetadata, $em, $newDefinition);
         }
     }
 
@@ -136,5 +118,43 @@ final class TablePrefixEventListener implements EventSubscriber
     private function prefixExists(string $name): bool
     {
         return 0 === strpos($name, (string) $this->prefix);
+    }
+
+    /**
+     * @param ClassMetadata $classMetadata
+     * @param array         $mapping
+     * @param string        $fieldName
+     */
+    private function evaluteMapping(ClassMetadata $classMetadata, array $mapping, string $fieldName): void
+    {
+        if (ClassMetadataInfo::MANY_TO_MANY !== $mapping['type']) {
+            return;
+        }
+
+        if (isset($classMetadata->associationMappings[$fieldName]['joinTable']['name'])) {
+            $mappedTableName = $classMetadata->associationMappings[$fieldName]['joinTable']['name'];
+
+            if (!$this->prefixExists($mappedTableName)) {
+                $classMetadata->associationMappings[$fieldName]['joinTable']['name'] = $this->prefix.$mappedTableName;
+            }
+        }
+    }
+
+    /**
+     * @param ClassMetadata $classMetadata
+     * @param EntityManager $em
+     * @param array         $definition
+     */
+    private function addSequenceGenerator(ClassMetadata $classMetadata, EntityManager $em, array $definition): void
+    {
+        $sequenceGenerator = new SequenceGenerator(
+            $em->getConfiguration()->getQuoteStrategy()->getSequenceName(
+                $definition,
+                $classMetadata,
+                $em->getConnection()->getDatabasePlatform()
+            ),
+            $definition['allocationSize']
+        );
+        $classMetadata->setIdGenerator($sequenceGenerator);
     }
 }

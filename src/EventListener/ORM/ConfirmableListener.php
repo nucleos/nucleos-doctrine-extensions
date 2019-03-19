@@ -48,12 +48,6 @@ final class ConfirmableListener extends AbstractListener
             return;
         }
 
-        if (!$meta->hasField('confirmedAt')) {
-            $meta->mapField([
-                'type'      => 'datetime',
-                'fieldName' => 'confirmedAt',
-                'nullable'  => true,
-            ]);
-        }
+        $this->createDateTimeField($meta, 'confirmedAt', true);
     }
 }

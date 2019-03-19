@@ -12,9 +12,11 @@
     </service>
     <service id="Core23\Doctrine\EventListener\ORM\SortableListener" public="false">
       <tag name="doctrine.event_subscriber"/>
+      <argument type="service" id="property_accessor"/>
     </service>
     <service id="Core23\Doctrine\EventListener\ORM\UniqueActiveListener" public="false">
       <tag name="doctrine.event_subscriber"/>
+      <argument type="service" id="property_accessor"/>
     </service>
     <service id="Core23\Doctrine\EventListener\ORM\TablePrefixEventListener" public="false">
       <tag name="doctrine.event_subscriber"/>

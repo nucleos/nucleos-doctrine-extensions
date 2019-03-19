@@ -11,14 +11,13 @@ declare(strict_types=1);
 
 namespace Core23\Doctrine\Test\ORM;
 
+use Closure;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use Doctrine\ORM\QueryBuilder;
-use Doctrine\ORM\Version;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -26,41 +25,23 @@ final class EntityManagerMockFactory
 {
     /**
      * @param TestCase $test
-     * @param \Closure $qbCallback
+     * @param Closure  $qbCallback
      * @param mixed    $fields
      *
      * @return EntityManager|MockObject
      */
-    public static function create(TestCase $test, \Closure $qbCallback, $fields): MockObject
+    public static function create(TestCase $test, Closure $qbCallback, $fields): MockObject
     {
-        $query = $test->getMockBuilder(AbstractQuery::class)
-            ->disableOriginalConstructor()->getMock();
-        $query->method('execute')->willReturn(true);
+        $qb = $test->getMockBuilder(QueryBuilder::class)->disableOriginalConstructor()->getMock();
 
-        if (Version::compare('2.5.0') < 1) {
-            $entityManager = $test->getMockBuilder(EntityManagerInterface::class)->getMock();
-            $qb            = $test->getMockBuilder(QueryBuilder::class)->setConstructorArgs([$entityManager])->getMock();
-        } else {
-            $qb = $test->getMockBuilder(QueryBuilder::class)->disableOriginalConstructor()->getMock();
-        }
-
-        $qb->method('select')->willReturn($qb);
-        $qb->method('getQuery')->willReturn($query);
-        $qb->method('where')->willReturn($qb);
-        $qb->method('orderBy')->willReturn($qb);
-        $qb->method('andWhere')->willReturn($qb);
-        $qb->method('leftJoin')->willReturn($qb);
+        self::prepareQueryBuilder($test, $qb);
 
         $qbCallback($qb);
 
         $repository = $test->getMockBuilder(EntityRepository::class)->disableOriginalConstructor()->getMock();
         $repository->method('createQueryBuilder')->willReturn($qb);
 
-        $metadata = $test->getMockBuilder(ClassMetadataInfo::class)->disableOriginalConstructor()->getMock();
-        $metadata->method('getFieldNames')->willReturn($fields);
-        $metadata->method('getName')->willReturn('className');
-        $metadata->method('getIdentifier')->willReturn(['id']);
-        $metadata->method('getTableName')->willReturn('dummy');
+        $metadata = self::prepareMetadata($test, $fields);
 
         $connection = $test->getMockBuilder(Connection::class)->disableOriginalConstructor()->getMock();
 
@@ -70,5 +51,40 @@ final class EntityManagerMockFactory
         $em->method('getConnection')->willReturn($connection);
 
         return $em;
+    }
+
+    /**
+     * @param TestCase   $test
+     * @param MockObject $qb
+     */
+    private static function prepareQueryBuilder(TestCase $test, MockObject $qb): void
+    {
+        $query = $test->getMockBuilder(AbstractQuery::class)
+            ->disableOriginalConstructor()->getMock();
+        $query->method('execute')->willReturn(true);
+
+        $qb->method('select')->willReturn($qb);
+        $qb->method('getQuery')->willReturn($query);
+        $qb->method('where')->willReturn($qb);
+        $qb->method('orderBy')->willReturn($qb);
+        $qb->method('andWhere')->willReturn($qb);
+        $qb->method('leftJoin')->willReturn($qb);
+    }
+
+    /**
+     * @param TestCase $test
+     * @param mixed    $fields
+     *
+     * @return MockObject
+     */
+    private static function prepareMetadata(TestCase $test, $fields): MockObject
+    {
+        $metadata = $test->getMockBuilder(ClassMetadataInfo::class)->disableOriginalConstructor()->getMock();
+        $metadata->method('getFieldNames')->willReturn($fields);
+        $metadata->method('getName')->willReturn('className');
+        $metadata->method('getIdentifier')->willReturn(['id']);
+        $metadata->method('getTableName')->willReturn('dummy');
+
+        return $metadata;
     }
 }
