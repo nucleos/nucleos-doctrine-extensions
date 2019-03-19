@@ -10,6 +10,7 @@
 namespace Core23\Doctrine\Tests\Bridge\Symfony\Bundle;
 
 use Core23\Doctrine\Bridge\Symfony\Bundle\Core23DoctrineBundle;
+use Core23\Doctrine\Bridge\Symfony\DependencyInjection\Core23DoctrineExtension;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 
@@ -27,5 +28,12 @@ class Core23DoctrineBundleTest extends TestCase
         $bundle = new Core23DoctrineBundle();
 
         $this->assertStringEndsWith('Bridge/Symfony/Bundle', \dirname($bundle->getPath()));
+    }
+
+    public function testGetContainerExtension(): void
+    {
+        $bundle = new Core23DoctrineBundle();
+
+        $this->assertInstanceOf(Core23DoctrineExtension::class, $bundle->getContainerExtension());
     }
 }
