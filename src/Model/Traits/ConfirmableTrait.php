@@ -11,19 +11,21 @@ declare(strict_types=1);
 
 namespace Core23\Doctrine\Model\Traits;
 
+use DateTime;
+
 trait ConfirmableTrait
 {
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      */
     protected $confirmedAt;
 
     /**
      * Get confirmedAt.
      *
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getConfirmedAt(): ?\DateTime
+    public function getConfirmedAt(): ?DateTime
     {
         return $this->confirmedAt;
     }
@@ -31,9 +33,9 @@ trait ConfirmableTrait
     /**
      * Set confirmedAt.
      *
-     * @param \DateTime|null $confirmedAt
+     * @param DateTime|null $confirmedAt
      */
-    public function setConfirmedAt(?\DateTime $confirmedAt): void
+    public function setConfirmedAt(?DateTime $confirmedAt): void
     {
         $this->confirmedAt = $confirmedAt;
     }
@@ -46,7 +48,7 @@ trait ConfirmableTrait
     public function setConfirmed(bool $confirmed): void
     {
         if ($confirmed) {
-            $this->setConfirmedAt(new \DateTime());
+            $this->setConfirmedAt(new DateTime());
         } else {
             $this->setConfirmedAt(null);
         }

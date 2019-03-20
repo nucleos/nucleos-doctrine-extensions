@@ -11,24 +11,26 @@ declare(strict_types=1);
 
 namespace Core23\Doctrine\Model\Traits;
 
+use DateTime;
+
 trait LifecycleDateTimeTrait
 {
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      */
     protected $createdAt;
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      */
     protected $updatedAt;
 
     /**
      * Set createdAt.
      *
-     * @param \DateTime|null $createdAt
+     * @param DateTime|null $createdAt
      */
-    public function setCreatedAt(?\DateTime $createdAt): void
+    public function setCreatedAt(?DateTime $createdAt): void
     {
         $this->createdAt = $createdAt;
     }
@@ -36,9 +38,9 @@ trait LifecycleDateTimeTrait
     /**
      * Get createdAt.
      *
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }
@@ -46,9 +48,9 @@ trait LifecycleDateTimeTrait
     /**
      * Set modifiedAt.
      *
-     * @param \DateTime|null $updatedAt
+     * @param DateTime|null $updatedAt
      */
-    public function setUpdatedAt(?\DateTime $updatedAt): void
+    public function setUpdatedAt(?DateTime $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
     }
@@ -56,9 +58,9 @@ trait LifecycleDateTimeTrait
     /**
      * Get modifiedAt.
      *
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }

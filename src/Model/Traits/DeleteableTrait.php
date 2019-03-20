@@ -11,19 +11,21 @@ declare(strict_types=1);
 
 namespace Core23\Doctrine\Model\Traits;
 
+use DateTime;
+
 trait DeleteableTrait
 {
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      */
     protected $deletedAt;
 
     /**
      * Get deletedAt.
      *
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getDeletedAt(): ?\DateTime
+    public function getDeletedAt(): ?DateTime
     {
         return $this->deletedAt;
     }
@@ -31,9 +33,9 @@ trait DeleteableTrait
     /**
      * Set deletedAt.
      *
-     * @param \DateTime|null $deletedAt
+     * @param DateTime|null $deletedAt
      */
-    public function setDeletedAt(?\DateTime $deletedAt): void
+    public function setDeletedAt(?DateTime $deletedAt): void
     {
         $this->deletedAt = $deletedAt;
     }
@@ -46,7 +48,7 @@ trait DeleteableTrait
     public function setDeleted(bool $deleted): void
     {
         if ($deleted) {
-            $this->setDeletedAt(new \DateTime());
+            $this->setDeletedAt(new DateTime());
         } else {
             $this->setDeletedAt(null);
         }
