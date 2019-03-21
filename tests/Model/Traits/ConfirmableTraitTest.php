@@ -55,9 +55,6 @@ class ConfirmableTraitTest extends TestCase
         $this->assertTrue($model->isConfirmed());
     }
 
-    /**
-     * @return ConfirmableTrait&MockObject
-     */
     private function createTraitMock()
     {
         return $this->getMockForTrait(ConfirmableTrait::class);

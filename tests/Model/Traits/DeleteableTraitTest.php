@@ -55,9 +55,6 @@ class DeleteableTraitTest extends TestCase
         $this->assertTrue($model->isDeleted());
     }
 
-    /**
-     * @return DeleteableTrait&MockObject
-     */
     private function createTraitMock()
     {
         return $this->getMockForTrait(DeleteableTrait::class);

@@ -58,9 +58,6 @@ class LifecycleDateTimeTraitTest extends TestCase
         $this->assertNull($model->getUpdatedAt());
     }
 
-    /**
-     * @return LifecycleDateTimeTrait&MockObject
-     */
     private function createTraitMock()
     {
         return $this->getMockForTrait(LifecycleDateTimeTrait::class);
