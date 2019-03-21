@@ -10,7 +10,6 @@
 namespace Core23\Doctrine\Tests\Model\Traits;
 
 use Core23\Doctrine\Model\Traits\SortableTrait;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class SortableTraitTest extends TestCase
@@ -37,9 +36,6 @@ class SortableTraitTest extends TestCase
         $this->assertSame([], $model->getPositionGroup());
     }
 
-    /**
-     * @return MockObject&SortableTrait
-     */
     private function createTraitMock()
     {
         return $this->getMockForTrait(SortableTrait::class);
