@@ -11,7 +11,6 @@ namespace Core23\Doctrine\Tests\Model\Traits;
 
 use Core23\Doctrine\Model\Traits\DeleteableTrait;
 use DateTime;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class DeleteableTraitTest extends TestCase
