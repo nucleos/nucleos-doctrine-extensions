@@ -19,13 +19,13 @@ trait BaseQueryTrait
     /**
      * @param QueryBuilder              $builder
      * @param array<int|string, string> $sort
-     * @param string                    $defaultEntity
+     * @param string                    $defaultAlias
      * @param array<string,string>      $aliasMapping
      * @param string                    $defaultOrder
      *
      * @return QueryBuilder
      */
-    final protected function addOrder(QueryBuilder $builder, array $sort, string $defaultEntity, array $aliasMapping = [], string $defaultOrder = 'asc'): QueryBuilder
+    final protected function addOrder(QueryBuilder $builder, array $sort, string $defaultAlias, array $aliasMapping = [], string $defaultOrder = 'asc'): QueryBuilder
     {
         foreach ($sort as $field => $order) {
             if (\is_int($field)) {
@@ -39,10 +39,13 @@ trait BaseQueryTrait
                 throw new InvalidArgumentException(sprintf('The fieldname "%s" cannot contain more than one dot', $field));
             }
 
-            $table = $defaultEntity;
+            $table = $defaultAlias;
 
             // Map entity to table name
             if (2 === \count($fieldSpl)) {
+                $table = $fieldSpl[0];
+                $field = $fieldSpl[1];
+
                 foreach ($aliasMapping as $k => $v) {
                     if ($fieldSpl[0] === $k) {
                         $table = $v;
