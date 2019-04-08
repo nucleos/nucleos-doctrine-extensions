@@ -13,6 +13,8 @@ namespace Core23\Doctrine\EventListener\ORM;
 
 use Core23\Doctrine\Model\LifecycleDateTimeInterface;
 use Core23\Doctrine\Model\Traits\LifecycleDateTimeTrait;
+use Core23\Doctrine\Util\ClassUtils;
+use DateTime;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Events;
@@ -44,8 +46,8 @@ final class LifecycleDateListener extends AbstractListener
         $object = $args->getObject();
 
         if ($object instanceof LifecycleDateTimeInterface) {
-            $object->setCreatedAt(new \DateTime());
-            $object->setUpdatedAt(new \DateTime());
+            $object->setCreatedAt(new DateTime());
+            $object->setUpdatedAt(new DateTime());
         }
     }
 
@@ -59,7 +61,7 @@ final class LifecycleDateListener extends AbstractListener
         $object = $args->getObject();
 
         if ($object instanceof LifecycleDateTimeInterface) {
-            $object->setUpdatedAt(new \DateTime());
+            $object->setUpdatedAt(new DateTime());
         }
     }
 
@@ -78,7 +80,7 @@ final class LifecycleDateListener extends AbstractListener
 
         $reflClass = $meta->getReflectionClass();
 
-        if (null === $reflClass || !$this->containsTrait($reflClass, LifecycleDateTimeTrait::class)) {
+        if (null === $reflClass || !ClassUtils::containsTrait($reflClass, LifecycleDateTimeTrait::class)) {
             return;
         }
 

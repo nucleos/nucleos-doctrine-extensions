@@ -13,35 +13,9 @@ namespace Core23\Doctrine\EventListener\ORM;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Mapping\ClassMetadata;
-use ReflectionClass;
 
 abstract class AbstractListener implements EventSubscriber
 {
-    /**
-     * @param ReflectionClass $reflection
-     * @param string          $class
-     *
-     * @return bool
-     */
-    final protected function containsTrait(ReflectionClass $reflection, string $class): bool
-    {
-        do {
-            $traits = $reflection->getTraitNames();
-
-            if (\in_array($class, $traits, true)) {
-                return true;
-            }
-
-            foreach ($reflection->getTraits() as $reflTraits) {
-                if ($this->containsTrait($reflTraits, $class)) {
-                    return true;
-                }
-            }
-        } while ($reflection = $reflection->getParentClass());
-
-        return false;
-    }
-
     /**
      * @param ClassMetadata $metadata
      * @param string        $field

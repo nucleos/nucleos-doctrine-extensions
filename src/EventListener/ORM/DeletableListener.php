@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Core23\Doctrine\EventListener\ORM;
 
 use Core23\Doctrine\Model\Traits\DeleteableTrait;
+use Core23\Doctrine\Util\ClassUtils;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\ClassMetadata;
@@ -45,7 +46,7 @@ final class DeletableListener extends AbstractListener
 
         $reflClass = $meta->getReflectionClass();
 
-        if (null === $reflClass || !$this->containsTrait($reflClass, DeleteableTrait::class)) {
+        if (null === $reflClass || !ClassUtils::containsTrait($reflClass, DeleteableTrait::class)) {
             return;
         }
 

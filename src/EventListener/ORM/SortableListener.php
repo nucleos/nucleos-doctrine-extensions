@@ -13,6 +13,8 @@ namespace Core23\Doctrine\EventListener\ORM;
 
 use Core23\Doctrine\Model\PositionAwareInterface;
 use Core23\Doctrine\Model\Traits\SortableTrait;
+use Core23\Doctrine\Util\ClassUtils;
+use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
@@ -27,7 +29,7 @@ use LogicException;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 
-final class SortableListener extends AbstractListener
+final class SortableListener implements EventSubscriber
 {
     /**
      * @var PropertyAccessor
@@ -116,7 +118,7 @@ final class SortableListener extends AbstractListener
 
         $reflClass = $meta->getReflectionClass();
 
-        if (null === $reflClass || !$this->containsTrait($reflClass, SortableTrait::class)) {
+        if (null === $reflClass || !ClassUtils::containsTrait($reflClass, SortableTrait::class)) {
             return;
         }
 

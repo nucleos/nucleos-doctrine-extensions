@@ -12,10 +12,12 @@ declare(strict_types=1);
 namespace Core23\Doctrine\EventListener\ORM;
 
 use Core23\Doctrine\Model\Traits\ConfirmableTrait;
+use Core23\Doctrine\Util\ClassUtils;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Mapping\MappingException;
+use LogicException;
 
 final class ConfirmableListener extends AbstractListener
 {
@@ -39,12 +41,12 @@ final class ConfirmableListener extends AbstractListener
         $meta = $eventArgs->getClassMetadata();
 
         if (!$meta instanceof ClassMetadata) {
-            throw new \LogicException(sprintf('Class metadata was no ORM but %s', \get_class($meta)));
+            throw new LogicException(sprintf('Class metadata was no ORM but %s', \get_class($meta)));
         }
 
         $reflClass = $meta->getReflectionClass();
 
-        if (null === $reflClass || !$this->containsTrait($reflClass, ConfirmableTrait::class)) {
+        if (null === $reflClass || !ClassUtils::containsTrait($reflClass, ConfirmableTrait::class)) {
             return;
         }
 
