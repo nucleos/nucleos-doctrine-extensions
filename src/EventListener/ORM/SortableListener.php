@@ -113,7 +113,7 @@ final class SortableListener implements EventSubscriber
         $meta = $eventArgs->getClassMetadata();
 
         if (!$meta instanceof ClassMetadata) {
-            throw new LogicException(sprintf('Class metadata was no ORM but %s', \get_class($meta)));
+            throw new LogicException('Class metadata was no ORM');
         }
 
         $reflClass = $meta->getReflectionClass();
