@@ -14,3 +14,5 @@ parameters:
 
         # Symfony DI
         - '#Cannot call method end\(\) on Symfony\\Component\\Config\\Definition\\Builder\\NodeParentInterface\|null.#'
+
+        - '#Core23\\Doctrine\\Tests\\Fixtures\\DemoEntityManager::__construct\(\) does not call parent constructor from Sonata\\Doctrine\\Model\\BaseManager.#'
