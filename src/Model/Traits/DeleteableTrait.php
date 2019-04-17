@@ -21,8 +21,6 @@ trait DeleteableTrait
     protected $deletedAt;
 
     /**
-     * Get deletedAt.
-     *
      * @return DateTime|null
      */
     public function getDeletedAt(): ?DateTime
@@ -31,8 +29,6 @@ trait DeleteableTrait
     }
 
     /**
-     * Set deletedAt.
-     *
      * @param DateTime|null $deletedAt
      */
     public function setDeletedAt(?DateTime $deletedAt): void
@@ -41,8 +37,6 @@ trait DeleteableTrait
     }
 
     /**
-     * Set deleted.
-     *
      * @param bool $deleted
      */
     public function setDeleted(bool $deleted): void
@@ -55,8 +49,6 @@ trait DeleteableTrait
     }
 
     /**
-     * Get deleted.
-     *
      * @return bool
      */
     public function isDeleted(): bool

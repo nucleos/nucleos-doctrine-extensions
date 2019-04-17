@@ -14,15 +14,11 @@ namespace Core23\Doctrine\Model;
 interface PositionAwareInterface
 {
     /**
-     * Get position.
-     *
      * @return int|null
      */
     public function getPosition(): ?int;
 
     /**
-     * Set position.
-     *
      * @param int|null $position
      */
     public function setPosition(?int $position): void;

@@ -14,29 +14,21 @@ namespace Core23\Doctrine\Model;
 interface LifecycleDateTimeInterface
 {
     /**
-     * Get createdAt.
-     *
      * @return \DateTime|null
      */
     public function getCreatedAt(): ?\DateTime;
 
     /**
-     * Get updatedAt.
-     *
      * @return \DateTime|null
      */
     public function getUpdatedAt(): ?\DateTime;
 
     /**
-     * Set createdAt.
-     *
      * @param \DateTime|null $createdAt
      */
     public function setCreatedAt(?\DateTime $createdAt): void;
 
     /**
-     * Set updatedAt.
-     *
      * @param \DateTime|null $updatedAt
      */
     public function setUpdatedAt(?\DateTime $updatedAt): void;

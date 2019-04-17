@@ -14,29 +14,21 @@ namespace Core23\Doctrine\Model;
 interface DeletableInterface
 {
     /**
-     * Get deletedAt.
-     *
      * @return \DateTime
      */
     public function getDeletedAt(): ?\DateTime;
 
     /**
-     * Set deletedAt.
-     *
      * @param \DateTime|null $deletedAt
      */
     public function setDeletedAt(?\DateTime $deletedAt): void;
 
     /**
-     * Set deleted.
-     *
      * @param bool $deleted
      */
     public function setDeleted(bool $deleted): void;
 
     /**
-     * Get deleted.
-     *
      * @return bool
      */
     public function isDeleted(): bool;

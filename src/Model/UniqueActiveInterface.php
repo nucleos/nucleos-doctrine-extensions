@@ -14,15 +14,11 @@ namespace Core23\Doctrine\Model;
 interface UniqueActiveInterface
 {
     /**
-     * Set active.
-     *
      * @param bool $active
      */
     public function setActive(bool $active): void;
 
     /**
-     * Get active.
-     *
      * @return bool
      */
     public function isActive(): bool;

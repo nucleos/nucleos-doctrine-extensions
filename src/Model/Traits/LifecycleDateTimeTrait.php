@@ -26,8 +26,6 @@ trait LifecycleDateTimeTrait
     protected $updatedAt;
 
     /**
-     * Set createdAt.
-     *
      * @param DateTime|null $createdAt
      */
     public function setCreatedAt(?DateTime $createdAt): void
@@ -36,8 +34,6 @@ trait LifecycleDateTimeTrait
     }
 
     /**
-     * Get createdAt.
-     *
      * @return DateTime|null
      */
     public function getCreatedAt(): ?DateTime
@@ -46,8 +42,6 @@ trait LifecycleDateTimeTrait
     }
 
     /**
-     * Set modifiedAt.
-     *
      * @param DateTime|null $updatedAt
      */
     public function setUpdatedAt(?DateTime $updatedAt): void
@@ -56,8 +50,6 @@ trait LifecycleDateTimeTrait
     }
 
     /**
-     * Get modifiedAt.
-     *
      * @return DateTime|null
      */
     public function getUpdatedAt(): ?DateTime

@@ -21,8 +21,6 @@ trait ConfirmableTrait
     protected $confirmedAt;
 
     /**
-     * Get confirmedAt.
-     *
      * @return DateTime|null
      */
     public function getConfirmedAt(): ?DateTime
@@ -31,8 +29,6 @@ trait ConfirmableTrait
     }
 
     /**
-     * Set confirmedAt.
-     *
      * @param DateTime|null $confirmedAt
      */
     public function setConfirmedAt(?DateTime $confirmedAt): void
@@ -41,8 +37,6 @@ trait ConfirmableTrait
     }
 
     /**
-     * Set confirmed.
-     *
      * @param bool $confirmed
      */
     public function setConfirmed(bool $confirmed): void
@@ -55,8 +49,6 @@ trait ConfirmableTrait
     }
 
     /**
-     * Get confirmed.
-     *
      * @return bool
      */
     public function isConfirmed(): bool
