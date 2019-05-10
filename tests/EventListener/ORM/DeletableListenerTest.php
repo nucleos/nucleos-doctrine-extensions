@@ -27,14 +27,14 @@ class DeletableListenerTest extends TestCase
     {
         $listener = new DeletableListener();
 
-        $this->assertInstanceOf(EventSubscriber::class, $listener);
+        static::assertInstanceOf(EventSubscriber::class, $listener);
     }
 
     public function testGetSubscribedEvents(): void
     {
         $listener = new DeletableListener();
 
-        $this->assertSame([
+        static::assertSame([
             Events::loadClassMetadata,
         ], $listener->getSubscribedEvents());
     }

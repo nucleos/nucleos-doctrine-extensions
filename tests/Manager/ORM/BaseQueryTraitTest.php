@@ -33,7 +33,7 @@ class BaseQueryTraitTest extends TestCase
             ->shouldBeCalled()
         ;
 
-        $this->assertSame($builder->reveal(), $this->manager->addOrderToQueryBuilder(
+        static::assertSame($builder->reveal(), $this->manager->addOrderToQueryBuilder(
             $builder->reveal(),
             ['position'],
             'myalias'
@@ -48,7 +48,7 @@ class BaseQueryTraitTest extends TestCase
             ->shouldBeCalled()
         ;
 
-        $this->assertSame($builder->reveal(), $this->manager->addOrderToQueryBuilder(
+        static::assertSame($builder->reveal(), $this->manager->addOrderToQueryBuilder(
             $builder->reveal(),
             ['position'],
             'myalias',
@@ -68,7 +68,7 @@ class BaseQueryTraitTest extends TestCase
             ->shouldBeCalled()
         ;
 
-        $this->assertSame($builder->reveal(), $this->manager->addOrderToQueryBuilder(
+        static::assertSame($builder->reveal(), $this->manager->addOrderToQueryBuilder(
             $builder->reveal(),
             ['position', 'otherfield'],
             'myalias',
@@ -91,7 +91,7 @@ class BaseQueryTraitTest extends TestCase
             ->shouldBeCalled()
         ;
 
-        $this->assertSame($builder->reveal(), $this->manager->addOrderToQueryBuilder(
+        static::assertSame($builder->reveal(), $this->manager->addOrderToQueryBuilder(
             $builder->reveal(),
             [
                 'position',
@@ -112,7 +112,7 @@ class BaseQueryTraitTest extends TestCase
             ->shouldBeCalled()
         ;
 
-        $this->assertSame($builder->reveal(), $this->manager->addOrderToQueryBuilder(
+        static::assertSame($builder->reveal(), $this->manager->addOrderToQueryBuilder(
             $builder->reveal(),
             ['child.position'],
             'myalias',
@@ -129,7 +129,7 @@ class BaseQueryTraitTest extends TestCase
             ->shouldBeCalled()
         ;
 
-        $this->assertSame($builder->reveal(), $this->manager->addOrderToQueryBuilder(
+        static::assertSame($builder->reveal(), $this->manager->addOrderToQueryBuilder(
             $builder->reveal(),
             ['f.position'],
             'myalias',

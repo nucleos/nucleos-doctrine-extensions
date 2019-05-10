@@ -21,7 +21,10 @@ use Core23\Doctrine\Model\UniqueActiveInterface;
 
 final class ClassWithAllProperties implements DeletableInterface, ConfirmableInterface, LifecycleDateTimeInterface, PositionAwareInterface, UniqueActiveInterface
 {
-    use DeleteableTrait, ConfirmableTrait, LifecycleDateTimeTrait, SortableTrait;
+    use DeleteableTrait;
+    use ConfirmableTrait;
+    use LifecycleDateTimeTrait;
+    use SortableTrait;
 
     /**
      * @var bool

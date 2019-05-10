@@ -30,14 +30,14 @@ class UniqueActiveListenerTest extends TestCase
     {
         $listener = new UniqueActiveListener();
 
-        $this->assertInstanceOf(EventSubscriber::class, $listener);
+        static::assertInstanceOf(EventSubscriber::class, $listener);
     }
 
     public function testGetSubscribedEvents(): void
     {
         $listener = new UniqueActiveListener();
 
-        $this->assertSame([
+        static::assertSame([
             Events::prePersist,
             Events::preUpdate,
             Events::loadClassMetadata,
@@ -56,7 +56,7 @@ class UniqueActiveListenerTest extends TestCase
         $listener = new UniqueActiveListener();
         $listener->prePersist($eventArgs->reveal());
 
-        $this->assertTrue(true);
+        static::assertTrue(true);
     }
 
     public function testPreUpdateForInvalidClass(): void
@@ -71,7 +71,7 @@ class UniqueActiveListenerTest extends TestCase
         $listener = new UniqueActiveListener();
         $listener->preUpdate($eventArgs->reveal());
 
-        $this->assertTrue(true);
+        static::assertTrue(true);
     }
 
     public function testLoadClassMetadataWithNoValidData(): void

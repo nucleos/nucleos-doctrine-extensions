@@ -20,7 +20,7 @@ final class Core23DoctrineExtensionTest extends AbstractExtensionTestCase
     {
         $this->load();
 
-        $this->assertTrue(true);
+        static::assertTrue(true);
     }
 
     protected function getContainerExtensions()

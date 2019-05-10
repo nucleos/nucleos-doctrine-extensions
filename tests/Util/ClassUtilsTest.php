@@ -24,14 +24,14 @@ class ClassUtilsTest extends TestCase
     {
         $reflection = new ReflectionClass(ClassWithTrait::class);
 
-        $this->assertTrue(ClassUtils::containsTrait($reflection, TestTrait::class));
+        static::assertTrue(ClassUtils::containsTrait($reflection, TestTrait::class));
     }
 
     public function testContainsChildTrait(): void
     {
         $reflection = new ReflectionClass(ClassWithTrait::class);
 
-        $this->assertTrue(ClassUtils::containsTrait($reflection, ChildTrait::class));
+        static::assertTrue(ClassUtils::containsTrait($reflection, ChildTrait::class));
     }
 
     public function testContainsTraitWithNormalClass(): void
@@ -41,13 +41,13 @@ class ClassUtilsTest extends TestCase
 
         $reflection = new ReflectionClass(ClassWithTrait::class);
 
-        $this->assertTrue(ClassUtils::containsTrait($reflection, EmptyClass::class));
+        static::assertTrue(ClassUtils::containsTrait($reflection, EmptyClass::class));
     }
 
     public function testContainsNoTrait(): void
     {
         $reflection = new ReflectionClass(EmptyClass::class);
 
-        $this->assertFalse(ClassUtils::containsTrait($reflection, TestTrait::class));
+        static::assertFalse(ClassUtils::containsTrait($reflection, TestTrait::class));
     }
 }
