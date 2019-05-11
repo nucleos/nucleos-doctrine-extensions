@@ -20,20 +20,20 @@ class Core23DoctrineBundleTest extends TestCase
     {
         $bundle = new Core23DoctrineBundle();
 
-        $this->assertInstanceOf(BundleInterface::class, $bundle);
+        static::assertInstanceOf(BundleInterface::class, $bundle);
     }
 
     public function testGetPath(): void
     {
         $bundle = new Core23DoctrineBundle();
 
-        $this->assertStringEndsWith('Bridge/Symfony/Bundle', \dirname($bundle->getPath()));
+        static::assertStringEndsWith('Bridge/Symfony/Bundle', \dirname($bundle->getPath()));
     }
 
     public function testGetContainerExtension(): void
     {
         $bundle = new Core23DoctrineBundle();
 
-        $this->assertInstanceOf(Core23DoctrineExtension::class, $bundle->getContainerExtension());
+        static::assertInstanceOf(Core23DoctrineExtension::class, $bundle->getContainerExtension());
     }
 }

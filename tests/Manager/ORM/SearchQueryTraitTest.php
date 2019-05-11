@@ -58,7 +58,7 @@ class SearchQueryTraitTest extends TestCase
             ->shouldBeCalled()
         ;
 
-        $this->assertSame($orx->reveal(), $this->manager->searchWhereQueryBuilder(
+        static::assertSame($orx->reveal(), $this->manager->searchWhereQueryBuilder(
             $builder->reveal(),
             'field',
             ['foo']
@@ -77,7 +77,7 @@ class SearchQueryTraitTest extends TestCase
             ->shouldBeCalled()
         ;
 
-        $this->assertSame($orx->reveal(), $this->manager->searchWhereQueryBuilder(
+        static::assertSame($orx->reveal(), $this->manager->searchWhereQueryBuilder(
             $builder->reveal(),
             'field',
             ['foo'],
@@ -109,7 +109,7 @@ class SearchQueryTraitTest extends TestCase
             ->shouldBeCalled()
         ;
 
-        $this->assertSame($orx->reveal(), $this->manager->searchWhereQueryBuilder(
+        static::assertSame($orx->reveal(), $this->manager->searchWhereQueryBuilder(
             $builder->reveal(),
             'field',
             ['foo', 'bar', 'baz'],

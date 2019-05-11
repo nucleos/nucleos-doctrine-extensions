@@ -19,14 +19,14 @@ class ConfirmableTraitTest extends TestCase
     {
         $model = $this->createTraitMock();
 
-        $this->assertNull($model->getConfirmedAt());
+        static::assertNull($model->getConfirmedAt());
     }
 
     public function testGetConfirmedAtWithDefault(): void
     {
         $model = $this->createTraitMock();
 
-        $this->assertFalse($model->isConfirmed());
+        static::assertFalse($model->isConfirmed());
     }
 
     public function testSetUnConfirmed(): void
@@ -34,13 +34,13 @@ class ConfirmableTraitTest extends TestCase
         $model = $this->createTraitMock();
         $model->setConfirmed(true);
 
-        $this->assertTrue($model->isConfirmed());
-        $this->assertNotNull($model->getConfirmedAt());
+        static::assertTrue($model->isConfirmed());
+        static::assertNotNull($model->getConfirmedAt());
 
         $model->setConfirmed(false);
 
-        $this->assertFalse($model->isConfirmed());
-        $this->assertNull($model->getConfirmedAt());
+        static::assertFalse($model->isConfirmed());
+        static::assertNull($model->getConfirmedAt());
     }
 
     public function testSetConfirmedAt(): void
@@ -50,8 +50,8 @@ class ConfirmableTraitTest extends TestCase
         $model = $this->createTraitMock();
         $model->setConfirmedAt($now);
 
-        $this->assertSame($now, $model->getConfirmedAt());
-        $this->assertTrue($model->isConfirmed());
+        static::assertSame($now, $model->getConfirmedAt());
+        static::assertTrue($model->isConfirmed());
     }
 
     private function createTraitMock()

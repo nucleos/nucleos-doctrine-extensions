@@ -19,14 +19,14 @@ class LifecycleDateTimeTraitTest extends TestCase
     {
         $model = $this->createTraitMock();
 
-        $this->assertNull($model->getCreatedAt());
+        static::assertNull($model->getCreatedAt());
     }
 
     public function testIsUpdatedWithDefault(): void
     {
         $model = $this->createTraitMock();
 
-        $this->assertNull($model->getCreatedAt());
+        static::assertNull($model->getCreatedAt());
     }
 
     public function testSetCreated(): void
@@ -36,11 +36,11 @@ class LifecycleDateTimeTraitTest extends TestCase
         $model = $this->createTraitMock();
         $model->setCreatedAt($now);
 
-        $this->assertSame($now, $model->getCreatedAt());
+        static::assertSame($now, $model->getCreatedAt());
 
         $model->setCreatedAt(null);
 
-        $this->assertNull($model->getCreatedAt());
+        static::assertNull($model->getCreatedAt());
     }
 
     public function testSetUpdated(): void
@@ -50,11 +50,11 @@ class LifecycleDateTimeTraitTest extends TestCase
         $model = $this->createTraitMock();
         $model->setUpdatedAt($now);
 
-        $this->assertSame($now, $model->getUpdatedAt());
+        static::assertSame($now, $model->getUpdatedAt());
 
         $model->setUpdatedAt(null);
 
-        $this->assertNull($model->getUpdatedAt());
+        static::assertNull($model->getUpdatedAt());
     }
 
     private function createTraitMock()

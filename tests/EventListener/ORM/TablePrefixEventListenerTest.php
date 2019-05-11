@@ -20,14 +20,14 @@ class TablePrefixEventListenerTest extends TestCase
     {
         $listener = new TablePrefixEventListener('acme_');
 
-        $this->assertInstanceOf(EventSubscriber::class, $listener);
+        static::assertInstanceOf(EventSubscriber::class, $listener);
     }
 
     public function testGetSubscribedEvents(): void
     {
         $listener = new TablePrefixEventListener('acme_');
 
-        $this->assertSame([
+        static::assertSame([
             Events::loadClassMetadata,
         ], $listener->getSubscribedEvents());
     }

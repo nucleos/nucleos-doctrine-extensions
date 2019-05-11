@@ -27,14 +27,14 @@ class ConfirmableListenerTest extends TestCase
     {
         $listener = new ConfirmableListener();
 
-        $this->assertInstanceOf(EventSubscriber::class, $listener);
+        static::assertInstanceOf(EventSubscriber::class, $listener);
     }
 
     public function testGetSubscribedEvents(): void
     {
         $listener = new ConfirmableListener();
 
-        $this->assertSame([
+        static::assertSame([
             Events::loadClassMetadata,
         ], $listener->getSubscribedEvents());
     }

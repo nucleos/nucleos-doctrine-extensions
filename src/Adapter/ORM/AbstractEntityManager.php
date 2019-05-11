@@ -16,5 +16,6 @@ use Sonata\Doctrine\Entity\BaseEntityManager;
 
 abstract class AbstractEntityManager extends BaseEntityManager
 {
-    use EntityManagerTrait, BaseQueryTrait;
+    use EntityManagerTrait;
+    use BaseQueryTrait;
 }

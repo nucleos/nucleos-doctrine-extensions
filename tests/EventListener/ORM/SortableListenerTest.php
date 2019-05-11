@@ -30,14 +30,14 @@ class SortableListenerTest extends TestCase
     {
         $listener = new SortableListener();
 
-        $this->assertInstanceOf(EventSubscriber::class, $listener);
+        static::assertInstanceOf(EventSubscriber::class, $listener);
     }
 
     public function testGetSubscribedEvents(): void
     {
         $listener = new SortableListener();
 
-        $this->assertSame([
+        static::assertSame([
             Events::prePersist,
             Events::preUpdate,
             Events::preRemove,
@@ -57,7 +57,7 @@ class SortableListenerTest extends TestCase
         $listener = new SortableListener();
         $listener->prePersist($eventArgs->reveal());
 
-        $this->assertTrue(true);
+        static::assertTrue(true);
     }
 
     public function testPreRemoveForInvalidClass(): void
@@ -72,7 +72,7 @@ class SortableListenerTest extends TestCase
         $listener = new SortableListener();
         $listener->preRemove($eventArgs->reveal());
 
-        $this->assertTrue(true);
+        static::assertTrue(true);
     }
 
     public function testLoadClassMetadataWithNoValidData(): void

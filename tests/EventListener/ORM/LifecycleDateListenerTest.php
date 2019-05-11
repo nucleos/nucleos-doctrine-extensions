@@ -31,14 +31,14 @@ class LifecycleDateListenerTest extends TestCase
     {
         $listener = new LifecycleDateListener();
 
-        $this->assertInstanceOf(EventSubscriber::class, $listener);
+        static::assertInstanceOf(EventSubscriber::class, $listener);
     }
 
     public function testGetSubscribedEvents(): void
     {
         $listener = new LifecycleDateListener();
 
-        $this->assertSame([
+        static::assertSame([
             Events::prePersist,
             Events::preUpdate,
             Events::loadClassMetadata,
@@ -76,7 +76,7 @@ class LifecycleDateListenerTest extends TestCase
         $listener = new LifecycleDateListener();
         $listener->prePersist($eventArgs->reveal());
 
-        $this->assertTrue(true);
+        static::assertTrue(true);
     }
 
     public function testPreUpdate(): void
@@ -107,7 +107,7 @@ class LifecycleDateListenerTest extends TestCase
         $listener = new LifecycleDateListener();
         $listener->preUpdate($eventArgs->reveal());
 
-        $this->assertTrue(true);
+        static::assertTrue(true);
     }
 
     public function testLoadClassMetadataWithNoValidData(): void

@@ -18,7 +18,7 @@ class SortableTraitTest extends TestCase
     {
         $model = $this->createTraitMock();
 
-        $this->assertNull($model->getPosition());
+        static::assertNull($model->getPosition());
     }
 
     public function testPosition(): void
@@ -26,14 +26,14 @@ class SortableTraitTest extends TestCase
         $model = $this->createTraitMock();
         $model->setPosition(14);
 
-        $this->assertSame(14, $model->getPosition());
+        static::assertSame(14, $model->getPosition());
     }
 
     public function testGetPositionGroup(): void
     {
         $model = $this->createTraitMock();
 
-        $this->assertSame([], $model->getPositionGroup());
+        static::assertSame([], $model->getPositionGroup());
     }
 
     private function createTraitMock()
