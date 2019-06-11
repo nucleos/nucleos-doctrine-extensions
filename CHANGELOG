@@ -1,3 +1,26 @@
+11/06/2019 18:33  3.2.0  Internal code refactoring
+5ed1485 [PATCH] Fixed CS
+55b7c73 [BUILD] Replaced deprecated "weak_vendors" option
+8b8bf0e Added GitHub sponsoring information
+1de6fa3 [PATCH] Fixed CS
+2029f44 [BUILD] Updated export-ignore files
+9643674 [BUILD] Updated build tools
+73416e0 [PATCH] Removed tautological comments
+6a7137c [PATCH] Minor internal code refactoring
+81417e9 [BUILD] Removed dependency stage from build matrix
+71fe6e5 [TEST] Increased test coverage
+8e893d2 [PATCH] Fixed throwing exception with null parameter
+df41bd5 [MINOR] Extracted ClassUtils
+1fc7076 [PATCH] Fixed BaseQueryTrait::addOrder sort when no alias is defined
+f6d6d91 [BUILD] Removed current copyright date
+173dd66 [BUILD] Added missing doctrine/orm dependency for phpstan tools
+1640043 [TEST] Fixed CS
+8e5f8a5 [BUILD] Cleanup phpstan errors
+508d1a9 [BUILD] Cleanup phpstan errors
+bcc13b9 [BUILD] Added more tests
+2d756e9 [MINOR] Minor internal code refactoring
+d70c899 [BUILD] Added more tests
+eb65268 [BUILD] Added more tests
 17/03/2019 15:58  3.1.0  Add global table prefix
 16869c1 Revert "[MINOR] Added CURRENT_TIMESTAMP as default value for lifecyle fields"
 94b9308 [BUILD] Added weak_vendors when calling phpunit

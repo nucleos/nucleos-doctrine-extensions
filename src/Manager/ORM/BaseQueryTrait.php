@@ -20,7 +20,7 @@ trait BaseQueryTrait
      * @param QueryBuilder              $builder
      * @param array<int|string, string> $sort
      * @param string                    $defaultAlias
-     * @param array<string,string>      $aliasMapping
+     * @param array<string, string>     $aliasMapping
      * @param string                    $defaultOrder
      *
      * @return QueryBuilder
