@@ -16,7 +16,7 @@ use Doctrine\ORM\QueryBuilder;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Prophecy\ObjectProphecy;
 
-class SearchQueryTraitTest extends TestCase
+final class SearchQueryTraitTest extends TestCase
 {
     private $manager;
 

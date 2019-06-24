@@ -18,7 +18,7 @@ use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
-class ClassUtilsTest extends TestCase
+final class ClassUtilsTest extends TestCase
 {
     public function testContainsTrait(): void
     {

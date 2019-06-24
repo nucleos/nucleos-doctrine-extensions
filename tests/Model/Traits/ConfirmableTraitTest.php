@@ -13,7 +13,7 @@ use Core23\Doctrine\Model\Traits\ConfirmableTrait;
 use DateTime;
 use PHPUnit\Framework\TestCase;
 
-class ConfirmableTraitTest extends TestCase
+final class ConfirmableTraitTest extends TestCase
 {
     public function testIsConfirmedWithDefault(): void
     {

@@ -25,7 +25,7 @@ use Prophecy\Argument;
 use ReflectionClass;
 use stdClass;
 
-class LifecycleDateListenerTest extends TestCase
+final class LifecycleDateListenerTest extends TestCase
 {
     public function testItIsInstantiable(): void
     {

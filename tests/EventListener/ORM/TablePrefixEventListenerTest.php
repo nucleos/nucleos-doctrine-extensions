@@ -14,7 +14,7 @@ use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Events;
 use PHPUnit\Framework\TestCase;
 
-class TablePrefixEventListenerTest extends TestCase
+final class TablePrefixEventListenerTest extends TestCase
 {
     public function testItIsInstantiable(): void
     {

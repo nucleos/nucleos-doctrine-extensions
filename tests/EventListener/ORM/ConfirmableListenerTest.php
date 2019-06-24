@@ -21,7 +21,7 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use ReflectionClass;
 
-class ConfirmableListenerTest extends TestCase
+final class ConfirmableListenerTest extends TestCase
 {
     public function testItIsInstantiable(): void
     {

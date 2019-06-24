@@ -13,7 +13,7 @@ use Core23\Doctrine\Model\Traits\LifecycleDateTimeTrait;
 use DateTime;
 use PHPUnit\Framework\TestCase;
 
-class LifecycleDateTimeTraitTest extends TestCase
+final class LifecycleDateTimeTraitTest extends TestCase
 {
     public function testIsCreatedWithDefault(): void
     {

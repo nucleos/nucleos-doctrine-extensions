@@ -24,7 +24,7 @@ use Prophecy\Argument;
 use ReflectionClass;
 use stdClass;
 
-class UniqueActiveListenerTest extends TestCase
+final class UniqueActiveListenerTest extends TestCase
 {
     public function testItIsInstantiable(): void
     {

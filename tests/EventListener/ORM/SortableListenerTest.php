@@ -24,7 +24,7 @@ use Prophecy\Argument;
 use ReflectionClass;
 use stdClass;
 
-class SortableListenerTest extends TestCase
+final class SortableListenerTest extends TestCase
 {
     public function testItIsInstantiable(): void
     {
