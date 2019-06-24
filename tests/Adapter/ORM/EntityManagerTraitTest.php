@@ -14,7 +14,7 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use PHPUnit\Framework\TestCase;
 
-class EntityManagerTraitTest extends TestCase
+final class EntityManagerTraitTest extends TestCase
 {
     public function testCreateQueryBuilder(): void
     {

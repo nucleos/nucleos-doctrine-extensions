@@ -14,7 +14,7 @@ use Core23\Doctrine\Bridge\Symfony\DependencyInjection\Core23DoctrineExtension;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 
-class Core23DoctrineBundleTest extends TestCase
+final class Core23DoctrineBundleTest extends TestCase
 {
     public function testItIsInstantiable(): void
     {

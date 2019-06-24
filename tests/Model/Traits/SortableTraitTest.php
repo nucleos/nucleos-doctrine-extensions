@@ -12,7 +12,7 @@ namespace Core23\Doctrine\Tests\Model\Traits;
 use Core23\Doctrine\Model\Traits\SortableTrait;
 use PHPUnit\Framework\TestCase;
 
-class SortableTraitTest extends TestCase
+final class SortableTraitTest extends TestCase
 {
     public function testPositionWithDefault(): void
     {

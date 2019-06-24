@@ -13,7 +13,7 @@ use Core23\Doctrine\Model\Traits\DeleteableTrait;
 use DateTime;
 use PHPUnit\Framework\TestCase;
 
-class DeleteableTraitTest extends TestCase
+final class DeleteableTraitTest extends TestCase
 {
     public function testIsDeletedWithDefault(): void
     {
