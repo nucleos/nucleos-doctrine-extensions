@@ -32,8 +32,6 @@ final class DeletableListener extends AbstractListener
     }
 
     /**
-     * @param LoadClassMetadataEventArgs $eventArgs
-     *
      * @throws MappingException
      */
     public function loadClassMetadata(LoadClassMetadataEventArgs $eventArgs): void

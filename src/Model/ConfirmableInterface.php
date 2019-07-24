@@ -13,23 +13,11 @@ namespace Core23\Doctrine\Model;
 
 interface ConfirmableInterface
 {
-    /**
-     * @return \DateTime|null
-     */
     public function getConfirmedAt(): ?\DateTime;
 
-    /**
-     * @param \DateTime|null $confirmedAt
-     */
     public function setConfirmedAt(?\DateTime $confirmedAt): void;
 
-    /**
-     * @param bool $confirmed
-     */
     public function setConfirmed(bool $confirmed): void;
 
-    /**
-     * @return bool
-     */
     public function isConfirmed(): bool;
 }

@@ -18,18 +18,9 @@ interface DeletableInterface
      */
     public function getDeletedAt(): ?\DateTime;
 
-    /**
-     * @param \DateTime|null $deletedAt
-     */
     public function setDeletedAt(?\DateTime $deletedAt): void;
 
-    /**
-     * @param bool $deleted
-     */
     public function setDeleted(bool $deleted): void;
 
-    /**
-     * @return bool
-     */
     public function isDeleted(): bool;
 }

@@ -18,17 +18,11 @@ trait SortableTrait
      */
     protected $position;
 
-    /**
-     * @param int|null $position
-     */
     public function setPosition(?int $position): void
     {
         $this->position = $position;
     }
 
-    /**
-     * @return int|null
-     */
     public function getPosition(): ?int
     {
         return $this->position;

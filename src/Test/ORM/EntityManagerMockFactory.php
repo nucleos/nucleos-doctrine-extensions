@@ -24,9 +24,7 @@ use PHPUnit\Framework\TestCase;
 final class EntityManagerMockFactory
 {
     /**
-     * @param TestCase $test
-     * @param Closure  $qbCallback
-     * @param mixed    $fields
+     * @param string[] $fields
      *
      * @return EntityManager|MockObject
      */
@@ -53,10 +51,6 @@ final class EntityManagerMockFactory
         return $em;
     }
 
-    /**
-     * @param TestCase   $test
-     * @param MockObject $qb
-     */
     private static function prepareQueryBuilder(TestCase $test, MockObject $qb): void
     {
         $query = $test->getMockBuilder(AbstractQuery::class)
@@ -71,12 +65,6 @@ final class EntityManagerMockFactory
         $qb->method('leftJoin')->willReturn($qb);
     }
 
-    /**
-     * @param TestCase $test
-     * @param mixed    $fields
-     *
-     * @return MockObject
-     */
     private static function prepareMetadata(TestCase $test, $fields): MockObject
     {
         $metadata = $test->getMockBuilder(ClassMetadataInfo::class)->disableOriginalConstructor()->getMock();

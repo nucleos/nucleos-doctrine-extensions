@@ -38,8 +38,6 @@ final class LifecycleDateListener extends AbstractListener
 
     /**
      * Start lifecycle.
-     *
-     * @param LifecycleEventArgs $args
      */
     public function prePersist(LifecycleEventArgs $args): void
     {
@@ -53,8 +51,6 @@ final class LifecycleDateListener extends AbstractListener
 
     /**
      * Update LifecycleDateTime.
-     *
-     * @param LifecycleEventArgs $args
      */
     public function preUpdate(LifecycleEventArgs $args): void
     {
@@ -66,8 +62,6 @@ final class LifecycleDateListener extends AbstractListener
     }
 
     /**
-     * @param LoadClassMetadataEventArgs $eventArgs
-     *
      * @throws MappingException
      */
     public function loadClassMetadata(LoadClassMetadataEventArgs $eventArgs): void

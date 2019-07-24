@@ -16,11 +16,6 @@ use Doctrine\ORM\Mapping\ClassMetadata;
 
 abstract class AbstractListener implements EventSubscriber
 {
-    /**
-     * @param ClassMetadata $metadata
-     * @param string        $field
-     * @param bool          $nullable
-     */
     final protected function createDateTimeField(ClassMetadata $metadata, string $field, bool $nullable): void
     {
         if ($metadata->hasField($field)) {

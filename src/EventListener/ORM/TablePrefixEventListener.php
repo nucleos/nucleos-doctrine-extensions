@@ -26,9 +26,6 @@ final class TablePrefixEventListener implements EventSubscriber
      */
     private $prefix;
 
-    /**
-     * @param string|null $prefix
-     */
     public function __construct(?string $prefix)
     {
         $this->prefix = $prefix;
@@ -44,9 +41,6 @@ final class TablePrefixEventListener implements EventSubscriber
         ];
     }
 
-    /**
-     * @param LoadClassMetadataEventArgs $args
-     */
     public function loadClassMetadata(LoadClassMetadataEventArgs $args): void
     {
         if (null === $this->prefix) {
@@ -60,9 +54,6 @@ final class TablePrefixEventListener implements EventSubscriber
         $this->addSequencePrefix($classMetadata, $entityManager);
     }
 
-    /**
-     * @param ClassMetadata $classMetadata
-     */
     private function addTablePrefix(ClassMetadata $classMetadata): void
     {
         if ($classMetadata->isInheritanceTypeSingleTable() && !$classMetadata->isRootEntity()) {
@@ -82,10 +73,6 @@ final class TablePrefixEventListener implements EventSubscriber
         }
     }
 
-    /**
-     * @param ClassMetadata $classMetadata
-     * @param EntityManager $em
-     */
     private function addSequencePrefix(ClassMetadata $classMetadata, EntityManager $em): void
     {
         if ($classMetadata->isInheritanceTypeSingleTable() && !$classMetadata->isRootEntity()) {
@@ -110,21 +97,11 @@ final class TablePrefixEventListener implements EventSubscriber
         }
     }
 
-    /**
-     * @param string $name
-     *
-     * @return bool
-     */
     private function prefixExists(string $name): bool
     {
         return 0 === strpos($name, (string) $this->prefix);
     }
 
-    /**
-     * @param ClassMetadata $classMetadata
-     * @param array         $mapping
-     * @param string        $fieldName
-     */
     private function evaluteMapping(ClassMetadata $classMetadata, array $mapping, string $fieldName): void
     {
         if (ClassMetadataInfo::MANY_TO_MANY !== $mapping['type']) {
@@ -140,11 +117,6 @@ final class TablePrefixEventListener implements EventSubscriber
         }
     }
 
-    /**
-     * @param ClassMetadata $classMetadata
-     * @param EntityManager $em
-     * @param array         $definition
-     */
     private function addSequenceGenerator(ClassMetadata $classMetadata, EntityManager $em, array $definition): void
     {
         $sequenceGenerator = new SequenceGenerator(

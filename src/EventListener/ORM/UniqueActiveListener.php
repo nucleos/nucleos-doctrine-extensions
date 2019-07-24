@@ -55,25 +55,17 @@ final class UniqueActiveListener implements EventSubscriber
         ];
     }
 
-    /**
-     * @param LifecycleEventArgs $args
-     */
     public function prePersist(LifecycleEventArgs $args): void
     {
         $this->uniqueActive($args);
     }
 
-    /**
-     * @param LifecycleEventArgs $args
-     */
     public function preUpdate(LifecycleEventArgs $args): void
     {
         $this->uniqueActive($args);
     }
 
     /**
-     * @param LoadClassMetadataEventArgs $eventArgs
-     *
      * @throws MappingException
      */
     public function loadClassMetadata(LoadClassMetadataEventArgs $eventArgs): void
@@ -98,9 +90,6 @@ final class UniqueActiveListener implements EventSubscriber
         }
     }
 
-    /**
-     * @param LifecycleEventArgs $args
-     */
     private function uniqueActive(LifecycleEventArgs $args): void
     {
         $entity = $args->getEntity();
@@ -134,11 +123,6 @@ final class UniqueActiveListener implements EventSubscriber
         $qb->getQuery()->execute();
     }
 
-    /**
-     * @param QueryBuilder          $qb
-     * @param UniqueActiveInterface $entity
-     * @param UnitOfWork            $uow
-     */
     private function addFieldFilter(QueryBuilder $qb, UniqueActiveInterface $entity, UnitOfWork $uow): void
     {
         foreach ($entity->getUniqueActiveFields() as $field) {
