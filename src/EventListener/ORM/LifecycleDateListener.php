@@ -24,9 +24,6 @@ use LogicException;
 
 final class LifecycleDateListener extends AbstractListener
 {
-    /**
-     * {@inheritdoc}
-     */
     public function getSubscribedEvents()
     {
         return [

@@ -29,33 +29,21 @@ final class DemoEntityManager extends AbstractEntityManager
         $this->repository = $repository;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getQueryBuilder(string $alias, string $indexBy = null)
     {
         return $this->createQueryBuilder($alias, $indexBy);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function searchWhereQueryBuilder(QueryBuilder $qb, string $field, array $values, bool $strict = false): Composite
     {
         return $this->searchWhere($qb, $field, $values, $strict);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addOrderToQueryBuilder(QueryBuilder $builder, array $sort, string $defaultEntity, array $aliasMapping = [], string $defaultOrder = 'asc'): QueryBuilder
     {
         return $this->addOrder($builder, $sort, $defaultEntity, $aliasMapping, $defaultOrder);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getRepository(): EntityRepository
     {
         return $this->repository;
