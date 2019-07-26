@@ -31,9 +31,6 @@ final class TablePrefixEventListener implements EventSubscriber
         $this->prefix = $prefix;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getSubscribedEvents(): array
     {
         return [

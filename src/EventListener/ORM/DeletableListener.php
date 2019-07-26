@@ -21,9 +21,6 @@ use LogicException;
 
 final class DeletableListener extends AbstractListener
 {
-    /**
-     * {@inheritdoc}
-     */
     public function getSubscribedEvents()
     {
         return [

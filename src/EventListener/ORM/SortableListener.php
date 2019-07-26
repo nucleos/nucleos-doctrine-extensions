@@ -48,9 +48,6 @@ final class SortableListener implements EventSubscriber
         $this->propertyAccessor = $propertyAccessor;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getSubscribedEvents()
     {
         return [
