@@ -32,8 +32,6 @@ final class ConfirmableListener extends AbstractListener
     }
 
     /**
-     * @param LoadClassMetadataEventArgs $eventArgs
-     *
      * @throws MappingException
      */
     public function loadClassMetadata(LoadClassMetadataEventArgs $eventArgs): void

@@ -20,25 +20,16 @@ trait ConfirmableTrait
      */
     protected $confirmedAt;
 
-    /**
-     * @return DateTime|null
-     */
     public function getConfirmedAt(): ?DateTime
     {
         return $this->confirmedAt;
     }
 
-    /**
-     * @param DateTime|null $confirmedAt
-     */
     public function setConfirmedAt(?DateTime $confirmedAt): void
     {
         $this->confirmedAt = $confirmedAt;
     }
 
-    /**
-     * @param bool $confirmed
-     */
     public function setConfirmed(bool $confirmed): void
     {
         if ($confirmed) {
@@ -48,9 +39,6 @@ trait ConfirmableTrait
         }
     }
 
-    /**
-     * @return bool
-     */
     public function isConfirmed(): bool
     {
         return null !== $this->confirmedAt;

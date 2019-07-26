@@ -19,13 +19,6 @@ trait SearchQueryTrait
 {
     /**
      * Creates a like search for a given field and text values.
-     *
-     * @param QueryBuilder $qb
-     * @param string       $field
-     * @param array        $values
-     * @param bool         $strict
-     *
-     * @return Composite
      */
     final protected function searchWhere(QueryBuilder $qb, string $field, array $values, bool $strict = false): Composite
     {
@@ -42,13 +35,6 @@ trait SearchQueryTrait
         return $orx;
     }
 
-    /**
-     * @param QueryBuilder $qb
-     * @param Orx          $orx
-     * @param string       $field
-     * @param string       $word
-     * @param int          $index
-     */
     private function buildLikeExpressions(QueryBuilder $qb, Orx $orx, string $field, string $word, int $index): void
     {
         $orx->add(sprintf('%s LIKE :name'.$index.'_any', $field));

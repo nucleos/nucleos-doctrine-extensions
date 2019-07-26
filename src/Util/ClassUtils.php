@@ -14,12 +14,6 @@ use ReflectionClass;
 
 final class ClassUtils
 {
-    /**
-     * @param ReflectionClass $reflection
-     * @param string          $class
-     *
-     * @return bool
-     */
     public static function containsTrait(ReflectionClass $reflection, string $class): bool
     {
         if (!trait_exists($class)) {

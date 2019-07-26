@@ -17,13 +17,8 @@ use InvalidArgumentException;
 trait BaseQueryTrait
 {
     /**
-     * @param QueryBuilder              $builder
      * @param array<int|string, string> $sort
-     * @param string                    $defaultAlias
      * @param array<string, string>     $aliasMapping
-     * @param string                    $defaultOrder
-     *
-     * @return QueryBuilder
      */
     final protected function addOrder(QueryBuilder $builder, array $sort, string $defaultAlias, array $aliasMapping = [], string $defaultOrder = 'asc'): QueryBuilder
     {
@@ -39,13 +34,6 @@ trait BaseQueryTrait
         return $builder;
     }
 
-    /**
-     * @param QueryBuilder $builder
-     * @param string       $table
-     * @param string       $field
-     * @param string       $order
-     * @param array        $aliasMapping
-     */
     private function addOrderField(QueryBuilder $builder, string $table, string $field, string $order, array $aliasMapping = []): void
     {
         $fieldSpl = explode('.', $field);

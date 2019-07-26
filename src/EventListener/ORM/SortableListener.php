@@ -61,9 +61,6 @@ final class SortableListener implements EventSubscriber
         ];
     }
 
-    /**
-     * @param LifecycleEventArgs $args
-     */
     public function prePersist(LifecycleEventArgs $args): void
     {
         if (!$args->getEntity() instanceof PositionAwareInterface) {
@@ -73,9 +70,6 @@ final class SortableListener implements EventSubscriber
         $this->uniquePosition($args);
     }
 
-    /**
-     * @param PreUpdateEventArgs $args
-     */
     public function preUpdate(PreUpdateEventArgs $args): void
     {
         if (!$args->getEntity() instanceof PositionAwareInterface) {
@@ -91,9 +85,6 @@ final class SortableListener implements EventSubscriber
         $this->uniquePosition($args, $position);
     }
 
-    /**
-     * @param LifecycleEventArgs $args
-     */
     public function preRemove(LifecycleEventArgs $args): void
     {
         $entity = $args->getEntity();
@@ -104,8 +95,6 @@ final class SortableListener implements EventSubscriber
     }
 
     /**
-     * @param LoadClassMetadataEventArgs $eventArgs
-     *
      * @throws MappingException
      */
     public function loadClassMetadata(LoadClassMetadataEventArgs $eventArgs): void
@@ -130,10 +119,6 @@ final class SortableListener implements EventSubscriber
         }
     }
 
-    /**
-     * @param LifecycleEventArgs $args
-     * @param int|null           $oldPosition
-     */
     private function uniquePosition(LifecycleEventArgs $args, ?int $oldPosition = null): void
     {
         $entity = $args->getEntity();
@@ -148,11 +133,6 @@ final class SortableListener implements EventSubscriber
         }
     }
 
-    /**
-     * @param EntityManager          $em
-     * @param PositionAwareInterface $entity
-     * @param int                    $direction
-     */
     private function movePosition(EntityManager $em, PositionAwareInterface $entity, int $direction = 1): void
     {
         $uow  = $em->getUnitOfWork();
@@ -176,12 +156,6 @@ final class SortableListener implements EventSubscriber
         $qb->getQuery()->execute();
     }
 
-    /**
-     * @param EntityManager          $em
-     * @param PositionAwareInterface $entity
-     *
-     * @return int
-     */
     private function getNextPosition(EntityManager $em, PositionAwareInterface $entity): int
     {
         $meta = $em->getClassMetadata(\get_class($entity));
@@ -205,9 +179,7 @@ final class SortableListener implements EventSubscriber
     }
 
     /**
-     * @param QueryBuilder           $qb
-     * @param PositionAwareInterface $entity
-     * @param UnitOfWork             $uow
+     * @param UnitOfWork $uow
      */
     private function addGroupFilter(QueryBuilder $qb, PositionAwareInterface $entity, UnitOfWork $uow = null): void
     {

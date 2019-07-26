@@ -20,25 +20,16 @@ trait DeleteableTrait
      */
     protected $deletedAt;
 
-    /**
-     * @return DateTime|null
-     */
     public function getDeletedAt(): ?DateTime
     {
         return $this->deletedAt;
     }
 
-    /**
-     * @param DateTime|null $deletedAt
-     */
     public function setDeletedAt(?DateTime $deletedAt): void
     {
         $this->deletedAt = $deletedAt;
     }
 
-    /**
-     * @param bool $deleted
-     */
     public function setDeleted(bool $deleted): void
     {
         if ($deleted) {
@@ -48,9 +39,6 @@ trait DeleteableTrait
         }
     }
 
-    /**
-     * @return bool
-     */
     public function isDeleted(): bool
     {
         return null !== $this->deletedAt;
