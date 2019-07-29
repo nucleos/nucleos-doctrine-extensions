@@ -18,7 +18,7 @@ final class BaseQueryTraitTest extends TestCase
 {
     private $manager;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $repository = $this->prophesize(EntityRepository::class);
 
