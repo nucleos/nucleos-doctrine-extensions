@@ -10,19 +10,11 @@
 namespace Core23\Doctrine\Tests\EventListener\ORM;
 
 use Core23\Doctrine\EventListener\ORM\TablePrefixEventListener;
-use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Events;
 use PHPUnit\Framework\TestCase;
 
 final class TablePrefixEventListenerTest extends TestCase
 {
-    public function testItIsInstantiable(): void
-    {
-        $listener = new TablePrefixEventListener('acme_');
-
-        static::assertInstanceOf(EventSubscriber::class, $listener);
-    }
-
     public function testGetSubscribedEvents(): void
     {
         $listener = new TablePrefixEventListener('acme_');

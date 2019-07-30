@@ -12,7 +12,6 @@ namespace Core23\Doctrine\Tests\EventListener\ORM;
 use Core23\Doctrine\EventListener\ORM\DeletableListener;
 use Core23\Doctrine\Tests\Fixtures\ClassWithAllProperties;
 use Core23\Doctrine\Tests\Fixtures\EmptyClass;
-use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\ClassMetadata;
@@ -22,13 +21,6 @@ use ReflectionClass;
 
 final class DeletableListenerTest extends TestCase
 {
-    public function testItIsInstantiable(): void
-    {
-        $listener = new DeletableListener();
-
-        static::assertInstanceOf(EventSubscriber::class, $listener);
-    }
-
     public function testGetSubscribedEvents(): void
     {
         $listener = new DeletableListener();

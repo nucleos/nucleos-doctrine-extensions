@@ -8,5 +8,14 @@ parameters:
 
         # Symfony DI
         - '#Cannot call method end\(\) on Symfony\\Component\\Config\\Definition\\Builder\\NodeParentInterface\|null.#'
+        - "/Call to function method_exists.. with 'Symfony.+' and 'getRootNode' will always evaluate to false./"
+
+        # PHPUnit
+        -
+            message: '#Property .*::\$.* has no typehint specified.#'
+            path: tests/
+        -
+            message: '#Method Core23\\Doctrine\\Tests\\Model\\Traits\\.*::createTraitMock\(\) has no return typehint specified.#'
+            path: tests/Model/Traits/
 
         - '#Core23\\Doctrine\\Tests\\Fixtures\\DemoEntityManager::__construct\(\) does not call parent constructor from Sonata\\Doctrine\\Model\\BaseManager.#'

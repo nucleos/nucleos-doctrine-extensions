@@ -14,7 +14,7 @@ use Core23\Doctrine\Model\LifecycleDateTimeInterface;
 use Core23\Doctrine\Tests\Fixtures\ClassWithAllProperties;
 use Core23\Doctrine\Tests\Fixtures\EmptyClass;
 use DateTime;
-use Doctrine\Common\EventSubscriber;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Events;
@@ -26,13 +26,6 @@ use stdClass;
 
 final class LifecycleDateListenerTest extends TestCase
 {
-    public function testItIsInstantiable(): void
-    {
-        $listener = new LifecycleDateListener();
-
-        static::assertInstanceOf(EventSubscriber::class, $listener);
-    }
-
     public function testGetSubscribedEvents(): void
     {
         $listener = new LifecycleDateListener();
@@ -67,15 +60,20 @@ final class LifecycleDateListenerTest extends TestCase
     {
         $object = $this->prophesize(stdClass::class);
 
+        $entityManager = $this->prophesize(EntityManagerInterface::class);
+
         $eventArgs = $this->prophesize(LifecycleEventArgs::class);
         $eventArgs->getObject()
             ->willReturn($object)
+        ;
+        $eventArgs->getEntityManager()
+            ->willReturn($entityManager)
         ;
 
         $listener = new LifecycleDateListener();
         $listener->prePersist($eventArgs->reveal());
 
-        static::assertTrue(true);
+        $entityManager->createQueryBuilder()->shouldNotHaveBeenCalled();
     }
 
     public function testPreUpdate(): void
@@ -98,15 +96,20 @@ final class LifecycleDateListenerTest extends TestCase
     {
         $object = $this->prophesize(stdClass::class);
 
+        $entityManager = $this->prophesize(EntityManagerInterface::class);
+
         $eventArgs = $this->prophesize(LifecycleEventArgs::class);
         $eventArgs->getObject()
             ->willReturn($object)
+        ;
+        $eventArgs->getEntityManager()
+            ->willReturn($entityManager)
         ;
 
         $listener = new LifecycleDateListener();
         $listener->preUpdate($eventArgs->reveal());
 
-        static::assertTrue(true);
+        $entityManager->createQueryBuilder()->shouldNotHaveBeenCalled();
     }
 
     public function testLoadClassMetadataWithEmptyClass(): void

@@ -12,17 +12,9 @@ namespace Core23\Doctrine\Tests\Bridge\Symfony\Bundle;
 use Core23\Doctrine\Bridge\Symfony\Bundle\Core23DoctrineBundle;
 use Core23\Doctrine\Bridge\Symfony\DependencyInjection\Core23DoctrineExtension;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 
 final class Core23DoctrineBundleTest extends TestCase
 {
-    public function testItIsInstantiable(): void
-    {
-        $bundle = new Core23DoctrineBundle();
-
-        static::assertInstanceOf(BundleInterface::class, $bundle);
-    }
-
     public function testGetPath(): void
     {
         $bundle = new Core23DoctrineBundle();
