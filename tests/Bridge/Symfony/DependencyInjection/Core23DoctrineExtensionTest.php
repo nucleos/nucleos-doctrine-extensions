@@ -34,7 +34,7 @@ final class Core23DoctrineExtensionTest extends AbstractExtensionTestCase
         $this->assertContainerBuilderHasService(TablePrefixEventListener::class);
     }
 
-    protected function getContainerExtensions()
+    protected function getContainerExtensions(): array
     {
         return [
             new Core23DoctrineExtension(),
