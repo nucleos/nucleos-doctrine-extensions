@@ -118,7 +118,7 @@ final class SortableListener implements EventSubscriber
             if (null === $entity->getPosition()) {
                 $position = $this->getNextPosition($args->getEntityManager(), $entity);
                 $entity->setPosition($position);
-            } elseif ($oldPosition && $oldPosition !== $entity->getPosition()) {
+            } elseif (null !== $oldPosition && $oldPosition !== $entity->getPosition()) {
                 $this->movePosition($args->getEntityManager(), $entity);
             }
         }
@@ -163,10 +163,13 @@ final class SortableListener implements EventSubscriber
         try {
             $result = $qb->getQuery()->getOneOrNullResult();
 
-            return ($result instanceof PositionAwareInterface ? $result->getPosition() : 0) + 1;
+            if ($result instanceof PositionAwareInterface && null !== $result->getPosition()) {
+                return $result->getPosition() + 1;
+            }
         } catch (NonUniqueResultException $ignored) {
-            return 0;
         }
+
+        return 0;
     }
 
     /**
