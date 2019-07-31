@@ -20,12 +20,10 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
-use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Mapping\MappingException;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\UnitOfWork;
-use LogicException;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 
@@ -98,10 +96,6 @@ final class SortableListener implements EventSubscriber
     {
         $meta = $eventArgs->getClassMetadata();
 
-        if (!$meta instanceof ClassMetadata) {
-            throw new LogicException('Class metadata was no ORM');
-        }
-
         $reflClass = $meta->getReflectionClass();
 
         if (null === $reflClass || !ClassUtils::containsTrait($reflClass, SortableTrait::class)) {
@@ -124,7 +118,7 @@ final class SortableListener implements EventSubscriber
             if (null === $entity->getPosition()) {
                 $position = $this->getNextPosition($args->getEntityManager(), $entity);
                 $entity->setPosition($position);
-            } elseif ($oldPosition && $oldPosition !== $entity->getPosition()) {
+            } elseif (null !== $oldPosition && $oldPosition !== $entity->getPosition()) {
                 $this->movePosition($args->getEntityManager(), $entity);
             }
         }
@@ -169,10 +163,13 @@ final class SortableListener implements EventSubscriber
         try {
             $result = $qb->getQuery()->getOneOrNullResult();
 
-            return ($result instanceof PositionAwareInterface ? $result->getPosition() : 0) + 1;
+            if ($result instanceof PositionAwareInterface && null !== $result->getPosition()) {
+                return $result->getPosition() + 1;
+            }
         } catch (NonUniqueResultException $ignored) {
-            return 0;
         }
+
+        return 0;
     }
 
     /**

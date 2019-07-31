@@ -12,24 +12,15 @@ namespace Core23\Doctrine\Tests\EventListener\ORM;
 use Core23\Doctrine\EventListener\ORM\ConfirmableListener;
 use Core23\Doctrine\Tests\Fixtures\ClassWithAllProperties;
 use Core23\Doctrine\Tests\Fixtures\EmptyClass;
-use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\ClassMetadata;
-use LogicException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use ReflectionClass;
 
 final class ConfirmableListenerTest extends TestCase
 {
-    public function testItIsInstantiable(): void
-    {
-        $listener = new ConfirmableListener();
-
-        static::assertInstanceOf(EventSubscriber::class, $listener);
-    }
-
     public function testGetSubscribedEvents(): void
     {
         $listener = new ConfirmableListener();
@@ -37,20 +28,6 @@ final class ConfirmableListenerTest extends TestCase
         static::assertSame([
             Events::loadClassMetadata,
         ], $listener->getSubscribedEvents());
-    }
-
-    public function testLoadClassMetadataWithNoValidData(): void
-    {
-        $this->expectException(LogicException::class);
-        $this->expectExceptionMessage('Class metadata was no ORM');
-
-        $eventArgs = $this->prophesize(LoadClassMetadataEventArgs::class);
-        $eventArgs->getClassMetadata()
-            ->willReturn(null)
-        ;
-
-        $listener = new ConfirmableListener();
-        $listener->loadClassMetadata($eventArgs->reveal());
     }
 
     public function testLoadClassMetadataWithEmptyClass(): void

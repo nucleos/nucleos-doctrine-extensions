@@ -28,7 +28,7 @@ final class EntityManagerMockFactory
      *
      * @return EntityManager|MockObject
      */
-    public static function create(TestCase $test, Closure $qbCallback, $fields): MockObject
+    public static function create(TestCase $test, Closure $qbCallback, array $fields): MockObject
     {
         $qb = $test->getMockBuilder(QueryBuilder::class)->disableOriginalConstructor()->getMock();
 
@@ -65,7 +65,10 @@ final class EntityManagerMockFactory
         $qb->method('leftJoin')->willReturn($qb);
     }
 
-    private static function prepareMetadata(TestCase $test, $fields): MockObject
+    /**
+     * @param string[] $fields
+     */
+    private static function prepareMetadata(TestCase $test, array $fields): MockObject
     {
         $metadata = $test->getMockBuilder(ClassMetadataInfo::class)->disableOriginalConstructor()->getMock();
         $metadata->method('getFieldNames')->willReturn($fields);

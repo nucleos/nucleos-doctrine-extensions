@@ -12,13 +12,12 @@ namespace Core23\Doctrine\Tests\EventListener\ORM;
 use Core23\Doctrine\EventListener\ORM\SortableListener;
 use Core23\Doctrine\Tests\Fixtures\ClassWithAllProperties;
 use Core23\Doctrine\Tests\Fixtures\EmptyClass;
-use Doctrine\Common\EventSubscriber;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\ClassMetadata;
-use LogicException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use ReflectionClass;
@@ -26,13 +25,6 @@ use stdClass;
 
 final class SortableListenerTest extends TestCase
 {
-    public function testItIsInstantiable(): void
-    {
-        $listener = new SortableListener();
-
-        static::assertInstanceOf(EventSubscriber::class, $listener);
-    }
-
     public function testGetSubscribedEvents(): void
     {
         $listener = new SortableListener();
@@ -49,44 +41,40 @@ final class SortableListenerTest extends TestCase
     {
         $object = $this->prophesize(stdClass::class);
 
+        $entityManager = $this->prophesize(EntityManagerInterface::class);
+
         $eventArgs = $this->prophesize(PreUpdateEventArgs::class);
         $eventArgs->getEntity()
             ->willReturn($object)
+        ;
+        $eventArgs->getEntityManager()
+            ->willReturn($entityManager)
         ;
 
         $listener = new SortableListener();
         $listener->prePersist($eventArgs->reveal());
 
-        static::assertTrue(true);
+        $entityManager->createQueryBuilder()->shouldNotHaveBeenCalled();
     }
 
     public function testPreRemoveForInvalidClass(): void
     {
         $object = $this->prophesize(stdClass::class);
 
+        $entityManager = $this->prophesize(EntityManagerInterface::class);
+
         $eventArgs = $this->prophesize(LifecycleEventArgs::class);
         $eventArgs->getEntity()
             ->willReturn($object)
+        ;
+        $eventArgs->getEntityManager()
+            ->willReturn($entityManager)
         ;
 
         $listener = new SortableListener();
         $listener->preRemove($eventArgs->reveal());
 
-        static::assertTrue(true);
-    }
-
-    public function testLoadClassMetadataWithNoValidData(): void
-    {
-        $this->expectException(LogicException::class);
-        $this->expectExceptionMessage('Class metadata was no ORM');
-
-        $eventArgs = $this->prophesize(LoadClassMetadataEventArgs::class);
-        $eventArgs->getClassMetadata()
-            ->willReturn(null)
-        ;
-
-        $listener = new SortableListener();
-        $listener->loadClassMetadata($eventArgs->reveal());
+        $entityManager->createQueryBuilder()->shouldNotHaveBeenCalled();
     }
 
     public function testLoadClassMetadataWithEmptyClass(): void

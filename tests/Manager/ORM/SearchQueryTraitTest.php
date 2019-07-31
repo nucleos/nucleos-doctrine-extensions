@@ -20,7 +20,7 @@ final class SearchQueryTraitTest extends TestCase
 {
     private $manager;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $repository = $this->prophesize(EntityRepository::class);
 
