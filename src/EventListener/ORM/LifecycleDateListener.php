@@ -18,9 +18,7 @@ use DateTime;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Events;
-use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Mapping\MappingException;
-use LogicException;
 
 final class LifecycleDateListener extends AbstractListener
 {
@@ -64,10 +62,6 @@ final class LifecycleDateListener extends AbstractListener
     public function loadClassMetadata(LoadClassMetadataEventArgs $eventArgs): void
     {
         $meta = $eventArgs->getClassMetadata();
-
-        if (!$meta instanceof ClassMetadata) {
-            throw new LogicException('Class metadata was no ORM');
-        }
 
         $reflClass = $meta->getReflectionClass();
 

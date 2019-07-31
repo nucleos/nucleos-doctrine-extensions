@@ -15,9 +15,7 @@ use Core23\Doctrine\Model\Traits\ConfirmableTrait;
 use Core23\Doctrine\Util\ClassUtils;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Events;
-use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Mapping\MappingException;
-use LogicException;
 
 final class ConfirmableListener extends AbstractListener
 {
@@ -34,10 +32,6 @@ final class ConfirmableListener extends AbstractListener
     public function loadClassMetadata(LoadClassMetadataEventArgs $eventArgs): void
     {
         $meta = $eventArgs->getClassMetadata();
-
-        if (!$meta instanceof ClassMetadata) {
-            throw new LogicException('Class metadata was no ORM');
-        }
 
         $reflClass = $meta->getReflectionClass();
 

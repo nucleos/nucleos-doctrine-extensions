@@ -16,7 +16,6 @@ use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\ClassMetadata;
-use LogicException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use ReflectionClass;
@@ -37,20 +36,6 @@ final class ConfirmableListenerTest extends TestCase
         static::assertSame([
             Events::loadClassMetadata,
         ], $listener->getSubscribedEvents());
-    }
-
-    public function testLoadClassMetadataWithNoValidData(): void
-    {
-        $this->expectException(LogicException::class);
-        $this->expectExceptionMessage('Class metadata was no ORM');
-
-        $eventArgs = $this->prophesize(LoadClassMetadataEventArgs::class);
-        $eventArgs->getClassMetadata()
-            ->willReturn(null)
-        ;
-
-        $listener = new ConfirmableListener();
-        $listener->loadClassMetadata($eventArgs->reveal());
     }
 
     public function testLoadClassMetadataWithEmptyClass(): void
