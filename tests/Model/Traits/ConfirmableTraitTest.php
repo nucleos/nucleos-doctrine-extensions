@@ -15,47 +15,43 @@ use PHPUnit\Framework\TestCase;
 
 final class ConfirmableTraitTest extends TestCase
 {
+    private $trait;
+
+    protected function setUp(): void
+    {
+        $this->trait = $this->getMockForTrait(ConfirmableTrait::class);
+    }
+
     public function testIsConfirmedWithDefault(): void
     {
-        $model = $this->createTraitMock();
-
-        static::assertNull($model->getConfirmedAt());
+        static::assertNull($this->trait->getConfirmedAt());
     }
 
     public function testGetConfirmedAtWithDefault(): void
     {
-        $model = $this->createTraitMock();
-
-        static::assertFalse($model->isConfirmed());
+        static::assertFalse($this->trait->isConfirmed());
     }
 
     public function testSetUnConfirmed(): void
     {
-        $model = $this->createTraitMock();
-        $model->setConfirmed(true);
+        $this->trait->setConfirmed(true);
 
-        static::assertTrue($model->isConfirmed());
-        static::assertNotNull($model->getConfirmedAt());
+        static::assertTrue($this->trait->isConfirmed());
+        static::assertNotNull($this->trait->getConfirmedAt());
 
-        $model->setConfirmed(false);
+        $this->trait->setConfirmed(false);
 
-        static::assertFalse($model->isConfirmed());
-        static::assertNull($model->getConfirmedAt());
+        static::assertFalse($this->trait->isConfirmed());
+        static::assertNull($this->trait->getConfirmedAt());
     }
 
     public function testSetConfirmedAt(): void
     {
         $now = new DateTime();
 
-        $model = $this->createTraitMock();
-        $model->setConfirmedAt($now);
+        $this->trait->setConfirmedAt($now);
 
-        static::assertSame($now, $model->getConfirmedAt());
-        static::assertTrue($model->isConfirmed());
-    }
-
-    private function createTraitMock()
-    {
-        return $this->getMockForTrait(ConfirmableTrait::class);
+        static::assertSame($now, $this->trait->getConfirmedAt());
+        static::assertTrue($this->trait->isConfirmed());
     }
 }

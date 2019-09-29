@@ -15,50 +15,46 @@ use PHPUnit\Framework\TestCase;
 
 final class LifecycleDateTimeTraitTest extends TestCase
 {
+    private $trait;
+
+    protected function setUp(): void
+    {
+        $this->trait = $this->getMockForTrait(LifecycleDateTimeTrait::class);
+    }
+
     public function testIsCreatedWithDefault(): void
     {
-        $model = $this->createTraitMock();
-
-        static::assertNull($model->getCreatedAt());
+        static::assertNull($this->trait->getCreatedAt());
     }
 
     public function testIsUpdatedWithDefault(): void
     {
-        $model = $this->createTraitMock();
-
-        static::assertNull($model->getCreatedAt());
+        static::assertNull($this->trait->getCreatedAt());
     }
 
     public function testSetCreated(): void
     {
         $now = new DateTime();
 
-        $model = $this->createTraitMock();
-        $model->setCreatedAt($now);
+        $this->trait->setCreatedAt($now);
 
-        static::assertSame($now, $model->getCreatedAt());
+        static::assertSame($now, $this->trait->getCreatedAt());
 
-        $model->setCreatedAt(null);
+        $this->trait->setCreatedAt(null);
 
-        static::assertNull($model->getCreatedAt());
+        static::assertNull($this->trait->getCreatedAt());
     }
 
     public function testSetUpdated(): void
     {
         $now = new DateTime();
 
-        $model = $this->createTraitMock();
-        $model->setUpdatedAt($now);
+        $this->trait->setUpdatedAt($now);
 
-        static::assertSame($now, $model->getUpdatedAt());
+        static::assertSame($now, $this->trait->getUpdatedAt());
 
-        $model->setUpdatedAt(null);
+        $this->trait->setUpdatedAt(null);
 
-        static::assertNull($model->getUpdatedAt());
-    }
-
-    private function createTraitMock()
-    {
-        return $this->getMockForTrait(LifecycleDateTimeTrait::class);
+        static::assertNull($this->trait->getUpdatedAt());
     }
 }
