@@ -172,9 +172,6 @@ final class SortableListener implements EventSubscriber
         return 0;
     }
 
-    /**
-     * @param UnitOfWork $uow
-     */
     private function addGroupFilter(QueryBuilder $qb, PositionAwareInterface $entity, UnitOfWork $uow = null): void
     {
         foreach ($entity->getPositionGroup() as $field) {

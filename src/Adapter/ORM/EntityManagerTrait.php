@@ -20,8 +20,6 @@ trait EntityManagerTrait
     /**
      * Creates a new QueryBuilder instance that is prepopulated for this entity name.
      *
-     * @param string $indexBy The index for the from
-     *
      * @return EntityManager|QueryBuilder
      */
     final protected function createQueryBuilder(string $alias, string $indexBy = null)
