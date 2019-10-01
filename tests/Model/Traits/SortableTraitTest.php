@@ -14,30 +14,27 @@ use PHPUnit\Framework\TestCase;
 
 final class SortableTraitTest extends TestCase
 {
+    private $trait;
+
+    protected function setUp(): void
+    {
+        $this->trait = $this->getMockForTrait(SortableTrait::class);
+    }
+
     public function testPositionWithDefault(): void
     {
-        $model = $this->createTraitMock();
-
-        static::assertNull($model->getPosition());
+        static::assertNull($this->trait->getPosition());
     }
 
     public function testPosition(): void
     {
-        $model = $this->createTraitMock();
-        $model->setPosition(14);
+        $this->trait->setPosition(14);
 
-        static::assertSame(14, $model->getPosition());
+        static::assertSame(14, $this->trait->getPosition());
     }
 
     public function testGetPositionGroup(): void
     {
-        $model = $this->createTraitMock();
-
-        static::assertSame([], $model->getPositionGroup());
-    }
-
-    private function createTraitMock()
-    {
-        return $this->getMockForTrait(SortableTrait::class);
+        static::assertSame([], $this->trait->getPositionGroup());
     }
 }

@@ -10,6 +10,8 @@
 namespace Core23\Doctrine\Tests\Adapter\ORM;
 
 use Core23\Doctrine\Tests\Fixtures\DemoEntityManager;
+use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use PHPUnit\Framework\TestCase;
@@ -25,7 +27,17 @@ final class EntityManagerTraitTest extends TestCase
             ->willReturn($queryBuilder)
         ;
 
-        $manager = new DemoEntityManager($repository->reveal());
+        $objectManager = $this->prophesize(ObjectManager::class);
+        $objectManager->getRepository('foo')
+            ->willReturn($repository)
+        ;
+
+        $registry = $this->prophesize(ManagerRegistry::class);
+        $registry->getManagerForClass('foo')
+            ->willReturn($objectManager)
+        ;
+
+        $manager = new DemoEntityManager('foo', $registry->reveal());
 
         static::assertSame($queryBuilder->reveal(), $manager->getQueryBuilder('alias', 'someindex'));
     }

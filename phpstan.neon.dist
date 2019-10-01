@@ -9,7 +9,6 @@ parameters:
         - vendor-bin/test/vendor/autoload.php
 
     ignoreErrors:
-        - '#Call to an undefined method Doctrine\\Common\\Persistence\\ObjectRepository::createQueryBuilder\(\).#'
         - '#Strict comparison using === between null and ReflectionClass will always evaluate to false.#'
 
         # Symfony DI
@@ -20,8 +19,3 @@ parameters:
         -
             message: '#Property .*::\$.* has no typehint specified.#'
             path: tests/
-        -
-            message: '#Method Core23\\Doctrine\\Tests\\Model\\Traits\\.*::createTraitMock\(\) has no return typehint specified.#'
-            path: tests/Model/Traits/
-
-        - '#Core23\\Doctrine\\Tests\\Fixtures\\DemoEntityManager::__construct\(\) does not call parent constructor from Sonata\\Doctrine\\Model\\BaseManager.#'

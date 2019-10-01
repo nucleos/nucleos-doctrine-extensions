@@ -10,6 +10,8 @@
 namespace Core23\Doctrine\Tests\Manager\ORM;
 
 use Core23\Doctrine\Tests\Fixtures\DemoEntityManager;
+use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use PHPUnit\Framework\TestCase;
@@ -22,7 +24,17 @@ final class BaseQueryTraitTest extends TestCase
     {
         $repository = $this->prophesize(EntityRepository::class);
 
-        $this->manager = new DemoEntityManager($repository->reveal());
+        $objectManager = $this->prophesize(ObjectManager::class);
+        $objectManager->getRepository('foo')
+            ->willReturn($repository)
+        ;
+
+        $registry = $this->prophesize(ManagerRegistry::class);
+        $registry->getManagerForClass('foo')
+            ->willReturn($objectManager)
+        ;
+
+        $this->manager = new DemoEntityManager('foo', $registry->reveal());
     }
 
     public function testAddOrder(): void

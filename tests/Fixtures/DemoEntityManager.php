@@ -12,7 +12,6 @@ namespace Core23\Doctrine\Tests\Fixtures;
 use Core23\Doctrine\Adapter\ORM\AbstractEntityManager;
 use Core23\Doctrine\Manager\ORM\SearchQueryTrait;
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\Expr\Composite;
 use Doctrine\ORM\QueryBuilder;
 
@@ -21,19 +20,9 @@ final class DemoEntityManager extends AbstractEntityManager
     use SearchQueryTrait;
 
     /**
-     * @var EntityRepository
-     */
-    private $repository;
-
-    public function __construct(EntityRepository $repository)
-    {
-        $this->repository = $repository;
-    }
-
-    /**
      * @return EntityManager|QueryBuilder
      */
-    public function getQueryBuilder(string $alias, string $indexBy = null)
+    public function getQueryBuilder(string $alias, ?string $indexBy = null)
     {
         return $this->createQueryBuilder($alias, $indexBy);
     }
@@ -46,10 +35,5 @@ final class DemoEntityManager extends AbstractEntityManager
     public function addOrderToQueryBuilder(QueryBuilder $builder, array $sort, string $defaultEntity, array $aliasMapping = [], string $defaultOrder = 'asc'): QueryBuilder
     {
         return $this->addOrder($builder, $sort, $defaultEntity, $aliasMapping, $defaultOrder);
-    }
-
-    protected function getRepository(): EntityRepository
-    {
-        return $this->repository;
     }
 }

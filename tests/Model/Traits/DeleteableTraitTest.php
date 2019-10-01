@@ -15,47 +15,43 @@ use PHPUnit\Framework\TestCase;
 
 final class DeleteableTraitTest extends TestCase
 {
+    private $trait;
+
+    protected function setUp(): void
+    {
+        $this->trait = $this->getMockForTrait(DeleteableTrait::class);
+    }
+
     public function testIsDeletedWithDefault(): void
     {
-        $model = $this->createTraitMock();
-
-        static::assertNull($model->getDeletedAt());
+        static::assertNull($this->trait->getDeletedAt());
     }
 
     public function testGetDeletedAtWithDefault(): void
     {
-        $model = $this->createTraitMock();
-
-        static::assertFalse($model->isDeleted());
+        static::assertFalse($this->trait->isDeleted());
     }
 
     public function testSetUnDeleted(): void
     {
-        $model = $this->createTraitMock();
-        $model->setDeleted(true);
+        $this->trait->setDeleted(true);
 
-        static::assertTrue($model->isDeleted());
-        static::assertNotNull($model->getDeletedAt());
+        static::assertTrue($this->trait->isDeleted());
+        static::assertNotNull($this->trait->getDeletedAt());
 
-        $model->setDeleted(false);
+        $this->trait->setDeleted(false);
 
-        static::assertFalse($model->isDeleted());
-        static::assertNull($model->getDeletedAt());
+        static::assertFalse($this->trait->isDeleted());
+        static::assertNull($this->trait->getDeletedAt());
     }
 
     public function testSetDeletedAt(): void
     {
         $now = new DateTime();
 
-        $model = $this->createTraitMock();
-        $model->setDeletedAt($now);
+        $this->trait->setDeletedAt($now);
 
-        static::assertSame($now, $model->getDeletedAt());
-        static::assertTrue($model->isDeleted());
-    }
-
-    private function createTraitMock()
-    {
-        return $this->getMockForTrait(DeleteableTrait::class);
+        static::assertSame($now, $this->trait->getDeletedAt());
+        static::assertTrue($this->trait->isDeleted());
     }
 }
