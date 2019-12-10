@@ -8,10 +8,8 @@ Doctrine Extensions
 [![Monthly Downloads](https://poser.pugx.org/core23/doctrine-extensions/d/monthly)](https://packagist.org/packages/core23/doctrine-extensions)
 [![Daily Downloads](https://poser.pugx.org/core23/doctrine-extensions/d/daily)](https://packagist.org/packages/core23/doctrine-extensions)
 
-[![Build Status](https://travis-ci.org/core23/doctrine-extensions.svg)](http://travis-ci.org/core23/doctrine-extensions)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/core23/doctrine-extensions/badges/quality-score.png)](https://scrutinizer-ci.com/g/core23/doctrine-extensions/)
-[![Code Climate](https://codeclimate.com/github/core23/doctrine-extensions/badges/gpa.svg)](https://codeclimate.com/github/core23/doctrine-extensions)
-[![Coverage Status](https://coveralls.io/repos/core23/doctrine-extensions/badge.svg)](https://coveralls.io/r/core23/doctrine-extensions)
+[![Continuous Integration](https://github.com/core23/doctrine-extensions/workflows/Continuous%20Integration/badge.svg)](https://github.com/core23/doctrine-extensions/actions)
+[![Code Coverage](https://codecov.io/gh/core23/doctrine-extensions/branch/master/graph/badge.svg)](https://codecov.io/gh/core23/doctrine-extensions)
 
 This library provides adds some useful doctrine hooks.
 
@@ -62,7 +60,7 @@ If you don't need the symfony framework, you need to register the `Core23\Doctri
 
 ### Table prefix
 
-If you need a prefix for all of you application tables and sequences, you could use the  `TablePrefixEventListener`. 
+If you need a prefix for all of you application tables and sequences, you could use the  `TablePrefixEventListener`.
 If the table name does already start with the defined prefix, it will be ignored.
 
 If you don't need the symfony framework, you need to register the `Core23\Doctrine\EventListener\ORM\TablePrefixEventListener`.
