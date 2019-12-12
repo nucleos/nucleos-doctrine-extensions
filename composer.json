@@ -1,13 +1,12 @@
 {
   "name": "core23/doctrine-extensions",
   "type": "library",
-  "description": "Useful doctrine hooks.",
+  "description": "Useful doctrine event hooks.",
   "keywords": [
-    "symfony",
-    "bundle",
     "doctrine",
     "hooks",
-    "bridge",
+    "symfony",
+    "symfony-bridge",
     "confirmable",
     "deletable",
     "lifecycle",
