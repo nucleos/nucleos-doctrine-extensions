@@ -19,6 +19,8 @@ trait SearchQueryTrait
 {
     /**
      * Creates a like search for a given field and text values.
+     *
+     * @param array<int, string> $values
      */
     final protected function searchWhere(QueryBuilder $qb, string $field, array $values, bool $strict = false): Composite
     {
