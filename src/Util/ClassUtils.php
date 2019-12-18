@@ -14,8 +14,15 @@ namespace Core23\Doctrine\Util;
 use InvalidArgumentException;
 use ReflectionClass;
 
+/**
+ * @template-covariant T of object
+ */
 final class ClassUtils
 {
+    /**
+     * @param ReflectionClass<T> $reflection
+     * @param class-string<T>    $class
+     */
     public static function containsTrait(ReflectionClass $reflection, string $class): bool
     {
         if (!trait_exists($class)) {
