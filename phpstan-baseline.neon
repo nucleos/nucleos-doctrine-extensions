@@ -51,6 +51,11 @@ parameters:
 			path: src/EventListener/ORM/UniqueActiveListener.php
 
 		-
+			message: "#^Call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertSame\\(\\) with Doctrine\\\\ORM\\\\QueryBuilder and Doctrine\\\\ORM\\\\EntityManager will always evaluate to false\\.$#"
+			count: 1
+			path: tests/Adapter/ORM/EntityManagerTraitTest.php
+
+		-
 			message: "#^Instantiated class Symfony\\\\Component\\\\HttpKernel\\\\Client not found\\.$#"
 			count: 1
 			path: tests/Bridge/Symfony/Bundle/BundleIntegrationTest.php
@@ -64,6 +69,16 @@ parameters:
 			message: "#^Call to method getResponse\\(\\) on an unknown class Symfony\\\\Component\\\\HttpKernel\\\\Client\\.$#"
 			count: 1
 			path: tests/Bridge/Symfony/Bundle/BundleIntegrationTest.php
+
+		-
+			message: "#^PHPDoc tag @return with type Doctrine\\\\ORM\\\\EntityManager\\|Doctrine\\\\ORM\\\\QueryBuilder is not subtype of native type Doctrine\\\\ORM\\\\EntityManager\\.$#"
+			count: 1
+			path: tests/Fixtures/DemoEntityManager.php
+
+		-
+			message: "#^Method Core23\\\\Doctrine\\\\Tests\\\\Fixtures\\\\DemoEntityManager\\:\\:getQueryBuilder\\(\\) should return Doctrine\\\\ORM\\\\EntityManager but returns Doctrine\\\\ORM\\\\EntityManager\\|Doctrine\\\\ORM\\\\QueryBuilder\\.$#"
+			count: 1
+			path: tests/Fixtures/DemoEntityManager.php
 
 		-
 			message: "#^Method Core23\\\\Doctrine\\\\Tests\\\\Fixtures\\\\DemoEntityManager\\:\\:searchWhereQueryBuilder\\(\\) has parameter \\$values with no value type specified in iterable type array\\.$#"
@@ -81,32 +96,77 @@ parameters:
 			path: tests/Fixtures/DemoEntityManager.php
 
 		-
-			message: "#^Property Core23\\\\Doctrine\\\\Tests\\\\Manager\\\\ORM\\\\BaseQueryTraitTest\\:\\:\\$manager has no typehint specified\\.$#"
-			count: 1
-			path: tests/Manager/ORM/BaseQueryTraitTest.php
+			message: "#^Call to an undefined method PHPUnit\\\\Framework\\\\MockObject\\\\MockObject\\:\\:getConfirmedAt\\(\\)\\.$#"
+			count: 4
+			path: tests/Model/Traits/ConfirmableTraitTest.php
 
 		-
-			message: "#^Property Core23\\\\Doctrine\\\\Tests\\\\Manager\\\\ORM\\\\SearchQueryTraitTest\\:\\:\\$manager has no typehint specified\\.$#"
-			count: 1
-			path: tests/Manager/ORM/SearchQueryTraitTest.php
+			message: "#^Call to an undefined method PHPUnit\\\\Framework\\\\MockObject\\\\MockObject\\:\\:isConfirmed\\(\\)\\.$#"
+			count: 4
+			path: tests/Model/Traits/ConfirmableTraitTest.php
 
 		-
-			message: "#^Property Core23\\\\Doctrine\\\\Tests\\\\Model\\\\Traits\\\\ConfirmableTraitTest\\:\\:\\$trait has no typehint specified\\.$#"
+			message: "#^Call to an undefined method PHPUnit\\\\Framework\\\\MockObject\\\\MockObject\\:\\:setConfirmed\\(\\)\\.$#"
+			count: 2
+			path: tests/Model/Traits/ConfirmableTraitTest.php
+
+		-
+			message: "#^Call to an undefined method PHPUnit\\\\Framework\\\\MockObject\\\\MockObject\\:\\:setConfirmedAt\\(\\)\\.$#"
 			count: 1
 			path: tests/Model/Traits/ConfirmableTraitTest.php
 
 		-
-			message: "#^Property Core23\\\\Doctrine\\\\Tests\\\\Model\\\\Traits\\\\DeleteableTraitTest\\:\\:\\$trait has no typehint specified\\.$#"
+			message: "#^Call to an undefined method PHPUnit\\\\Framework\\\\MockObject\\\\MockObject\\:\\:getDeletedAt\\(\\)\\.$#"
+			count: 4
+			path: tests/Model/Traits/DeleteableTraitTest.php
+
+		-
+			message: "#^Call to an undefined method PHPUnit\\\\Framework\\\\MockObject\\\\MockObject\\:\\:isDeleted\\(\\)\\.$#"
+			count: 4
+			path: tests/Model/Traits/DeleteableTraitTest.php
+
+		-
+			message: "#^Call to an undefined method PHPUnit\\\\Framework\\\\MockObject\\\\MockObject\\:\\:setDeleted\\(\\)\\.$#"
+			count: 2
+			path: tests/Model/Traits/DeleteableTraitTest.php
+
+		-
+			message: "#^Call to an undefined method PHPUnit\\\\Framework\\\\MockObject\\\\MockObject\\:\\:setDeletedAt\\(\\)\\.$#"
 			count: 1
 			path: tests/Model/Traits/DeleteableTraitTest.php
 
 		-
-			message: "#^Property Core23\\\\Doctrine\\\\Tests\\\\Model\\\\Traits\\\\LifecycleDateTimeTraitTest\\:\\:\\$trait has no typehint specified\\.$#"
-			count: 1
+			message: "#^Call to an undefined method PHPUnit\\\\Framework\\\\MockObject\\\\MockObject\\:\\:getCreatedAt\\(\\)\\.$#"
+			count: 4
 			path: tests/Model/Traits/LifecycleDateTimeTraitTest.php
 
 		-
-			message: "#^Property Core23\\\\Doctrine\\\\Tests\\\\Model\\\\Traits\\\\SortableTraitTest\\:\\:\\$trait has no typehint specified\\.$#"
+			message: "#^Call to an undefined method PHPUnit\\\\Framework\\\\MockObject\\\\MockObject\\:\\:setCreatedAt\\(\\)\\.$#"
+			count: 2
+			path: tests/Model/Traits/LifecycleDateTimeTraitTest.php
+
+		-
+			message: "#^Call to an undefined method PHPUnit\\\\Framework\\\\MockObject\\\\MockObject\\:\\:setUpdatedAt\\(\\)\\.$#"
+			count: 2
+			path: tests/Model/Traits/LifecycleDateTimeTraitTest.php
+
+		-
+			message: "#^Call to an undefined method PHPUnit\\\\Framework\\\\MockObject\\\\MockObject\\:\\:getUpdatedAt\\(\\)\\.$#"
+			count: 2
+			path: tests/Model/Traits/LifecycleDateTimeTraitTest.php
+
+		-
+			message: "#^Call to an undefined method PHPUnit\\\\Framework\\\\MockObject\\\\MockObject\\:\\:getPosition\\(\\)\\.$#"
+			count: 2
+			path: tests/Model/Traits/SortableTraitTest.php
+
+		-
+			message: "#^Call to an undefined method PHPUnit\\\\Framework\\\\MockObject\\\\MockObject\\:\\:setPosition\\(\\)\\.$#"
+			count: 1
+			path: tests/Model/Traits/SortableTraitTest.php
+
+		-
+			message: "#^Call to an undefined method PHPUnit\\\\Framework\\\\MockObject\\\\MockObject\\:\\:getPositionGroup\\(\\)\\.$#"
 			count: 1
 			path: tests/Model/Traits/SortableTraitTest.php
 

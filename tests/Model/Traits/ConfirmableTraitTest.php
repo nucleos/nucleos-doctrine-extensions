@@ -13,10 +13,14 @@ namespace Core23\Doctrine\Tests\Model\Traits;
 
 use Core23\Doctrine\Model\Traits\ConfirmableTrait;
 use DateTime;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class ConfirmableTraitTest extends TestCase
 {
+    /**
+     * @var MockObject
+     */
     private $trait;
 
     protected function setUp(): void

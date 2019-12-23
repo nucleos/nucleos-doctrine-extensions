@@ -24,7 +24,7 @@ final class DemoEntityManager extends AbstractEntityManager
     /**
      * @return EntityManager|QueryBuilder
      */
-    public function getQueryBuilder(string $alias, ?string $indexBy = null)
+    public function getQueryBuilder(string $alias, ?string $indexBy = null): EntityManager
     {
         return $this->createQueryBuilder($alias, $indexBy);
     }
