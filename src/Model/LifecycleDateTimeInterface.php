@@ -11,13 +11,15 @@ declare(strict_types=1);
 
 namespace Core23\Doctrine\Model;
 
+use DateTime;
+
 interface LifecycleDateTimeInterface
 {
-    public function getCreatedAt(): ?\DateTime;
+    public function getCreatedAt(): ?DateTime;
 
-    public function getUpdatedAt(): ?\DateTime;
+    public function getUpdatedAt(): ?DateTime;
 
-    public function setCreatedAt(?\DateTime $createdAt): void;
+    public function setCreatedAt(?DateTime $createdAt): void;
 
-    public function setUpdatedAt(?\DateTime $updatedAt): void;
+    public function setUpdatedAt(?DateTime $updatedAt): void;
 }

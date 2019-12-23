@@ -11,14 +11,16 @@ declare(strict_types=1);
 
 namespace Core23\Doctrine\Model;
 
+use DateTime;
+
 interface DeletableInterface
 {
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getDeletedAt(): ?\DateTime;
+    public function getDeletedAt(): ?DateTime;
 
-    public function setDeletedAt(?\DateTime $deletedAt): void;
+    public function setDeletedAt(?DateTime $deletedAt): void;
 
     public function setDeleted(bool $deleted): void;
 
