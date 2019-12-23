@@ -11,11 +11,13 @@ declare(strict_types=1);
 
 namespace Core23\Doctrine\Model;
 
+use DateTime;
+
 interface ConfirmableInterface
 {
-    public function getConfirmedAt(): ?\DateTime;
+    public function getConfirmedAt(): ?DateTime;
 
-    public function setConfirmedAt(?\DateTime $confirmedAt): void;
+    public function setConfirmedAt(?DateTime $confirmedAt): void;
 
     public function setConfirmed(bool $confirmed): void;
 
