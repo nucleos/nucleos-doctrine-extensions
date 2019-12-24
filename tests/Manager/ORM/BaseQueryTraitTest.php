@@ -20,6 +20,9 @@ use PHPUnit\Framework\TestCase;
 
 final class BaseQueryTraitTest extends TestCase
 {
+    /**
+     * @var DemoEntityManager
+     */
     private $manager;
 
     protected function setUp(): void

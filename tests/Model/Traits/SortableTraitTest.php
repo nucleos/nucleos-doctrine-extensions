@@ -12,10 +12,14 @@ declare(strict_types=1);
 namespace Core23\Doctrine\Tests\Model\Traits;
 
 use Core23\Doctrine\Model\Traits\SortableTrait;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class SortableTraitTest extends TestCase
 {
+    /**
+     * @var MockObject
+     */
     private $trait;
 
     protected function setUp(): void

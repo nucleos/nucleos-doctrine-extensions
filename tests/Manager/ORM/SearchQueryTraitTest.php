@@ -16,12 +16,16 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\Expr;
+use Doctrine\ORM\Query\Expr\Orx;
 use Doctrine\ORM\QueryBuilder;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Prophecy\ObjectProphecy;
 
 final class SearchQueryTraitTest extends TestCase
 {
+    /**
+     * @var DemoEntityManager
+     */
     private $manager;
 
     protected function setUp(): void
@@ -133,7 +137,7 @@ final class SearchQueryTraitTest extends TestCase
 
     private function prepareOrx(ObjectProphecy $builder): ObjectProphecy
     {
-        $orx = $this->prophesize(Expr\Orx::class);
+        $orx = $this->prophesize(Orx::class);
 
         $expr = $this->prophesize(Expr::class);
         $expr->orX()
