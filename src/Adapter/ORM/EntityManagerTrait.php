@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 namespace Core23\Doctrine\Adapter\ORM;
 
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 
@@ -19,10 +18,8 @@ trait EntityManagerTrait
 {
     /**
      * Creates a new QueryBuilder instance that is prepopulated for this entity name.
-     *
-     * @return EntityManager|QueryBuilder
      */
-    final protected function createQueryBuilder(string $alias, string $indexBy = null)
+    final protected function createQueryBuilder(string $alias, string $indexBy = null): QueryBuilder
     {
         return $this->getRepository()
             ->createQueryBuilder($alias, $indexBy)
