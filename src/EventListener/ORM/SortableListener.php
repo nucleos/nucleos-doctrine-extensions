@@ -12,8 +12,6 @@ declare(strict_types=1);
 namespace Core23\Doctrine\EventListener\ORM;
 
 use Core23\Doctrine\Model\PositionAwareInterface;
-use Core23\Doctrine\Model\Traits\SortableTrait;
-use Core23\Doctrine\Util\ClassUtils;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Event\LifecycleEventArgs;
@@ -98,15 +96,17 @@ final class SortableListener implements EventSubscriber
 
         $reflClass = $meta->getReflectionClass();
 
-        if (null === $reflClass || !ClassUtils::containsTrait($reflClass, SortableTrait::class)) {
+        if (null === $reflClass || !$reflClass->implementsInterface(PositionAwareInterface::class)) {
             return;
         }
 
         if (!$meta->hasField('position')) {
-            $meta->mapField([
-                'type'      => 'integer',
-                'fieldName' => 'position',
-            ]);
+            $meta->mapField(
+                [
+                    'type'      => 'integer',
+                    'fieldName' => 'position',
+                ]
+            );
         }
     }
 

@@ -12,8 +12,6 @@ declare(strict_types=1);
 namespace Core23\Doctrine\EventListener\ORM;
 
 use Core23\Doctrine\Model\LifecycleDateTimeInterface;
-use Core23\Doctrine\Model\Traits\LifecycleDateTimeTrait;
-use Core23\Doctrine\Util\ClassUtils;
 use DateTime;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
@@ -65,7 +63,7 @@ final class LifecycleDateListener extends AbstractListener
 
         $reflClass = $meta->getReflectionClass();
 
-        if (null === $reflClass || !ClassUtils::containsTrait($reflClass, LifecycleDateTimeTrait::class)) {
+        if (null === $reflClass || !$reflClass->implementsInterface(LifecycleDateTimeInterface::class)) {
             return;
         }
 

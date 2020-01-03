@@ -11,8 +11,7 @@ declare(strict_types=1);
 
 namespace Core23\Doctrine\EventListener\ORM;
 
-use Core23\Doctrine\Model\Traits\ConfirmableTrait;
-use Core23\Doctrine\Util\ClassUtils;
+use Core23\Doctrine\Model\ConfirmableInterface;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\MappingException;
@@ -35,7 +34,7 @@ final class ConfirmableListener extends AbstractListener
 
         $reflClass = $meta->getReflectionClass();
 
-        if (null === $reflClass || !ClassUtils::containsTrait($reflClass, ConfirmableTrait::class)) {
+        if (null === $reflClass || !$reflClass->implementsInterface(ConfirmableInterface::class)) {
             return;
         }
 
