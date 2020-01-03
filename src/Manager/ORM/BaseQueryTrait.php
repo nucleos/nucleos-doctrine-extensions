@@ -34,8 +34,16 @@ trait BaseQueryTrait
         return $builder;
     }
 
-    private function addOrderField(QueryBuilder $builder, string $table, string $field, string $order, array $aliasMapping = []): void
-    {
+    /**
+     * @param array<string, string> $aliasMapping
+     */
+    private function addOrderField(
+        QueryBuilder $builder,
+        string $table,
+        string $field,
+        string $order,
+        array $aliasMapping = []
+    ): void {
         $fieldSpl = explode('.', $field);
 
         if (\count($fieldSpl) > 2) {
