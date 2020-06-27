@@ -9,7 +9,7 @@ repository:
   topics: library, doctrine, hooks, symfony, symfony-bridge, confirmable, deletable, lifecycle, sortable
 
 branches:
-  - name: master
+  - name: main
     protection:
       enforce_admins: false
       required_status_checks:

@@ -9,7 +9,7 @@ Doctrine Extensions
 [![Daily Downloads](https://poser.pugx.org/nucleos/doctrine-extensions/d/daily)](https://packagist.org/packages/nucleos/doctrine-extensions)
 
 [![Continuous Integration](https://github.com/nucleos/nucleos-doctrine-extensions/workflows/Continuous%20Integration/badge.svg)](https://github.com/nucleos/nucleos-doctrine-extensions/actions)
-[![Code Coverage](https://codecov.io/gh/nucleos/nucleos-doctrine-extensions/branch/master/graph/badge.svg)](https://codecov.io/gh/nucleos/nucleos-doctrine-extensions)
+[![Code Coverage](https://codecov.io/gh/nucleos/nucleos-doctrine-extensions/branch/main/graph/badge.svg)](https://codecov.io/gh/nucleos/nucleos-doctrine-extensions)
 
 This library provides adds some useful doctrine hooks.
 
