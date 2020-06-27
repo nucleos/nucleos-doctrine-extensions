@@ -9,17 +9,17 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Core23\Doctrine\Tests\EventListener\ORM;
+namespace Nucleos\Doctrine\Tests\EventListener\ORM;
 
-use Core23\Doctrine\EventListener\ORM\UniqueActiveListener;
-use Core23\Doctrine\Tests\Fixtures\ClassWithAllProperties;
-use Core23\Doctrine\Tests\Fixtures\EmptyClass;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\ClassMetadata;
+use Nucleos\Doctrine\EventListener\ORM\UniqueActiveListener;
+use Nucleos\Doctrine\Tests\Fixtures\ClassWithAllProperties;
+use Nucleos\Doctrine\Tests\Fixtures\EmptyClass;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use ReflectionClass;

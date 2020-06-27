@@ -9,12 +9,12 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Core23\Doctrine\Bridge\Symfony\Bundle;
+namespace Nucleos\Doctrine\Bridge\Symfony\Bundle;
 
-use Core23\Doctrine\Bridge\Symfony\DependencyInjection\Core23DoctrineExtension;
+use Nucleos\Doctrine\Bridge\Symfony\DependencyInjection\NucleosDoctrineExtension;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-final class Core23DoctrineBundle extends Bundle
+final class NucleosDoctrineBundle extends Bundle
 {
     public function getPath()
     {
@@ -23,6 +23,6 @@ final class Core23DoctrineBundle extends Bundle
 
     protected function getContainerExtensionClass()
     {
-        return Core23DoctrineExtension::class;
+        return NucleosDoctrineExtension::class;
     }
 }

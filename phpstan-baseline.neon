@@ -26,12 +26,12 @@ parameters:
 			path: src/EventListener/ORM/SortableListener.php
 
 		-
-			message: "#^Method Core23\\\\Doctrine\\\\EventListener\\\\ORM\\\\TablePrefixEventListener\\:\\:evaluteMapping\\(\\) has parameter \\$mapping with no value type specified in iterable type array\\.$#"
+			message: "#^Method Nucleos\\\\Doctrine\\\\EventListener\\\\ORM\\\\TablePrefixEventListener\\:\\:evaluteMapping\\(\\) has parameter \\$mapping with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/EventListener/ORM/TablePrefixEventListener.php
 
 		-
-			message: "#^Method Core23\\\\Doctrine\\\\EventListener\\\\ORM\\\\TablePrefixEventListener\\:\\:addSequenceGenerator\\(\\) has parameter \\$definition with no value type specified in iterable type array\\.$#"
+			message: "#^Method Nucleos\\\\Doctrine\\\\EventListener\\\\ORM\\\\TablePrefixEventListener\\:\\:addSequenceGenerator\\(\\) has parameter \\$definition with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/EventListener/ORM/TablePrefixEventListener.php
 
@@ -56,27 +56,27 @@ parameters:
 			path: tests/Bridge/Symfony/Bundle/BundleIntegrationTest.php
 
 		-
-			message: "#^Method Core23\\\\Doctrine\\\\Tests\\\\Fixtures\\\\DemoEntityManager\\:\\:searchWhereQueryBuilder\\(\\) has parameter \\$values with no value type specified in iterable type array\\.$#"
+			message: "#^Method Nucleos\\\\Doctrine\\\\Tests\\\\Fixtures\\\\DemoEntityManager\\:\\:searchWhereQueryBuilder\\(\\) has parameter \\$values with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: tests/Fixtures/DemoEntityManager.php
 
 		-
-			message: "#^Method Core23\\\\Doctrine\\\\Tests\\\\Fixtures\\\\DemoEntityManager\\:\\:addOrderToQueryBuilder\\(\\) has parameter \\$aliasMapping with no value type specified in iterable type array\\.$#"
+			message: "#^Method Nucleos\\\\Doctrine\\\\Tests\\\\Fixtures\\\\DemoEntityManager\\:\\:addOrderToQueryBuilder\\(\\) has parameter \\$aliasMapping with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: tests/Fixtures/DemoEntityManager.php
 
 		-
-			message: "#^Method Core23\\\\Doctrine\\\\Tests\\\\Fixtures\\\\DemoEntityManager\\:\\:addOrderToQueryBuilder\\(\\) has parameter \\$sort with no value type specified in iterable type array\\.$#"
+			message: "#^Method Nucleos\\\\Doctrine\\\\Tests\\\\Fixtures\\\\DemoEntityManager\\:\\:addOrderToQueryBuilder\\(\\) has parameter \\$sort with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: tests/Fixtures/DemoEntityManager.php
 
 		-
-			message: "#^Method Core23\\\\Doctrine\\\\Tests\\\\Fixtures\\\\DemoEntityManager\\:\\:getRepository\\(\\) return type with generic class Doctrine\\\\ORM\\\\EntityRepository does not specify its types\\: TEntityClass$#"
+			message: "#^Method Nucleos\\\\Doctrine\\\\Tests\\\\Fixtures\\\\DemoEntityManager\\:\\:getRepository\\(\\) return type with generic class Doctrine\\\\ORM\\\\EntityRepository does not specify its types\\: TEntityClass$#"
 			count: 1
 			path: tests/Fixtures/DemoEntityManager.php
 
 		-
-			message: "#^Method Core23\\\\Doctrine\\\\Tests\\\\Fixtures\\\\DemoEntityManager\\:\\:getRepository\\(\\) should return Doctrine\\\\ORM\\\\EntityRepository but returns Doctrine\\\\Persistence\\\\ObjectRepository\\<mixed\\>\\.$#"
+			message: "#^Method Nucleos\\\\Doctrine\\\\Tests\\\\Fixtures\\\\DemoEntityManager\\:\\:getRepository\\(\\) should return Doctrine\\\\ORM\\\\EntityRepository but returns Doctrine\\\\Persistence\\\\ObjectRepository\\<mixed\\>\\.$#"
 			count: 1
 			path: tests/Fixtures/DemoEntityManager.php
 

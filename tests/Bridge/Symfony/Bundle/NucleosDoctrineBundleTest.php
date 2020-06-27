@@ -9,25 +9,25 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Core23\Doctrine\Tests\Bridge\Symfony\Bundle;
+namespace Nucleos\Doctrine\Tests\Bridge\Symfony\Bundle;
 
-use Core23\Doctrine\Bridge\Symfony\Bundle\Core23DoctrineBundle;
-use Core23\Doctrine\Bridge\Symfony\DependencyInjection\Core23DoctrineExtension;
+use Nucleos\Doctrine\Bridge\Symfony\Bundle\NucleosDoctrineBundle;
+use Nucleos\Doctrine\Bridge\Symfony\DependencyInjection\NucleosDoctrineExtension;
 use PHPUnit\Framework\TestCase;
 
-final class Core23DoctrineBundleTest extends TestCase
+final class NucleosDoctrineBundleTest extends TestCase
 {
     public function testGetPath(): void
     {
-        $bundle = new Core23DoctrineBundle();
+        $bundle = new NucleosDoctrineBundle();
 
         static::assertStringEndsWith('Bridge/Symfony/Bundle', \dirname($bundle->getPath()));
     }
 
     public function testGetContainerExtension(): void
     {
-        $bundle = new Core23DoctrineBundle();
+        $bundle = new NucleosDoctrineBundle();
 
-        static::assertInstanceOf(Core23DoctrineExtension::class, $bundle->getContainerExtension());
+        static::assertInstanceOf(NucleosDoctrineExtension::class, $bundle->getContainerExtension());
     }
 }

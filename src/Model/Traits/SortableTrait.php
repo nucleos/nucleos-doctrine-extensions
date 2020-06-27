@@ -9,7 +9,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Core23\Doctrine\Model\Traits;
+namespace Nucleos\Doctrine\Model\Traits;
 
 trait SortableTrait
 {

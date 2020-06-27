@@ -9,10 +9,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Core23\Doctrine\Tests\EventListener\ORM;
+namespace Nucleos\Doctrine\Tests\EventListener\ORM;
 
-use Core23\Doctrine\EventListener\ORM\TablePrefixEventListener;
 use Doctrine\ORM\Events;
+use Nucleos\Doctrine\EventListener\ORM\TablePrefixEventListener;
 use PHPUnit\Framework\TestCase;
 
 final class TablePrefixEventListenerTest extends TestCase

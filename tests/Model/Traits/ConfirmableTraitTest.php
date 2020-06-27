@@ -9,10 +9,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Core23\Doctrine\Tests\Model\Traits;
+namespace Nucleos\Doctrine\Tests\Model\Traits;
 
-use Core23\Doctrine\Model\Traits\ConfirmableTrait;
 use DateTime;
+use Nucleos\Doctrine\Model\Traits\ConfirmableTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 

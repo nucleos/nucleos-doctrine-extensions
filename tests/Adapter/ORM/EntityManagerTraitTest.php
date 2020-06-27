@@ -9,13 +9,13 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Core23\Doctrine\Tests\Adapter\ORM;
+namespace Nucleos\Doctrine\Tests\Adapter\ORM;
 
-use Core23\Doctrine\Tests\Fixtures\DemoEntityManager;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
+use Nucleos\Doctrine\Tests\Fixtures\DemoEntityManager;
 use PHPUnit\Framework\TestCase;
 
 final class EntityManagerTraitTest extends TestCase

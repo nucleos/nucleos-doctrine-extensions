@@ -9,17 +9,17 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Core23\Doctrine\Tests\Fixtures;
+namespace Nucleos\Doctrine\Tests\Fixtures;
 
-use Core23\Doctrine\Model\ConfirmableInterface;
-use Core23\Doctrine\Model\DeletableInterface;
-use Core23\Doctrine\Model\LifecycleDateTimeInterface;
-use Core23\Doctrine\Model\PositionAwareInterface;
-use Core23\Doctrine\Model\Traits\ConfirmableTrait;
-use Core23\Doctrine\Model\Traits\DeleteableTrait;
-use Core23\Doctrine\Model\Traits\LifecycleDateTimeTrait;
-use Core23\Doctrine\Model\Traits\SortableTrait;
-use Core23\Doctrine\Model\UniqueActiveInterface;
+use Nucleos\Doctrine\Model\ConfirmableInterface;
+use Nucleos\Doctrine\Model\DeletableInterface;
+use Nucleos\Doctrine\Model\LifecycleDateTimeInterface;
+use Nucleos\Doctrine\Model\PositionAwareInterface;
+use Nucleos\Doctrine\Model\Traits\ConfirmableTrait;
+use Nucleos\Doctrine\Model\Traits\DeleteableTrait;
+use Nucleos\Doctrine\Model\Traits\LifecycleDateTimeTrait;
+use Nucleos\Doctrine\Model\Traits\SortableTrait;
+use Nucleos\Doctrine\Model\UniqueActiveInterface;
 
 final class ClassWithAllProperties implements DeletableInterface, ConfirmableInterface, LifecycleDateTimeInterface, PositionAwareInterface, UniqueActiveInterface
 {

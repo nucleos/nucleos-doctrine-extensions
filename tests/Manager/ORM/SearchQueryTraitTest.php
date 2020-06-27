@@ -9,15 +9,15 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Core23\Doctrine\Tests\Manager\ORM;
+namespace Nucleos\Doctrine\Tests\Manager\ORM;
 
-use Core23\Doctrine\Tests\Fixtures\DemoEntityManager;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\Expr;
 use Doctrine\ORM\Query\Expr\Orx;
 use Doctrine\ORM\QueryBuilder;
+use Nucleos\Doctrine\Tests\Fixtures\DemoEntityManager;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Prophecy\ObjectProphecy;
 

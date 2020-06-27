@@ -9,16 +9,16 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Core23\Doctrine\Tests\Fixtures;
+namespace Nucleos\Doctrine\Tests\Fixtures;
 
-use Core23\Doctrine\Adapter\ORM\EntityManagerTrait;
-use Core23\Doctrine\Manager\ORM\BaseQueryTrait;
-use Core23\Doctrine\Manager\ORM\SearchQueryTrait;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\Expr\Composite;
 use Doctrine\ORM\QueryBuilder;
+use Nucleos\Doctrine\Adapter\ORM\EntityManagerTrait;
+use Nucleos\Doctrine\Manager\ORM\BaseQueryTrait;
+use Nucleos\Doctrine\Manager\ORM\SearchQueryTrait;
 use RuntimeException;
 
 final class DemoEntityManager

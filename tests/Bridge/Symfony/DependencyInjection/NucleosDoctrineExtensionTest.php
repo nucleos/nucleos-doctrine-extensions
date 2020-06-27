@@ -9,18 +9,18 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Core23\Doctrine\Tests\Bridge\Symfony\DependencyInjection;
+namespace Nucleos\Doctrine\Tests\Bridge\Symfony\DependencyInjection;
 
-use Core23\Doctrine\Bridge\Symfony\DependencyInjection\Core23DoctrineExtension;
-use Core23\Doctrine\EventListener\ORM\ConfirmableListener;
-use Core23\Doctrine\EventListener\ORM\DeletableListener;
-use Core23\Doctrine\EventListener\ORM\LifecycleDateListener;
-use Core23\Doctrine\EventListener\ORM\SortableListener;
-use Core23\Doctrine\EventListener\ORM\TablePrefixEventListener;
-use Core23\Doctrine\EventListener\ORM\UniqueActiveListener;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
+use Nucleos\Doctrine\Bridge\Symfony\DependencyInjection\NucleosDoctrineExtension;
+use Nucleos\Doctrine\EventListener\ORM\ConfirmableListener;
+use Nucleos\Doctrine\EventListener\ORM\DeletableListener;
+use Nucleos\Doctrine\EventListener\ORM\LifecycleDateListener;
+use Nucleos\Doctrine\EventListener\ORM\SortableListener;
+use Nucleos\Doctrine\EventListener\ORM\TablePrefixEventListener;
+use Nucleos\Doctrine\EventListener\ORM\UniqueActiveListener;
 
-final class Core23DoctrineExtensionTest extends AbstractExtensionTestCase
+final class NucleosDoctrineExtensionTest extends AbstractExtensionTestCase
 {
     public function testLoadDefault(): void
     {
@@ -37,7 +37,7 @@ final class Core23DoctrineExtensionTest extends AbstractExtensionTestCase
     protected function getContainerExtensions(): array
     {
         return [
-            new Core23DoctrineExtension(),
+            new NucleosDoctrineExtension(),
         ];
     }
 }

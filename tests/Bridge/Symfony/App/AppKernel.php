@@ -9,11 +9,11 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Core23\Doctrine\Tests\Bridge\Symfony\App;
+namespace Nucleos\Doctrine\Tests\Bridge\Symfony\App;
 
-use Core23\Doctrine\Bridge\Symfony\Bundle\Core23DoctrineBundle;
-use Core23\Doctrine\Tests\Bridge\Symfony\App\Controller\SampleTestController;
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
+use Nucleos\Doctrine\Bridge\Symfony\Bundle\NucleosDoctrineBundle;
+use Nucleos\Doctrine\Tests\Bridge\Symfony\App\Controller\SampleTestController;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
@@ -34,7 +34,7 @@ final class AppKernel extends Kernel
     {
         yield new FrameworkBundle();
         yield new DoctrineBundle();
-        yield new Core23DoctrineBundle();
+        yield new NucleosDoctrineBundle();
     }
 
     public function getCacheDir(): string
