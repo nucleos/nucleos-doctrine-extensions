@@ -9,7 +9,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Core23\Doctrine\Manager\ORM;
+namespace Nucleos\Doctrine\Manager\ORM;
 
 use Doctrine\ORM\QueryBuilder;
 use InvalidArgumentException;

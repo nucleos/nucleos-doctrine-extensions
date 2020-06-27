@@ -9,7 +9,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Core23\Doctrine\EventListener\ORM;
+namespace Nucleos\Doctrine\EventListener\ORM;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\EntityManager;

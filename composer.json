@@ -1,5 +1,5 @@
 {
-    "name": "core23/doctrine-extensions",
+    "name": "nucleos/doctrine-extensions",
     "type": "library",
     "description": "Useful doctrine event hooks.",
     "keywords": [
@@ -12,7 +12,7 @@
         "lifecycle",
         "sortable"
     ],
-    "homepage": "https://core23.de",
+    "homepage": "https://nucleos.rocks",
     "license": "MIT",
     "authors": [
         {
@@ -53,12 +53,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Core23\\Doctrine\\": "src/"
+            "Nucleos\\Doctrine\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Core23\\Doctrine\\Tests\\": "tests/"
+            "Nucleos\\Doctrine\\Tests\\": "tests/"
         }
     },
     "scripts": {

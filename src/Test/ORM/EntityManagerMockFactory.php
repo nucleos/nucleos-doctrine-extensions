@@ -9,7 +9,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Core23\Doctrine\Test\ORM;
+namespace Nucleos\Doctrine\Test\ORM;
 
 use Closure;
 use Doctrine\DBAL\Connection;

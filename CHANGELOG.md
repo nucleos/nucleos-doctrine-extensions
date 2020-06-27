@@ -1,4 +1,41 @@
+# 4.0.0
+
+## Changes
+
+* Renamed namespace `Core23\Doctrine` to `Nucleos\Doctrine` after move to [@nucleos]
+
+  Run
+
+  ```
+  $ composer remove nucleos/doctrine-extensions
+  ```
+
+  and
+
+  ```
+  $ composer require nucleos/doctrine-extensions
+  ```
+
+  to update.
+
+  Run
+
+  ```
+  $ find . -type f -exec sed -i '.bak' 's/Core23\\Doctrine/Nucleos\\Doctrine/g' {} \;
+  ```
+
+  to replace occurrences of `Core23\Doctrine` with `Nucleos\Doctrine`.
+
+  Run
+
+  ```
+  $ find -type f -name '*.bak' -delete
+  ```
+
+  to delete backup files created in the previous step.
+
 # 3.3.0
+
 ## Changes
 
 - Add return type to EntityManagerTrait @core23 (#39)

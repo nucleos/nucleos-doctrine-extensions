@@ -1,15 +1,15 @@
 Doctrine Extensions
 ===================
-[![Latest Stable Version](https://poser.pugx.org/core23/doctrine-extensions/v/stable)](https://packagist.org/packages/core23/doctrine-extensions)
-[![Latest Unstable Version](https://poser.pugx.org/core23/doctrine-extensions/v/unstable)](https://packagist.org/packages/core23/doctrine-extensions)
-[![License](https://poser.pugx.org/core23/doctrine-extensions/license)](LICENSE.md)
+[![Latest Stable Version](https://poser.pugx.org/nucleos/doctrine-extensions/v/stable)](https://packagist.org/packages/nucleos/doctrine-extensions)
+[![Latest Unstable Version](https://poser.pugx.org/nucleos/doctrine-extensions/v/unstable)](https://packagist.org/packages/nucleos/doctrine-extensions)
+[![License](https://poser.pugx.org/nucleos/doctrine-extensions/license)](LICENSE.md)
 
-[![Total Downloads](https://poser.pugx.org/core23/doctrine-extensions/downloads)](https://packagist.org/packages/core23/doctrine-extensions)
-[![Monthly Downloads](https://poser.pugx.org/core23/doctrine-extensions/d/monthly)](https://packagist.org/packages/core23/doctrine-extensions)
-[![Daily Downloads](https://poser.pugx.org/core23/doctrine-extensions/d/daily)](https://packagist.org/packages/core23/doctrine-extensions)
+[![Total Downloads](https://poser.pugx.org/nucleos/doctrine-extensions/downloads)](https://packagist.org/packages/nucleos/doctrine-extensions)
+[![Monthly Downloads](https://poser.pugx.org/nucleos/doctrine-extensions/d/monthly)](https://packagist.org/packages/nucleos/doctrine-extensions)
+[![Daily Downloads](https://poser.pugx.org/nucleos/doctrine-extensions/d/daily)](https://packagist.org/packages/nucleos/doctrine-extensions)
 
-[![Continuous Integration](https://github.com/core23/doctrine-extensions/workflows/Continuous%20Integration/badge.svg)](https://github.com/core23/doctrine-extensions/actions)
-[![Code Coverage](https://codecov.io/gh/core23/doctrine-extensions/branch/master/graph/badge.svg)](https://codecov.io/gh/core23/doctrine-extensions)
+[![Continuous Integration](https://github.com/nucleos/nucleos-doctrine-extensions/workflows/Continuous%20Integration/badge.svg)](https://github.com/nucleos/nucleos-doctrine-extensions/actions)
+[![Code Coverage](https://codecov.io/gh/nucleos/nucleos-doctrine-extensions/branch/master/graph/badge.svg)](https://codecov.io/gh/nucleos/nucleos-doctrine-extensions)
 
 This library provides adds some useful doctrine hooks.
 
@@ -18,52 +18,52 @@ This library provides adds some useful doctrine hooks.
 Open a command console, enter your project directory and execute the following command to download the latest stable version of this library:
 
 ```
-composer require core23/doctrine-extensions
+composer require nucleos/doctrine-extensions
 ```
 
 ## Usage
 
 ### Confirmable entities
 
-If you need entities that needs to be confirmed, just implement the `Core23\Doctrine\Model\ConfirmableInterface`
+If you need entities that needs to be confirmed, just implement the `Nucleos\Doctrine\Model\ConfirmableInterface`
 in your entity class.
 
-If you don't need the symfony framework, you need to register the `Core23\Doctrine\EventListener\ORM\ConfirmableListener`.
+If you don't need the symfony framework, you need to register the `Nucleos\Doctrine\EventListener\ORM\ConfirmableListener`.
 
 ### Deleteable entities
 
-If you need entities that should be soft deleted, just implement the `Core23\Doctrine\Model\DeletableInterface`
+If you need entities that should be soft deleted, just implement the `Nucleos\Doctrine\Model\DeletableInterface`
 in your entity class.
 
-If you don't need the symfony framework, you need to register the `Core23\Doctrine\EventListener\ORM\DeletableListener`.
+If you don't need the symfony framework, you need to register the `Nucleos\Doctrine\EventListener\ORM\DeletableListener`.
 
 ### Lifecyle aware enties
 
-If you need lifecyle information (creation / update date), just implement the `Core23\Doctrine\Model\LifecycleDateTimeInterface`
+If you need lifecyle information (creation / update date), just implement the `Nucleos\Doctrine\Model\LifecycleDateTimeInterface`
 in your entity class.
 
-If you don't need the symfony framework, you need to register the `Core23\Doctrine\EventListener\ORM\LifecycleDateListener`.
+If you don't need the symfony framework, you need to register the `Nucleos\Doctrine\EventListener\ORM\LifecycleDateListener`.
 
 ### Position aware entities
 
-If you need sortable entities, just implement the `Core23\Doctrine\Model\PositionAwareInterface`
+If you need sortable entities, just implement the `Nucleos\Doctrine\Model\PositionAwareInterface`
 in your entity class.
 
-If you don't need the symfony framework, you need to register the `Core23\Doctrine\EventListener\ORM\SortableListener`.
+If you don't need the symfony framework, you need to register the `Nucleos\Doctrine\EventListener\ORM\SortableListener`.
 
 ### Unique active entities
 
-If you need entities that should only have one active state, just implement the `Core23\Doctrine\Model\UniqueActiveInterface`
+If you need entities that should only have one active state, just implement the `Nucleos\Doctrine\Model\UniqueActiveInterface`
 in your entity class.
 
-If you don't need the symfony framework, you need to register the `Core23\Doctrine\EventListener\ORM\UniqueActiveListener`.
+If you don't need the symfony framework, you need to register the `Nucleos\Doctrine\EventListener\ORM\UniqueActiveListener`.
 
 ### Table prefix
 
 If you need a prefix for all of you application tables and sequences, you could use the  `TablePrefixEventListener`.
 If the table name does already start with the defined prefix, it will be ignored.
 
-If you don't need the symfony framework, you need to register the `Core23\Doctrine\EventListener\ORM\TablePrefixEventListener`.
+If you don't need the symfony framework, you need to register the `Nucleos\Doctrine\EventListener\ORM\TablePrefixEventListener`.
 
 ## Symfony usage
 
@@ -78,19 +78,19 @@ Then, enable the bundle by adding it to the list of registered bundles in `confi
 
 return [
     // ...
-    Core23\Doctrine\Bridge\Symfony\Bundle\Core23DoctrineBundle::class => ['all' => true],
+    Nucleos\Doctrine\Bridge\Symfony\Bundle\NucleosDoctrineBundle::class => ['all' => true],
 ];
 ```
 
 
 ### Configure the Bundle
 
-Create a configuration file called `core23_doctrine.yaml`:
+Create a configuration file called `nucleos_doctrine.yaml`:
 
 ```yaml
-# config/packages/core23_doctrine.yaml
+# config/packages/nucleos_doctrine.yaml
 
-core23_doctrine:
+nucleos_doctrine:
     table:
         prefix: 'acme_'
 ```

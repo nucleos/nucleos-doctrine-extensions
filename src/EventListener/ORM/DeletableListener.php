@@ -9,12 +9,12 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Core23\Doctrine\EventListener\ORM;
+namespace Nucleos\Doctrine\EventListener\ORM;
 
-use Core23\Doctrine\Model\DeletableInterface;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\MappingException;
+use Nucleos\Doctrine\Model\DeletableInterface;
 
 final class DeletableListener extends AbstractListener
 {

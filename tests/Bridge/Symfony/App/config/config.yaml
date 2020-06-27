@@ -6,6 +6,6 @@ services:
         autowire: true
         autoconfigure: true
 
-    Core23\Doctrine\Tests\Bridge\Symfony\App\Controller\SampleTestController:
-        tags:
-            - controller.service_arguments
+    Nucleos\Doctrine\Tests\Bridge\Symfony\App\Controller\SampleTestController:
+      tags:
+        - controller.service_arguments

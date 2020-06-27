@@ -9,9 +9,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Core23\Doctrine\Tests\Model\Traits;
+namespace Nucleos\Doctrine\Tests\Model\Traits;
 
-use Core23\Doctrine\Model\Traits\SortableTrait;
+use Nucleos\Doctrine\Model\Traits\SortableTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
