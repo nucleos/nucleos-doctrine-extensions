@@ -23,11 +23,14 @@ use Nucleos\Doctrine\Tests\Fixtures\ClassWithAllProperties;
 use Nucleos\Doctrine\Tests\Fixtures\EmptyClass;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 use ReflectionClass;
 use stdClass;
 
 final class LifecycleDateListenerTest extends TestCase
 {
+    use ProphecyTrait;
+
     public function testGetSubscribedEvents(): void
     {
         $listener = new LifecycleDateListener();

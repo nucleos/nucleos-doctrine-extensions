@@ -11,11 +11,11 @@ declare(strict_types=1);
 
 namespace Nucleos\Doctrine\Tests\Fixtures;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\Expr\Composite;
 use Doctrine\ORM\QueryBuilder;
+use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ObjectManager;
 use Nucleos\Doctrine\Adapter\ORM\EntityManagerTrait;
 use Nucleos\Doctrine\Manager\ORM\BaseQueryTrait;
 use Nucleos\Doctrine\Manager\ORM\SearchQueryTrait;
