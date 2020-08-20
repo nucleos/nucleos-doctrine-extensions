@@ -69,7 +69,11 @@ final class DemoEntityManager
 
     protected function getRepository(): EntityRepository
     {
-        return $this->getObjectManager()->getRepository($this->class);
+        $objectRepository = $this->getObjectManager()->getRepository($this->class);
+
+        \assert($objectRepository instanceof EntityRepository);
+
+        return $objectRepository;
     }
 
     private function getObjectManager(): ObjectManager

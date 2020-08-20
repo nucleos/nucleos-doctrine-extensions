@@ -135,6 +135,11 @@ final class SearchQueryTraitTest extends TestCase
         ));
     }
 
+    /**
+     * @param ObjectProphecy<QueryBuilder> $builder
+     *
+     * @return ObjectProphecy<Orx>
+     */
     private function prepareOrx(ObjectProphecy $builder): ObjectProphecy
     {
         $orx = $this->prophesize(Orx::class);
