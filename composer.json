@@ -22,7 +22,7 @@
     ],
     "require": {
         "php": "^7.3",
-        "doctrine/common": "^2.8",
+        "doctrine/common": "^3.0",
         "doctrine/dbal": "^2.6",
         "doctrine/event-manager": "^1.0",
         "doctrine/orm": "^2.5",
