@@ -14,9 +14,12 @@ namespace Nucleos\Doctrine\Tests\EventListener\ORM;
 use Doctrine\ORM\Events;
 use Nucleos\Doctrine\EventListener\ORM\TablePrefixEventListener;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 final class TablePrefixEventListenerTest extends TestCase
 {
+    use ProphecyTrait;
+
     public function testGetSubscribedEvents(): void
     {
         $listener = new TablePrefixEventListener('acme_');

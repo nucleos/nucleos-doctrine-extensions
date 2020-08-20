@@ -11,15 +11,18 @@ declare(strict_types=1);
 
 namespace Nucleos\Doctrine\Tests\Manager\ORM;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
+use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ObjectManager;
 use Nucleos\Doctrine\Tests\Fixtures\DemoEntityManager;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 final class BaseQueryTraitTest extends TestCase
 {
+    use ProphecyTrait;
+
     /**
      * @var DemoEntityManager
      */
