@@ -6,7 +6,7 @@ repository:
   name: nucleos-doctrine-extensions
   description: ⚙️ Useful doctrine event hooks.
   homepage: https://nucleos.rocks
-  topics: library, doctrine, hooks, symfony, symfony-bridge, confirmable, deletable, lifecycle, sortable
+  topics: hacktoberfest, library, doctrine, hooks, symfony, symfony-bridge, confirmable, deletable, lifecycle, sortable
 
 branches:
   - name: main
