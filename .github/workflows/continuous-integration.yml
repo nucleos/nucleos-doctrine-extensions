@@ -102,6 +102,9 @@ jobs:
       - name: "Run psalm"
         run: vendor/bin/psalm --config=psalm.xml --diff --diff-methods --shepherd --show-info=false --stats --threads=4
 
+      - name: "Run phpmd"
+        run: composer phpmd
+
   tests:
     name: "Test (PHP ${{ matrix.php-version }}, symfony ${{ matrix.symfony }}, ${{ matrix.dependencies }})"
 
@@ -132,10 +135,9 @@ jobs:
           extensions: "mbstring, json, intl"
           php-version: ${{ matrix.php-version }}
 
-
       - name: 'Install Symfony Flex'
-        run: composer global require --prefer-dist --no-progress --no-suggest --ansi symfony/flex
-
+        run: |
+          composer global require --prefer-dist --no-progress --no-suggest --ansi symfony/flex
 
       - name: "Cache dependencies installed with composer"
         uses: actions/cache@v2
