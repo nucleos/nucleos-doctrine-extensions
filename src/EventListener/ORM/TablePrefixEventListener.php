@@ -72,11 +72,7 @@ final class TablePrefixEventListener implements EventSubscriber
 
     private function addSequencePrefix(ClassMetadata $classMetadata, EntityManager $em): void
     {
-        if ($classMetadata->isInheritanceTypeSingleTable() && !$classMetadata->isRootEntity()) {
-            return;
-        }
-
-        if (!$classMetadata->isIdGeneratorSequence()) {
+        if (!$this->isValidTable($classMetadata)) {
             return;
         }
 
@@ -92,6 +88,19 @@ final class TablePrefixEventListener implements EventSubscriber
         if (isset($classMetadata->idGenerator)) {
             $this->addSequenceGenerator($classMetadata, $em, $newDefinition);
         }
+    }
+
+    private function isValidTable(ClassMetadata $classMetadata): bool
+    {
+        if ($classMetadata->isInheritanceTypeSingleTable() && !$classMetadata->isRootEntity()) {
+            return false;
+        }
+
+        if (!$classMetadata->isIdGeneratorSequence()) {
+            return false;
+        }
+
+        return true;
     }
 
     private function prefixExists(string $name): bool
