@@ -1,3 +1,16 @@
+# 4.1.0
+
+## Changes
+
+## 🚀 Features
+
+- Move configuration to PHP @core23 (#50)
+
+## 📦 Dependencies
+
+- Add support for doctrine/common 3 @core23 (#53)
+- Drop support for PHP 7.2 @core23 (#56)
+
 # 4.0.0
 
 ## Changes
