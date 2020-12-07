@@ -21,6 +21,9 @@ use Doctrine\ORM\QueryBuilder;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @deprecated since nucleos/doctrine-extensions 4.2
+ */
 final class EntityManagerMockFactory
 {
     /**

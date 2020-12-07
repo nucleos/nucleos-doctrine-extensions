@@ -14,6 +14,9 @@ namespace Nucleos\Doctrine\Manager\ORM;
 use Doctrine\ORM\QueryBuilder;
 use InvalidArgumentException;
 
+/**
+ * @deprecated since nucleos/doctrine-extensions 4.2
+ */
 trait BaseQueryTrait
 {
     /**
