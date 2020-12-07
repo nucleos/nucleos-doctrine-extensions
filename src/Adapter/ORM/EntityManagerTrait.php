@@ -14,6 +14,9 @@ namespace Nucleos\Doctrine\Adapter\ORM;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 
+/**
+ * @deprecated since nucleos/doctrine-extensions 4.2
+ */
 trait EntityManagerTrait
 {
     /**
