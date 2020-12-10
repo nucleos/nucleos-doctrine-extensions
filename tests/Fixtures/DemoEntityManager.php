@@ -23,9 +23,9 @@ use RuntimeException;
 
 final class DemoEntityManager
 {
-    use SearchQueryTrait;
-    use EntityManagerTrait;
     use BaseQueryTrait;
+    use EntityManagerTrait;
+    use SearchQueryTrait;
 
     /**
      * @var ManagerRegistry

@@ -23,8 +23,8 @@ use Nucleos\Doctrine\Model\UniqueActiveInterface;
 
 final class ClassWithAllProperties implements DeletableInterface, ConfirmableInterface, LifecycleDateTimeInterface, PositionAwareInterface, UniqueActiveInterface
 {
-    use DeleteableTrait;
     use ConfirmableTrait;
+    use DeleteableTrait;
     use LifecycleDateTimeTrait;
     use SortableTrait;
 
