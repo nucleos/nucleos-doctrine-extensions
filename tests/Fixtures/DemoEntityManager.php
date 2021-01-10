@@ -23,9 +23,9 @@ use RuntimeException;
 
 final class DemoEntityManager
 {
-    use SearchQueryTrait;
-    use EntityManagerTrait;
     use BaseQueryTrait;
+    use EntityManagerTrait;
+    use SearchQueryTrait;
 
     /**
      * @var ManagerRegistry
@@ -67,6 +67,9 @@ final class DemoEntityManager
         return $this->addOrder($builder, $sort, $defaultEntity, $aliasMapping, $defaultOrder);
     }
 
+    /**
+     * @return EntityRepository<object>
+     */
     protected function getRepository(): EntityRepository
     {
         $objectRepository = $this->getObjectManager()->getRepository($this->class);
