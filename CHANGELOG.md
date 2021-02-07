@@ -1,19 +1,46 @@
-# 4.1.0
+# Changelog
 
-## Changes
+All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 🚀 Features
+## 4.2.0 - TBD
+
+### Added
+
+- Nothing.
+
+### Changed
+
+- Nothing.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- Nothing.
+
+
+## 4.1.0
+
+### Changes
+
+### 🚀 Features
 
 - Move configuration to PHP [@core23] ([#50])
 
-## 📦 Dependencies
+### 📦 Dependencies
 
 - Add support for doctrine/common 3 [@core23] ([#53])
 - Drop support for PHP 7.2 [@core23] ([#56])
 
-# 4.0.0
+## 4.0.0
 
-## Changes
+### Changes
 
 * Renamed namespace `Core23\Doctrine` to `Nucleos\Doctrine` after move to [@nucleos]
 
@@ -47,9 +74,9 @@
 
   to delete backup files created in the previous step.
 
-# 3.3.0
+## 3.3.0
 
-## Changes
+### Changes
 
 - Add return type to EntityManagerTrait [@core23] ([#39])
 - Add missing strict file header [@core23] ([#30])
@@ -57,7 +84,7 @@
 - Add support for symfony 5 [@core23] ([#21])
 - Removed explicit private visibility of services [@core23] ([#15])
 
-## 🐛 Bug Fixes
+### 🐛 Bug Fixes
 
 - Added more strict phpstan rules [@core23] ([#13])
 
