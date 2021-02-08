@@ -2,28 +2,28 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 4.2.0 - TBD
+## 4.2.0 - 2021-02-08
 
-### Added
 
-- Nothing.
 
-### Changed
+-----
 
-- Nothing.
+### Release Notes for [4.2.0](https://github.com/nucleos/nucleos-doctrine-extensions/milestone/1)
 
-### Deprecated
 
-- Nothing.
 
-### Removed
+### 4.2.0
 
-- Nothing.
+- Total issues resolved: **0**
+- Total pull requests resolved: **3**
+- Total contributors: **1**
 
-### Fixed
+ - [80: Deprecate helper classes](https://github.com/nucleos/nucleos-doctrine-extensions/pull/80) thanks to @core23
+ - [39: Add return type to EntityManagerTrait](https://github.com/nucleos/nucleos-doctrine-extensions/pull/39) thanks to @core23
 
-- Nothing.
+#### dependency
 
+ - [73: Add support for PHP 8](https://github.com/nucleos/nucleos-doctrine-extensions/pull/73) thanks to @core23
 
 ## 4.1.0
 
