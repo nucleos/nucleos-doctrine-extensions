@@ -1,11 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Cannot call method end\\(\\) on Symfony\\\\Component\\\\Config\\\\Definition\\\\Builder\\\\NodeParentInterface\\|null\\.$#"
-			count: 1
-			path: src/Bridge/Symfony/DependencyInjection/Configuration.php
-
-		-
 			message: "#^Strict comparison using \\=\\=\\= between null and ReflectionClass will always evaluate to false\\.$#"
 			count: 1
 			path: src/EventListener/ORM/ConfirmableListener.php
