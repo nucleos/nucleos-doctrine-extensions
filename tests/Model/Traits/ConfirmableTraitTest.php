@@ -12,20 +12,19 @@ declare(strict_types=1);
 namespace Nucleos\Doctrine\Tests\Model\Traits;
 
 use DateTime;
-use Nucleos\Doctrine\Model\Traits\ConfirmableTrait;
-use PHPUnit\Framework\MockObject\MockObject;
+use Nucleos\Doctrine\Tests\Fixtures\ClassWithAllProperties;
 use PHPUnit\Framework\TestCase;
 
 final class ConfirmableTraitTest extends TestCase
 {
     /**
-     * @var MockObject
+     * @var ClassWithAllProperties
      */
     private $trait;
 
     protected function setUp(): void
     {
-        $this->trait = $this->getMockForTrait(ConfirmableTrait::class);
+        $this->trait = new ClassWithAllProperties();
     }
 
     public function testIsConfirmedWithDefault(): void
