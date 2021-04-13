@@ -11,20 +11,19 @@ declare(strict_types=1);
 
 namespace Nucleos\Doctrine\Tests\Model\Traits;
 
-use Nucleos\Doctrine\Model\Traits\SortableTrait;
-use PHPUnit\Framework\MockObject\MockObject;
+use Nucleos\Doctrine\Tests\Fixtures\ClassWithAllProperties;
 use PHPUnit\Framework\TestCase;
 
 final class SortableTraitTest extends TestCase
 {
     /**
-     * @var MockObject
+     * @var ClassWithAllProperties
      */
     private $trait;
 
     protected function setUp(): void
     {
-        $this->trait = $this->getMockForTrait(SortableTrait::class);
+        $this->trait = new ClassWithAllProperties();
     }
 
     public function testPositionWithDefault(): void
