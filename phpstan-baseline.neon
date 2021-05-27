@@ -1,27 +1,32 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Strict comparison using \\=\\=\\= between null and ReflectionClass will always evaluate to false\\.$#"
+			message: "#^Method Nucleos\\\\Doctrine\\\\EventListener\\\\ORM\\\\AbstractListener\\:\\:createDateTimeField\\(\\) has parameter \\$metadata with generic class Doctrine\\\\ORM\\\\Mapping\\\\ClassMetadata but does not specify its types\\: T$#"
+			count: 1
+			path: src/EventListener/ORM/AbstractListener.php
+
+		-
+			message: "#^Strict comparison using \\=\\=\\= between null and ReflectionClass\\<object\\> will always evaluate to false\\.$#"
 			count: 1
 			path: src/EventListener/ORM/ConfirmableListener.php
 
 		-
-			message: "#^Strict comparison using \\=\\=\\= between null and ReflectionClass will always evaluate to false\\.$#"
+			message: "#^Strict comparison using \\=\\=\\= between null and ReflectionClass\\<object\\> will always evaluate to false\\.$#"
 			count: 1
 			path: src/EventListener/ORM/DeletableListener.php
 
 		-
-			message: "#^Strict comparison using \\=\\=\\= between null and ReflectionClass will always evaluate to false\\.$#"
+			message: "#^Strict comparison using \\=\\=\\= between null and ReflectionClass\\<object\\> will always evaluate to false\\.$#"
 			count: 1
 			path: src/EventListener/ORM/LifecycleDateListener.php
 
 		-
-			message: "#^Strict comparison using \\=\\=\\= between null and ReflectionClass will always evaluate to false\\.$#"
+			message: "#^Strict comparison using \\=\\=\\= between null and ReflectionClass\\<object\\> will always evaluate to false\\.$#"
 			count: 1
 			path: src/EventListener/ORM/SortableListener.php
 
 		-
-			message: "#^Method Nucleos\\\\Doctrine\\\\EventListener\\\\ORM\\\\TablePrefixEventListener\\:\\:evaluteMapping\\(\\) has parameter \\$mapping with no value type specified in iterable type array\\.$#"
+			message: "#^Method Nucleos\\\\Doctrine\\\\EventListener\\\\ORM\\\\TablePrefixEventListener\\:\\:addSequenceGenerator\\(\\) has parameter \\$classMetadata with generic class Doctrine\\\\ORM\\\\Mapping\\\\ClassMetadata but does not specify its types\\: T$#"
 			count: 1
 			path: src/EventListener/ORM/TablePrefixEventListener.php
 
@@ -31,7 +36,37 @@ parameters:
 			path: src/EventListener/ORM/TablePrefixEventListener.php
 
 		-
-			message: "#^Strict comparison using \\=\\=\\= between null and ReflectionClass will always evaluate to false\\.$#"
+			message: "#^Method Nucleos\\\\Doctrine\\\\EventListener\\\\ORM\\\\TablePrefixEventListener\\:\\:addSequencePrefix\\(\\) has parameter \\$classMetadata with generic class Doctrine\\\\ORM\\\\Mapping\\\\ClassMetadata but does not specify its types\\: T$#"
+			count: 1
+			path: src/EventListener/ORM/TablePrefixEventListener.php
+
+		-
+			message: "#^Method Nucleos\\\\Doctrine\\\\EventListener\\\\ORM\\\\TablePrefixEventListener\\:\\:addTablePrefix\\(\\) has parameter \\$classMetadata with generic class Doctrine\\\\ORM\\\\Mapping\\\\ClassMetadata but does not specify its types\\: T$#"
+			count: 1
+			path: src/EventListener/ORM/TablePrefixEventListener.php
+
+		-
+			message: "#^Method Nucleos\\\\Doctrine\\\\EventListener\\\\ORM\\\\TablePrefixEventListener\\:\\:evaluteMapping\\(\\) has parameter \\$classMetadata with generic class Doctrine\\\\ORM\\\\Mapping\\\\ClassMetadata but does not specify its types\\: T$#"
+			count: 1
+			path: src/EventListener/ORM/TablePrefixEventListener.php
+
+		-
+			message: "#^Method Nucleos\\\\Doctrine\\\\EventListener\\\\ORM\\\\TablePrefixEventListener\\:\\:evaluteMapping\\(\\) has parameter \\$mapping with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/EventListener/ORM/TablePrefixEventListener.php
+
+		-
+			message: "#^Method Nucleos\\\\Doctrine\\\\EventListener\\\\ORM\\\\TablePrefixEventListener\\:\\:isValidTable\\(\\) has parameter \\$classMetadata with generic class Doctrine\\\\ORM\\\\Mapping\\\\ClassMetadata but does not specify its types\\: T$#"
+			count: 1
+			path: src/EventListener/ORM/TablePrefixEventListener.php
+
+		-
+			message: "#^Parameter \\#1 \\$definition of method Doctrine\\\\ORM\\\\Mapping\\\\ClassMetadataInfo\\<object\\>\\:\\:setSequenceGeneratorDefinition\\(\\) expects array\\<string, string\\>, array\\<string, int\\|string\\> given\\.$#"
+			count: 1
+			path: src/EventListener/ORM/TablePrefixEventListener.php
+
+		-
+			message: "#^Strict comparison using \\=\\=\\= between null and ReflectionClass\\<object\\> will always evaluate to false\\.$#"
 			count: 1
 			path: src/EventListener/ORM/UniqueActiveListener.php
 
@@ -79,5 +114,4 @@ parameters:
 			message: "#^Only booleans are allowed in a negated boolean, Doctrine\\\\Persistence\\\\ObjectManager\\|null given\\.$#"
 			count: 1
 			path: tests/Fixtures/DemoEntityManager.php
-
 
