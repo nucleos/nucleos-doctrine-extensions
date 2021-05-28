@@ -71,7 +71,7 @@ parameters:
 			path: src/EventListener/ORM/UniqueActiveListener.php
 
 		-
-			message: "#^Instantiated class Symfony\\\\Component\\\\HttpKernel\\\\Client not found\\.$#"
+			message: "#^Call to method getResponse\\(\\) on an unknown class Symfony\\\\Component\\\\HttpKernel\\\\Client\\.$#"
 			count: 1
 			path: tests/Bridge/Symfony/Bundle/BundleIntegrationTest.php
 
@@ -81,14 +81,9 @@ parameters:
 			path: tests/Bridge/Symfony/Bundle/BundleIntegrationTest.php
 
 		-
-			message: "#^Call to method getResponse\\(\\) on an unknown class Symfony\\\\Component\\\\HttpKernel\\\\Client\\.$#"
+			message: "#^Instantiated class Symfony\\\\Component\\\\HttpKernel\\\\Client not found\\.$#"
 			count: 1
 			path: tests/Bridge/Symfony/Bundle/BundleIntegrationTest.php
-
-		-
-			message: "#^Method Nucleos\\\\Doctrine\\\\Tests\\\\Fixtures\\\\DemoEntityManager\\:\\:searchWhereQueryBuilder\\(\\) has parameter \\$values with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: tests/Fixtures/DemoEntityManager.php
 
 		-
 			message: "#^Method Nucleos\\\\Doctrine\\\\Tests\\\\Fixtures\\\\DemoEntityManager\\:\\:addOrderToQueryBuilder\\(\\) has parameter \\$aliasMapping with no value type specified in iterable type array\\.$#"
@@ -101,17 +96,22 @@ parameters:
 			path: tests/Fixtures/DemoEntityManager.php
 
 		-
+			message: "#^Method Nucleos\\\\Doctrine\\\\Tests\\\\Fixtures\\\\DemoEntityManager\\:\\:searchWhereQueryBuilder\\(\\) has parameter \\$values with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Fixtures/DemoEntityManager.php
+
+		-
+			message: "#^Only booleans are allowed in a negated boolean, Doctrine\\\\Persistence\\\\ObjectManager\\|null given\\.$#"
+			count: 1
+			path: tests/Fixtures/DemoEntityManager.php
+
+		-
 			message: "#^Parameter \\#1 \\$className of method Doctrine\\\\Persistence\\\\ObjectManager\\:\\:getRepository\\(\\) expects class\\-string\\<mixed\\>, string given\\.$#"
 			count: 1
 			path: tests/Fixtures/DemoEntityManager.php
 
 		-
 			message: "#^Unable to resolve the template type T in call to method Doctrine\\\\Persistence\\\\ObjectManager\\:\\:getRepository\\(\\)$#"
-			count: 1
-			path: tests/Fixtures/DemoEntityManager.php
-
-		-
-			message: "#^Only booleans are allowed in a negated boolean, Doctrine\\\\Persistence\\\\ObjectManager\\|null given\\.$#"
 			count: 1
 			path: tests/Fixtures/DemoEntityManager.php
 
