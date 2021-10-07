@@ -61,11 +61,6 @@ parameters:
 			path: src/EventListener/ORM/TablePrefixEventListener.php
 
 		-
-			message: "#^Parameter \\#1 \\$definition of method Doctrine\\\\ORM\\\\Mapping\\\\ClassMetadataInfo\\<object\\>\\:\\:setSequenceGeneratorDefinition\\(\\) expects array\\<string, string\\>, array\\<string, int\\|string\\> given\\.$#"
-			count: 1
-			path: src/EventListener/ORM/TablePrefixEventListener.php
-
-		-
 			message: "#^Strict comparison using \\=\\=\\= between null and ReflectionClass\\<object\\> will always evaluate to false\\.$#"
 			count: 1
 			path: src/EventListener/ORM/UniqueActiveListener.php
