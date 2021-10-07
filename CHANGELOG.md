@@ -2,27 +2,26 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 4.3.0 - TBD
+## 4.3.0 - 2021-10-07
 
-### Added
 
-- Nothing.
+-----
 
-### Changed
+### Release Notes for [4.3.0](https://github.com/nucleos/nucleos-doctrine-extensions/milestone/3)
 
-- Nothing.
+Feature release (minor)
 
-### Deprecated
+### 4.3.0
 
-- Nothing.
+- Total issues resolved: **0**
+- Total pull requests resolved: **3**
+- Total contributors: **1**
 
-### Removed
+#### dependency
 
-- Nothing.
-
-### Fixed
-
-- Nothing.
+ - [258: Drop support for unmaintained symfony versions](https://github.com/nucleos/nucleos-doctrine-extensions/pull/258) thanks to @core23
+ - [257: Add support for doctrine/dbal 3](https://github.com/nucleos/nucleos-doctrine-extensions/pull/257) thanks to @core23
+ - [246: Drop PHP 7.3 support](https://github.com/nucleos/nucleos-doctrine-extensions/pull/246) thanks to @core23
 
 ## 4.2.0 - 2021-02-08
 
