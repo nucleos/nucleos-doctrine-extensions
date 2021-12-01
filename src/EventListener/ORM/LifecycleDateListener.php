@@ -20,7 +20,7 @@ use Nucleos\Doctrine\Model\LifecycleDateTimeInterface;
 
 final class LifecycleDateListener extends AbstractListener
 {
-    public function getSubscribedEvents()
+    public function getSubscribedEvents(): array
     {
         return [
             Events::prePersist,

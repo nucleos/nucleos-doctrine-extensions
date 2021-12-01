@@ -44,7 +44,7 @@ final class SortableListener implements EventSubscriber
         $this->propertyAccessor = $propertyAccessor;
     }
 
-    public function getSubscribedEvents()
+    public function getSubscribedEvents(): array
     {
         return [
             Events::prePersist,

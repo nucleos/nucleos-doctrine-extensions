@@ -18,7 +18,7 @@ use Nucleos\Doctrine\Model\DeletableInterface;
 
 final class DeletableListener extends AbstractListener
 {
-    public function getSubscribedEvents()
+    public function getSubscribedEvents(): array
     {
         return [
             Events::loadClassMetadata,
