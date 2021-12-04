@@ -907,16 +907,16 @@
         },
         {
             "name": "maglnet/composer-require-checker",
-            "version": "3.5.1",
+            "version": "3.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/maglnet/ComposerRequireChecker.git",
-                "reference": "f1a5905265b9464d57a7e26ae80b05b7c1411830"
+                "reference": "e73c0bb75522d861aef3e8d58991d50bf0125a0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/maglnet/ComposerRequireChecker/zipball/f1a5905265b9464d57a7e26ae80b05b7c1411830",
-                "reference": "f1a5905265b9464d57a7e26ae80b05b7c1411830",
+                "url": "https://api.github.com/repos/maglnet/ComposerRequireChecker/zipball/e73c0bb75522d861aef3e8d58991d50bf0125a0b",
+                "reference": "e73c0bb75522d861aef3e8d58991d50bf0125a0b",
                 "shasum": ""
             },
             "require": {
@@ -925,7 +925,7 @@
                 "ext-phar": "*",
                 "nikic/php-parser": "^4.13.0",
                 "php": "^7.4 || ^8.0",
-                "symfony/console": "^5.3.10",
+                "symfony/console": "^5.4.0",
                 "webmozart/assert": "^1.9.1",
                 "webmozart/glob": "^4.4.0"
             },
@@ -934,9 +934,9 @@
                 "ext-zend-opcache": "*",
                 "mikey179/vfsstream": "^1.6.10",
                 "phing/phing": "^2.17.0",
-                "phpstan/phpstan": "^1.1.1",
+                "phpstan/phpstan": "^1.2.0",
                 "phpunit/phpunit": "^9.5.10",
-                "vimeo/psalm": "^4.12.0"
+                "vimeo/psalm": "^4.13.1"
             },
             "bin": [
                 "bin/composer-require-checker"
@@ -981,9 +981,9 @@
             ],
             "support": {
                 "issues": "https://github.com/maglnet/ComposerRequireChecker/issues",
-                "source": "https://github.com/maglnet/ComposerRequireChecker/tree/3.5.1"
+                "source": "https://github.com/maglnet/ComposerRequireChecker/tree/3.6.0"
             },
-            "time": "2021-11-10T12:04:31+00:00"
+            "time": "2021-12-03T08:44:02+00:00"
         },
         {
             "name": "matthiasnoback/symfony-config-test",
