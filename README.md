@@ -66,6 +66,41 @@ If the table name does already start with the defined prefix, it will be ignored
 
 If you don't need the symfony framework, you need to register the `Nucleos\Doctrine\EventListener\ORM\TablePrefixEventListener`.
 
+## Migration usage
+
+1. Update your `id` column from `integer` to `guid`.
+
+2. Create a new migration:
+
+```php
+// src/Migrations/Version123.php
+<?php
+
+namespace Application\Migrations;
+
+use Doctrine\DBAL\Schema\Schema;
+use Doctrine\Migrations\AbstractMigration;
+use Nucleos\Doctrine\Migration\IdToUuidMigration;
+
+class Version123 extends AbstractMigration
+{
+    private IdToUuidMigration $idToUuidMigration;
+
+    public function __construct(Connection $connection, LoggerInterface $logger)
+    {
+        parent::__construct($connection, $logger);
+
+        $this->idToUuidMigration = new IdToUuidMigration($this->connection, $logger);
+    }
+
+
+    public function postUp(Schema $schema): void
+    {
+        $this->idToUuidMigration->migrate('my_table_name');
+    }
+}
+```
+
 ## Symfony usage
 
 If you want to use this library inside symfony, you can use a bridge.

@@ -66,6 +66,16 @@ parameters:
 			path: src/EventListener/ORM/UniqueActiveListener.php
 
 		-
+			message: "#^Call to function method_exists\\(\\) with Doctrine\\\\DBAL\\\\Connection and 'createSchemaManager' will always evaluate to true\\.$#"
+			count: 1
+			path: src/Migration/IdToUuidMigration.php
+
+		-
+			message: "#^Property Nucleos\\\\Doctrine\\\\Migration\\\\IdToUuidMigration\\:\\:\\$schemaManager with generic class Doctrine\\\\DBAL\\\\Schema\\\\AbstractSchemaManager does not specify its types\\: T$#"
+			count: 1
+			path: src/Migration/IdToUuidMigration.php
+
+		-
 			message: "#^Method Nucleos\\\\Doctrine\\\\Tests\\\\Bridge\\\\Symfony\\\\App\\\\AppKernel\\:\\:configureContainer\\(\\) has parameter \\$container with no type specified\\.$#"
 			count: 1
 			path: tests/Bridge/Symfony/App/AppKernel.php
