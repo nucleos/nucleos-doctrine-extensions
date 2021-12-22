@@ -2,27 +2,28 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 4.5.0 - TBD
+## 4.5.0 - 2021-12-22
 
-### Added
 
-- Nothing.
+-----
 
-### Changed
+### Release Notes for [4.5.0](https://github.com/nucleos/nucleos-doctrine-extensions/milestone/8)
 
-- Nothing.
+Feature release (minor)
 
-### Deprecated
+### 4.5.0
 
-- Nothing.
+- Total issues resolved: **0**
+- Total pull requests resolved: **2**
+- Total contributors: **1**
 
-### Removed
+#### Feature Request
 
-- Nothing.
+ - [285: Add helper class to migrate from numeric to UUID ids](https://github.com/nucleos/nucleos-doctrine-extensions/pull/285) thanks to @core23
 
-### Fixed
+#### Enhancement
 
-- Nothing.
+ - [280: Remove composer-bin plugin](https://github.com/nucleos/nucleos-doctrine-extensions/pull/280) thanks to @core23
 
 ## 4.4.0 - 2021-12-05
 
