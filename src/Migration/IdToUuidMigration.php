@@ -71,13 +71,19 @@ final class IdToUuidMigration implements LoggerAwareInterface
         $this->logger = $logger;
     }
 
-    public function migrate(string $tableName, string $idField = 'id'): void
+    /**
+     * @param null|callable(int $id, string $uuid): void $callback
+     */
+    public function migrate(string $tableName, string $idField = 'id', callable $callback = null): void
     {
         $this->writeln(sprintf('Migrating %s.%s field to UUID...', $tableName, $idField));
         $this->prepare($tableName, $idField);
         $this->addUuidFields();
         $this->generateUuidsToReplaceIds();
         $this->addThoseUuidsToTablesWithFK();
+        if (null !== $callback) {
+            $this->handleCallback($callback);
+        }
         $this->deletePreviousFKs();
         $this->renameNewFKsToPreviousNames();
         $this->dropIdPrimaryKeyAndSetUuidToPrimaryKey();
@@ -180,6 +186,18 @@ final class IdToUuidMigration implements LoggerAwareInterface
             ], [
                 $this->idField => $id,
             ]);
+        }
+    }
+
+    /**
+     * @param callable(int $id, string $uuid): void $callback
+     */
+    private function handleCallback(callable $callback): void
+    {
+        $this->writeln('-> Executing callback');
+
+        foreach ($this->idToUuidMap as $old => $new) {
+            $callback($old, $new);
         }
     }
 
