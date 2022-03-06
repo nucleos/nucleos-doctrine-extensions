@@ -2026,16 +2026,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.4.7",
+            "version": "1.4.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "15087679960d72ae56bfcbf0d728d19941d3f7c2"
+                "reference": "2a6d6704b17c4db6190cc3104056c0aad740cb15"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/15087679960d72ae56bfcbf0d728d19941d3f7c2",
-                "reference": "15087679960d72ae56bfcbf0d728d19941d3f7c2",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/2a6d6704b17c4db6190cc3104056c0aad740cb15",
+                "reference": "2a6d6704b17c4db6190cc3104056c0aad740cb15",
                 "shasum": ""
             },
             "require": {
@@ -2066,7 +2066,7 @@
             "description": "PHPStan - PHP Static Analysis Tool",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/1.4.7"
+                "source": "https://github.com/phpstan/phpstan/tree/1.4.8"
             },
             "funding": [
                 {
@@ -2086,7 +2086,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-03-02T16:04:01+00:00"
+            "time": "2022-03-04T13:03:56+00:00"
         },
         {
             "name": "phpstan/phpstan-phpunit",
@@ -2196,22 +2196,22 @@
         },
         {
             "name": "phpstan/phpstan-symfony",
-            "version": "1.0.6",
+            "version": "1.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-symfony.git",
-                "reference": "d31922ca4bab5684d53dc749d5742f0b455c0149"
+                "reference": "8ef80f5c4f70ebd31a55647bc082ea9df4bf0132"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-symfony/zipball/d31922ca4bab5684d53dc749d5742f0b455c0149",
-                "reference": "d31922ca4bab5684d53dc749d5742f0b455c0149",
+                "url": "https://api.github.com/repos/phpstan/phpstan-symfony/zipball/8ef80f5c4f70ebd31a55647bc082ea9df4bf0132",
+                "reference": "8ef80f5c4f70ebd31a55647bc082ea9df4bf0132",
                 "shasum": ""
             },
             "require": {
                 "ext-simplexml": "*",
                 "php": "^7.1 || ^8.0",
-                "phpstan/phpstan": "^1.0"
+                "phpstan/phpstan": "^1.4"
             },
             "conflict": {
                 "symfony/framework-bundle": "<3.0"
@@ -2222,12 +2222,15 @@
                 "phpstan/phpstan-phpunit": "^1.0",
                 "phpstan/phpstan-strict-rules": "^1.0",
                 "phpunit/phpunit": "^9.5",
+                "psr/container": "1.0 || 1.1.1",
                 "symfony/config": "^4.2 || ^5.0",
                 "symfony/console": "^4.0 || ^5.0",
+                "symfony/dependency-injection": "^4.0 || ^5.0",
                 "symfony/form": "^4.0 || ^5.0",
                 "symfony/framework-bundle": "^4.4 || ^5.0",
-                "symfony/http-foundation": "^4.0 || ^5.0",
+                "symfony/http-foundation": "^5.1",
                 "symfony/messenger": "^4.2 || ^5.0",
+                "symfony/polyfill-php80": "^1.24",
                 "symfony/serializer": "^4.0 || ^5.0"
             },
             "type": "phpstan-extension",
@@ -2261,9 +2264,9 @@
             "description": "Symfony Framework extensions and rules for PHPStan",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan-symfony/issues",
-                "source": "https://github.com/phpstan/phpstan-symfony/tree/1.0.6"
+                "source": "https://github.com/phpstan/phpstan-symfony/tree/1.1.7"
             },
-            "time": "2022-01-08T20:21:36+00:00"
+            "time": "2022-02-25T19:36:13+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
