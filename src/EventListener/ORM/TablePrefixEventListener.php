@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace Nucleos\Doctrine\EventListener\ORM;
 
 use Doctrine\Common\EventSubscriber;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Id\SequenceGenerator;
@@ -70,7 +70,7 @@ final class TablePrefixEventListener implements EventSubscriber
         }
     }
 
-    private function addSequencePrefix(ClassMetadata $classMetadata, EntityManager $em): void
+    private function addSequencePrefix(ClassMetadata $classMetadata, EntityManagerInterface $em): void
     {
         if (!$this->isValidTable($classMetadata)) {
             return;
@@ -124,7 +124,7 @@ final class TablePrefixEventListener implements EventSubscriber
         }
     }
 
-    private function addSequenceGenerator(ClassMetadata $classMetadata, EntityManager $em, array $definition): void
+    private function addSequenceGenerator(ClassMetadata $classMetadata, EntityManagerInterface $em, array $definition): void
     {
         $sequenceGenerator = new SequenceGenerator(
             $em->getConfiguration()->getQuoteStrategy()->getSequenceName(

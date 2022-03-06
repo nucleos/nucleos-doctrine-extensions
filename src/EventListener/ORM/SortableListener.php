@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace Nucleos\Doctrine\EventListener\ORM;
 
 use Doctrine\Common\EventSubscriber;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
@@ -124,7 +124,7 @@ final class SortableListener implements EventSubscriber
         }
     }
 
-    private function movePosition(EntityManager $em, PositionAwareInterface $entity, int $direction = 1): void
+    private function movePosition(EntityManagerInterface $em, PositionAwareInterface $entity, int $direction = 1): void
     {
         $uow  = $em->getUnitOfWork();
         $meta = $em->getClassMetadata(\get_class($entity));
@@ -147,7 +147,7 @@ final class SortableListener implements EventSubscriber
         $qb->getQuery()->execute();
     }
 
-    private function getNextPosition(EntityManager $em, PositionAwareInterface $entity): int
+    private function getNextPosition(EntityManagerInterface $em, PositionAwareInterface $entity): int
     {
         $meta = $em->getClassMetadata(\get_class($entity));
 
