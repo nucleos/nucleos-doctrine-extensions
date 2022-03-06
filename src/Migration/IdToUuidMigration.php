@@ -15,7 +15,7 @@ use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Schema\AbstractSchemaManager;
 use Doctrine\DBAL\Schema\Column;
 use Doctrine\DBAL\Schema\Table;
-use Exception;
+use Doctrine\DBAL\Types\Types;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -35,6 +35,12 @@ use Symfony\Component\Uid\Uuid;
  */
 final class IdToUuidMigration implements LoggerAwareInterface
 {
+    public const UUID_FIELD = 'uuid';
+
+    public const UUID_TYPE = Types::STRING;
+
+    public const UUID_LENGTH = 36;
+
     /**
      * @var array<int|string, string>
      */
@@ -57,7 +63,7 @@ final class IdToUuidMigration implements LoggerAwareInterface
 
     private LoggerInterface $logger;
 
-    public function __construct(Connection $connection, ?LoggerInterface $logger)
+    public function __construct(Connection $connection, ?LoggerInterface $logger = null)
     {
         $this->connection    = $connection;
         $this->schemaManager = method_exists($this->connection, 'createSchemaManager')
@@ -76,37 +82,20 @@ final class IdToUuidMigration implements LoggerAwareInterface
      */
     public function migrate(string $tableName, string $idField = 'id', callable $callback = null): void
     {
-        $this->writeln(sprintf('Migrating %s.%s field to UUID...', $tableName, $idField));
+        $this->section(sprintf('Migrating %s.%s field to UUID', $tableName, $idField));
+
         $this->prepare($tableName, $idField);
         $this->addUuidFields();
         $this->generateUuidsToReplaceIds();
         $this->addThoseUuidsToTablesWithFK();
-        if (null !== $callback) {
-            $this->handleCallback($callback);
-        }
+        $this->handleCallback($callback);
         $this->deletePreviousFKs();
-        $this->renameNewFKsToPreviousNames();
+        $this->deletePrimaryKeys();
+        $this->recreateIdFields();
+        $this->syncIdFields();
+        $this->dropTemporyForeignKeyUuidFields();
         $this->dropIdPrimaryKeyAndSetUuidToPrimaryKey();
         $this->restoreConstraintsAndIndexes();
-        $this->writeln(sprintf('Successfully migrated %s.%s to UUID', $tableName, $idField));
-    }
-
-    private function writeln(string $message): void
-    {
-        $this->logger->notice($message, [
-            'migration' => $this,
-        ]);
-    }
-
-    private function isForeignKeyNullable(Table $table, string $key): bool
-    {
-        foreach ($table->getColumns() as $column) {
-            if ($column->getName() === $key) {
-                return !$column->getNotnull();
-            }
-        }
-
-        throw new RuntimeException('Unable to find '.$key.'in '.$table->getName());
     }
 
     private function prepare(string $tableName, string $idField): void
@@ -146,25 +135,40 @@ final class IdToUuidMigration implements LoggerAwareInterface
         }
 
         if (\count($this->foreignKeys) > 0) {
-            $this->writeln('-> Detected foreign keys:');
+            $this->section('Detected foreign keys:');
 
             foreach ($this->foreignKeys as $meta) {
-                $this->writeln('  * '.$meta['table'].'.'.$meta['key']);
+                $this->section('  * '.$meta['table'].'.'.$meta['key']);
             }
 
             return;
         }
 
-        $this->writeln('-> No foreign keys detected.');
+        $this->info('No foreign keys detected');
     }
 
     private function addUuidFields(): void
     {
-        $this->connection->executeQuery('ALTER TABLE '.$this->table.' ADD uuid VARCHAR(36) FIRST');
+        $this->section('Adding new "uuid" fields');
+
+        $schema = $this->schemaManager->createSchema();
+
+        $table = $schema->getTable($this->table);
+        $table->addColumn(self::UUID_FIELD, self::UUID_TYPE, [
+            'length'              => self::UUID_LENGTH,
+            'notnull'             => false,
+        ]);
 
         foreach ($this->foreignKeys as $foreignKey) {
-            $this->connection->executeQuery('ALTER TABLE '.$foreignKey['table'].' ADD '.$foreignKey['tmpKey'].' VARCHAR(36)');
+            $table = $schema->getTable($foreignKey['table']);
+            $table->addColumn($foreignKey['tmpKey'], self::UUID_TYPE, [
+                'length'              => self::UUID_LENGTH,
+                'notnull'             => false,
+                'customSchemaOptions' => ['FIRST'],
+            ]);
         }
+
+        $this->schemaManager->migrateSchema($schema);
     }
 
     private function generateUuidsToReplaceIds(): void
@@ -175,29 +179,17 @@ final class IdToUuidMigration implements LoggerAwareInterface
             return;
         }
 
-        $this->writeln('-> Generating '.\count($fetchs).' UUID(s)...');
+        $this->section('Generating '.\count($fetchs).' UUIDs');
 
         foreach ($fetchs as $fetch) {
             $id                     = $fetch[$this->idField];
             $uuid                   = Uuid::v4()->toRfc4122();
             $this->idToUuidMap[$id] = $uuid;
             $this->connection->update($this->table, [
-                'uuid' => $uuid,
+                self::UUID_FIELD => $uuid,
             ], [
                 $this->idField => $id,
             ]);
-        }
-    }
-
-    /**
-     * @param callable(mixed $id, string $uuid): void $callback
-     */
-    private function handleCallback(callable $callback): void
-    {
-        $this->writeln('-> Executing callback');
-
-        foreach ($this->idToUuidMap as $old => $new) {
-            $callback($old, $new);
         }
     }
 
@@ -210,7 +202,7 @@ final class IdToUuidMigration implements LoggerAwareInterface
             return;
         }
 
-        $this->writeln('-> Adding UUIDs to tables with foreign keys...');
+        $this->section('Adding UUIDs to tables with foreign keys');
 
         foreach ($this->foreignKeys as $foreignKey) {
             $primaryKeys = array_map(static fn (Column $column) => $column->getName(), $foreignKey['primaryKey']);
@@ -223,7 +215,7 @@ final class IdToUuidMigration implements LoggerAwareInterface
                 continue;
             }
 
-            $this->writeln('  * Adding '.\count($fetchs).' UUIDs to "'.$foreignKey['table'].'.'.$foreignKey['key'].'"...');
+            $this->debug('Adding '.\count($fetchs).' UUIDs to "'.$foreignKey['table'].'.'.$foreignKey['key']);
 
             foreach ($fetchs as $fetch) {
                 if (null === $fetch[$foreignKey['key']]) {
@@ -242,61 +234,179 @@ final class IdToUuidMigration implements LoggerAwareInterface
         }
     }
 
-    private function deletePreviousFKs(): void
+    /**
+     * @param null|callable(mixed $id, string $uuid): void $callback
+     */
+    private function handleCallback(?callable $callback): void
     {
-        $this->writeln('-> Deleting previous foreign keys...');
+        if (null === $callback) {
+            return;
+        }
 
-        foreach ($this->foreignKeys as $foreignKey) {
-            if ([] !== $foreignKey['primaryKey']) {
-                try {
-                    // drop primary key if not already dropped
-                    $this->connection->executeQuery('ALTER TABLE '.$foreignKey['table'].' DROP PRIMARY KEY');
-                } catch (Exception) {
-                }
-            }
+        $this->section('Executing callback');
 
-            $this->connection->executeQuery('ALTER TABLE '.$foreignKey['table'].' DROP FOREIGN KEY '.$foreignKey['name']);
-            $this->connection->executeQuery('ALTER TABLE '.$foreignKey['table'].' DROP COLUMN '.$foreignKey['key']);
+        foreach ($this->idToUuidMap as $old => $new) {
+            $callback($old, $new);
         }
     }
 
-    private function renameNewFKsToPreviousNames(): void
+    private function deletePreviousFKs(): void
     {
-        $this->writeln('-> Renaming temporary foreign keys to previous foreign keys names...');
+        $this->section('Deleting previous foreign keys');
 
-        foreach ($this->foreignKeys as $fk) {
-            $this->connection->executeQuery('ALTER TABLE '.$fk['table'].' CHANGE '.$fk['tmpKey'].' '.$fk['key'].' VARCHAR(36) '.(true === $fk['nullable'] ? '' : 'NOT NULL '));
+        $schema = $this->schemaManager->createSchema();
+
+        foreach ($this->foreignKeys as $foreignKey) {
+            $table = $schema->getTable($foreignKey['table']);
+
+            $table->removeForeignKey($foreignKey['name']);
+            $table->dropColumn($foreignKey['key']);
         }
+
+        $this->schemaManager->migrateSchema($schema);
+    }
+
+    private function deletePrimaryKeys(): void
+    {
+        $this->section('Deleting previous primary keys');
+
+        $schema = $this->schemaManager->createSchema();
+
+        foreach ($this->foreignKeys as $foreignKey) {
+            $table = $schema->getTable($foreignKey['table']);
+
+            if ([] !== $foreignKey['primaryKey']) {
+                if ($table->hasPrimaryKey()) {
+                    $table->dropPrimaryKey();
+                }
+            }
+        }
+
+        $this->schemaManager->migrateSchema($schema);
+    }
+
+    private function recreateIdFields(): void
+    {
+        $this->section('Recreate id fields');
+
+        $schema = $this->schemaManager->createSchema();
+
+        $table  = $schema->getTable($this->table);
+        $table->dropColumn($this->idField);
+        $table->addColumn($this->idField, self::UUID_TYPE, [
+            'length'              => self::UUID_LENGTH,
+            'notnull'             => false,
+            'customSchemaOptions' => ['FIRST'],
+        ]);
+
+        foreach ($this->foreignKeys as $foreignKey) {
+            $table  = $schema->getTable($foreignKey['table']);
+
+            $table->dropColumn($foreignKey['key']);
+            $table->addColumn($foreignKey['key'], self::UUID_TYPE, [
+                'length'  => self::UUID_LENGTH,
+                'notnull' => false,
+            ]);
+        }
+
+        $this->schemaManager->migrateSchema($schema);
+    }
+
+    private function syncIdFields(): void
+    {
+        $this->section('Copy UUIDs to recreated ids fields');
+
+        $this->connection->executeQuery(sprintf('UPDATE %s SET %s = %s', $this->table, $this->idField, self::UUID_FIELD));
+
+        foreach ($this->foreignKeys as $foreignKey) {
+            $this->connection->executeQuery(sprintf('UPDATE %s SET %s = %s', $foreignKey['table'], $foreignKey['key'], $foreignKey['tmpKey']));
+        }
+    }
+
+    private function dropTemporyForeignKeyUuidFields(): void
+    {
+        $this->section('Drop temporary foreign key uuid fields');
+
+        $schema = $this->schemaManager->createSchema();
+
+        foreach ($this->foreignKeys as $foreignKey) {
+            $table  = $schema->getTable($foreignKey['table']);
+
+            $table->dropColumn($foreignKey['tmpKey']);
+        }
+
+        $this->schemaManager->migrateSchema($schema);
     }
 
     private function dropIdPrimaryKeyAndSetUuidToPrimaryKey(): void
     {
-        $this->writeln('-> Creating the new primary key...');
+        $this->section('Creating the new primary key');
 
-        $this->connection->executeQuery('ALTER TABLE '.$this->table.' DROP PRIMARY KEY, DROP COLUMN '.$this->idField);
-        $this->connection->executeQuery('ALTER TABLE '.$this->table.' CHANGE uuid '.$this->idField.' VARCHAR(36) NOT NULL');
-        $this->connection->executeQuery('ALTER TABLE '.$this->table.' ADD PRIMARY KEY ('.$this->idField.')');
+        $schema = $this->schemaManager->createSchema();
+        $table  = $schema->getTable($this->table);
+
+        $table->dropPrimaryKey();
+        $table->dropColumn(self::UUID_FIELD);
+
+        $table->setPrimaryKey([$this->idField]);
+
+        $this->schemaManager->migrateSchema($schema);
     }
 
     private function restoreConstraintsAndIndexes(): void
     {
+        $schema = $this->schemaManager->createSchema();
+
         foreach ($this->foreignKeys as $foreignKey) {
+            $table = $schema->getTable($foreignKey['table']);
+
             if ([] !== $foreignKey['primaryKey']) {
                 $primaryKeys = array_map(static fn (Column $column) => $column->getName(), $foreignKey['primaryKey']);
 
-                try {
-                    // restore primary key if not already restored
-                    $this->connection->executeQuery('ALTER TABLE '.$foreignKey['table'].' ADD PRIMARY KEY ('.implode(',', $primaryKeys).')');
-                } catch (Exception) {
+                if (!$table->hasPrimaryKey()) {
+                    $table->setPrimaryKey($primaryKeys);
                 }
             }
 
-            $this->connection->executeQuery(
-                'ALTER TABLE '.$foreignKey['table'].' ADD CONSTRAINT '.$foreignKey['name'].' FOREIGN KEY ('.$foreignKey['key'].') REFERENCES '.$this->table.' ('.$this->idField.')'.
-              (isset($foreignKey['onDelete']) ? ' ON DELETE '.$foreignKey['onDelete'] : '')
-            );
-
-            $this->connection->executeQuery('CREATE INDEX '.str_replace('FK_', 'IDX_', $foreignKey['name']).' ON '.$foreignKey['table'].' ('.$foreignKey['key'].')');
+            $table->addForeignKeyConstraint($this->table, [$foreignKey['key']], [$this->idField], [
+                'onDelete' => $foreignKey['onDelete'] ?? null,
+            ]);
+            $table->addIndex([$foreignKey['key']]);
         }
+
+        $this->schemaManager->migrateSchema($schema);
+    }
+
+    private function section(string $message): void
+    {
+        $this->writeLn(sprintf('%s', $message));
+    }
+
+    private function info(string $message): void
+    {
+        $this->writeLn(sprintf('-> %s', $message));
+    }
+
+    private function debug(string $message): void
+    {
+        $this->writeLn(sprintf('  * %s', $message));
+    }
+
+    private function writeLn(string $message): void
+    {
+        $this->logger->notice($message, [
+            'migration' => $this,
+        ]);
+    }
+
+    private function isForeignKeyNullable(Table $table, string $key): bool
+    {
+        foreach ($table->getColumns() as $column) {
+            if ($column->getName() === $key) {
+                return !$column->getNotnull();
+            }
+        }
+
+        throw new RuntimeException('Unable to find '.$key.'in '.$table->getName());
     }
 }
