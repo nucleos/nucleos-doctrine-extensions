@@ -36,7 +36,7 @@ use Symfony\Component\Uid\Uuid;
 final class IdToUuidMigration implements LoggerAwareInterface
 {
     /**
-     * @var array<int, string>
+     * @var array<int|string, string>
      */
     private array $idToUuidMap = [];
 
@@ -72,7 +72,7 @@ final class IdToUuidMigration implements LoggerAwareInterface
     }
 
     /**
-     * @param null|callable(int $id, string $uuid): void $callback
+     * @param null|callable(mixed $id, string $uuid): void $callback
      */
     public function migrate(string $tableName, string $idField = 'id', callable $callback = null): void
     {
@@ -190,7 +190,7 @@ final class IdToUuidMigration implements LoggerAwareInterface
     }
 
     /**
-     * @param callable(int $id, string $uuid): void $callback
+     * @param callable(mixed $id, string $uuid): void $callback
      */
     private function handleCallback(callable $callback): void
     {
