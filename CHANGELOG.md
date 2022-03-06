@@ -2,27 +2,25 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 4.7.0 - TBD
+## 4.7.0 - 2022-03-06
 
-### Added
 
-- Nothing.
+-----
 
-### Changed
+### Release Notes for [4.7.0](https://github.com/nucleos/nucleos-doctrine-extensions/milestone/12)
 
-- Nothing.
+Feature release (minor)
 
-### Deprecated
+### 4.7.0
 
-- Nothing.
+- Total issues resolved: **0**
+- Total pull requests resolved: **2**
+- Total contributors: **1**
 
-### Removed
+#### Enhancement
 
-- Nothing.
-
-### Fixed
-
-- Nothing.
+ - [322: Use DBAL api to perform uuid migration](https://github.com/nucleos/nucleos-doctrine-extensions/pull/322) thanks to @core23
+ - [294: Use shared pipelines](https://github.com/nucleos/nucleos-doctrine-extensions/pull/294) thanks to @core23
 
 ## 4.6.0 - 2022-01-01
 
