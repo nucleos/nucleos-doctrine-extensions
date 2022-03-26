@@ -50,6 +50,8 @@ final class IdToUuidMigrationTest extends KernelTestCase
         $table->addForeignKeyConstraint('category', ['parent_id'], ['id'], [
             'onDelete' => 'SET NULL',
         ]);
+        $table->addUniqueIndex(['parent_id', 'name']);
+        $table->addIndex(['name']);
         $table->addIndex(['parent_id']);
         $table->setPrimaryKey(['id']);
     }
@@ -65,7 +67,7 @@ final class IdToUuidMigrationTest extends KernelTestCase
             'length'  => 50,
         ]);
         $table->addForeignKeyConstraint('category', ['category_id'], ['id'], [
-            'onDelete' => 'SET NULL',
+            'onDelete' => 'CASCADE',
         ]);
         $table->addIndex(['category_id']);
         $table->setPrimaryKey(['id']);
@@ -89,6 +91,7 @@ final class IdToUuidMigrationTest extends KernelTestCase
         $schemaManager = method_exists($connection, 'createSchemaManager')
                              ? $connection->createSchemaManager()
                              : $connection->getSchemaManager();
+
         $schema        = $schemaManager->createSchema();
         $this->createCategory($schema);
         $this->createItem($schema);
