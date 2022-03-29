@@ -24,6 +24,25 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
+## 4.7.1 - 2022-03-29
+
+
+-----
+
+### Release Notes for [4.7.1](https://github.com/nucleos/nucleos-doctrine-extensions/milestone/13)
+
+4.7.x bugfix release (patch)
+
+### 4.7.1
+
+- Total issues resolved: **0**
+- Total pull requests resolved: **1**
+- Total contributors: **1**
+
+#### Bug
+
+ - [332: Fix migrating unique fields](https://github.com/nucleos/nucleos-doctrine-extensions/pull/332) thanks to @core23
+
 ## 4.7.0 - 2022-03-06
 
 
