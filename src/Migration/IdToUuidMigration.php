@@ -337,7 +337,10 @@ final class IdToUuidMigration implements LoggerAwareInterface
 
         foreach ($this->foreignKeys as $foreignKey) {
             $table = $schema->getTable($foreignKey['table']);
-            $table->removeForeignKey($foreignKey['name']);
+
+            if ($table->hasForeignKey($foreignKey['name'])) {
+                $table->removeForeignKey($foreignKey['name']);
+            }
         }
 
         $this->updateSchema($schema);
