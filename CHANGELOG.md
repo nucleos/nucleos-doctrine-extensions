@@ -24,6 +24,25 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
+## 4.7.2 - 2022-04-03
+
+
+-----
+
+### Release Notes for [4.7.2](https://github.com/nucleos/nucleos-doctrine-extensions/milestone/15)
+
+4.7.x bugfix release (patch)
+
+### 4.7.2
+
+- Total issues resolved: **0**
+- Total pull requests resolved: **1**
+- Total contributors: **1**
+
+#### Bug
+
+ - [339: Fix using UUID migration with sqlite](https://github.com/nucleos/nucleos-doctrine-extensions/pull/339) thanks to @core23
+
 ## 4.7.1 - 2022-03-29
 
 
