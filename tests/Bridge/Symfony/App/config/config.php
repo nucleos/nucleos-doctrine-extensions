@@ -18,7 +18,13 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $containerConfigurator->extension('framework', ['test' => true]);
 
-    $containerConfigurator->extension('doctrine', ['dbal' => ['url' => 'sqlite:///:memory:', 'logging' => false]]);
+    $containerConfigurator->extension('doctrine', ['dbal' => ['url' => 'sqlite:///%kernel.cache_dir%/data.db', 'logging' => false]]);
+
+    $containerConfigurator->extension('doctrine_migrations', [
+        'migrations_paths' => [
+            'Nucleos\Doctrine\Tests\Bridge\Symfony\App\Migrations' => \dirname(__DIR__).'/Migrations',
+        ],
+    ]);
 
     $services = $containerConfigurator->services();
 

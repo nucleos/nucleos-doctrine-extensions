@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Nucleos\Doctrine\Tests\Bridge\Symfony\App;
 
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
+use Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle;
 use Nucleos\Doctrine\Bridge\Symfony\Bundle\NucleosDoctrineBundle;
 use Nucleos\Doctrine\Tests\Bridge\Symfony\App\Controller\SampleTestController;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
@@ -34,6 +35,7 @@ final class AppKernel extends Kernel
         yield new FrameworkBundle();
         yield new DoctrineBundle();
         yield new NucleosDoctrineBundle();
+        yield new DoctrineMigrationsBundle();
     }
 
     public function getCacheDir(): string
