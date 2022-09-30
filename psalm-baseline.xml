@@ -11,6 +11,15 @@
       <code>end</code>
     </PossiblyUndefinedMethod>
   </file>
+  <file src="src/EventListener/ORM/TablePrefixEventListener.php">
+    <PossiblyNullArgument occurrences="2">
+      <code>$newDefinition</code>
+      <code>$sequenceName</code>
+    </PossiblyNullArgument>
+    <PossiblyNullArrayAccess occurrences="1">
+      <code>$newDefinition['sequenceName']</code>
+    </PossiblyNullArrayAccess>
+  </file>
   <file src="src/Test/ORM/EntityManagerMockFactory.php">
     <MismatchingDocblockReturnType occurrences="1">
       <code>EntityManager|MockObject</code>
