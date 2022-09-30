@@ -18,6 +18,7 @@ use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
 use Nucleos\Doctrine\Tests\Fixtures\DemoEntityManager;
+use Nucleos\Doctrine\Tests\Fixtures\EmptyClass;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ObjectProphecy;
@@ -36,16 +37,16 @@ final class SearchQueryTraitTest extends TestCase
         $repository = $this->prophesize(EntityRepository::class);
 
         $objectManager = $this->prophesize(ObjectManager::class);
-        $objectManager->getRepository('foo')
+        $objectManager->getRepository(EmptyClass::class)
             ->willReturn($repository)
         ;
 
         $registry = $this->prophesize(ManagerRegistry::class);
-        $registry->getManagerForClass('foo')
+        $registry->getManagerForClass(EmptyClass::class)
             ->willReturn($objectManager)
         ;
 
-        $this->manager = new DemoEntityManager('foo', $registry->reveal());
+        $this->manager = new DemoEntityManager(EmptyClass::class, $registry->reveal());
     }
 
     public function testSearchWhere(): void

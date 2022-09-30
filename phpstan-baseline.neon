@@ -146,16 +146,6 @@ parameters:
 			path: tests/Fixtures/DemoEntityManager.php
 
 		-
-			message: "#^Parameter \\#1 \\$className of method Doctrine\\\\Persistence\\\\ObjectManager\\:\\:getRepository\\(\\) expects class\\-string\\<object\\>, string given\\.$#"
-			count: 1
-			path: tests/Fixtures/DemoEntityManager.php
-
-		-
-			message: "#^Unable to resolve the template type T in call to method Doctrine\\\\Persistence\\\\ObjectManager\\:\\:getRepository\\(\\)$#"
-			count: 1
-			path: tests/Fixtures/DemoEntityManager.php
-
-		-
 			message: "#^Call to function method_exists\\(\\) with Doctrine\\\\DBAL\\\\Connection and 'createSchemaManager' will always evaluate to true\\.$#"
 			count: 1
 			path: tests/Migration/IdToUuidMigrationTest.php
