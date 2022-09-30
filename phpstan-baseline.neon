@@ -61,6 +61,26 @@ parameters:
 			path: src/EventListener/ORM/TablePrefixEventListener.php
 
 		-
+			message: "#^Offset 'sequenceName' does not exist on array\\{sequenceName\\: string, allocationSize\\: string, initialValue\\: string, quoted\\?\\: mixed\\}\\|null\\.$#"
+			count: 1
+			path: src/EventListener/ORM/TablePrefixEventListener.php
+
+		-
+			message: "#^Parameter \\#1 \\$definition of method Doctrine\\\\ORM\\\\Mapping\\\\ClassMetadataInfo\\<object\\>\\:\\:setSequenceGeneratorDefinition\\(\\) expects array\\{sequenceName\\?\\: string, allocationSize\\?\\: int\\|string, initialValue\\?\\: int\\|string, quoted\\?\\: mixed\\}, array\\{sequenceName\\: string, allocationSize\\?\\: string, initialValue\\?\\: string, quoted\\?\\: mixed\\}\\|null given\\.$#"
+			count: 1
+			path: src/EventListener/ORM/TablePrefixEventListener.php
+
+		-
+			message: "#^Parameter \\#3 \\$definition of method Nucleos\\\\Doctrine\\\\EventListener\\\\ORM\\\\TablePrefixEventListener\\:\\:addSequenceGenerator\\(\\) expects array, array\\<string, mixed\\>\\|null given\\.$#"
+			count: 1
+			path: src/EventListener/ORM/TablePrefixEventListener.php
+
+		-
+			message: "#^Property Doctrine\\\\ORM\\\\Mapping\\\\ClassMetadataInfo\\<object\\>\\:\\:\\$idGenerator \\(Doctrine\\\\ORM\\\\Id\\\\AbstractIdGenerator\\) in isset\\(\\) is not nullable\\.$#"
+			count: 1
+			path: src/EventListener/ORM/TablePrefixEventListener.php
+
+		-
 			message: "#^Strict comparison using \\=\\=\\= between null and ReflectionClass\\<object\\> will always evaluate to false\\.$#"
 			count: 1
 			path: src/EventListener/ORM/UniqueActiveListener.php
@@ -126,7 +146,7 @@ parameters:
 			path: tests/Fixtures/DemoEntityManager.php
 
 		-
-			message: "#^Parameter \\#1 \\$className of method Doctrine\\\\Persistence\\\\ObjectManager\\:\\:getRepository\\(\\) expects class\\-string\\<mixed\\>, string given\\.$#"
+			message: "#^Parameter \\#1 \\$className of method Doctrine\\\\Persistence\\\\ObjectManager\\:\\:getRepository\\(\\) expects class\\-string\\<object\\>, string given\\.$#"
 			count: 1
 			path: tests/Fixtures/DemoEntityManager.php
 

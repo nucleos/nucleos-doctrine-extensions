@@ -85,7 +85,6 @@ final class TablePrefixEventListener implements EventSubscriber
 
         $classMetadata->setSequenceGeneratorDefinition($newDefinition);
 
-        // @phpstan-ignore-next-line
         if (isset($classMetadata->idGenerator)) {
             $this->addSequenceGenerator($classMetadata, $em, $newDefinition);
         }
