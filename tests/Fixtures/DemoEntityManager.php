@@ -33,10 +33,13 @@ final class DemoEntityManager
     private $registry;
 
     /**
-     * @var string
+     * @var class-string
      */
     private $class;
 
+    /**
+     * @param class-string $class
+     */
     public function __construct(string $class, ManagerRegistry $registry)
     {
         $this->registry = $registry;
