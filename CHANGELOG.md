@@ -2,27 +2,24 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 4.8.1 - TBD
+## 4.8.1 - 2022-10-24
 
-### Added
 
-- Nothing.
+-----
 
-### Changed
+### Release Notes for [4.8.1](https://github.com/nucleos/nucleos-doctrine-extensions/milestone/17)
 
-- Nothing.
+4.8.x bugfix release (patch)
 
-### Deprecated
+### 4.8.1
 
-- Nothing.
+- Total issues resolved: **0**
+- Total pull requests resolved: **1**
+- Total contributors: **1**
 
-### Removed
+#### Bug
 
-- Nothing.
-
-### Fixed
-
-- Nothing.
+ - [382: Fix primary index handling](https://github.com/nucleos/nucleos-doctrine-extensions/pull/382) thanks to @core23
 
 ## 4.8.0 - 2022-10-08
 
