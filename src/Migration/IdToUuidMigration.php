@@ -323,7 +323,10 @@ final class IdToUuidMigration implements LoggerAwareInterface
 
         foreach ($this->indexes as $index) {
             $table = $schema->getTable($index['table']);
-            $table->dropIndex($index['name']);
+
+            if ($table->hasIndex($index['name']) && !$index['primary']) {
+                $table->dropIndex($index['name']);
+            }
         }
 
         $this->updateSchema($schema);
