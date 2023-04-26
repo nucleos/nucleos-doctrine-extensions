@@ -47,6 +47,5 @@ return static function (ContainerConfigurator $container): void {
             ->args([
                 new Parameter('nucleos_doctrine.table.prefix'),
             ])
-
     ;
 };

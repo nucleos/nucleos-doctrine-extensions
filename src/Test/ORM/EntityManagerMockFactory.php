@@ -57,7 +57,8 @@ final class EntityManagerMockFactory
     private static function prepareQueryBuilder(TestCase $test, MockObject $qb): void
     {
         $query = $test->getMockBuilder(AbstractQuery::class)
-            ->disableOriginalConstructor()->getMock();
+            ->disableOriginalConstructor()->getMock()
+        ;
         $query->method('execute')->willReturn(true);
 
         $qb->method('select')->willReturn($qb);
