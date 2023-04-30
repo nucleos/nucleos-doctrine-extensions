@@ -18,33 +18,30 @@ use Doctrine\Persistence\ObjectManager;
 use Nucleos\Doctrine\Tests\Fixtures\DemoEntityManager;
 use Nucleos\Doctrine\Tests\Fixtures\EmptyClass;
 use PHPUnit\Framework\TestCase;
-use Prophecy\PhpUnit\ProphecyTrait;
 
 final class EntityManagerTraitTest extends TestCase
 {
-    use ProphecyTrait;
-
     public function testCreateQueryBuilder(): void
     {
-        $queryBuilder = $this->prophesize(QueryBuilder::class);
+        $queryBuilder = $this->createMock(QueryBuilder::class);
 
-        $repository = $this->prophesize(EntityRepository::class);
-        $repository->createQueryBuilder('alias', 'someindex')
+        $repository = $this->createMock(EntityRepository::class);
+        $repository->method('createQueryBuilder')->with('alias', 'someindex')
             ->willReturn($queryBuilder)
         ;
 
-        $objectManager = $this->prophesize(ObjectManager::class);
-        $objectManager->getRepository(EmptyClass::class)
+        $objectManager = $this->createMock(ObjectManager::class);
+        $objectManager->method('getRepository')->with(EmptyClass::class)
             ->willReturn($repository)
         ;
 
-        $registry = $this->prophesize(ManagerRegistry::class);
-        $registry->getManagerForClass(EmptyClass::class)
+        $registry = $this->createMock(ManagerRegistry::class);
+        $registry->method('getManagerForClass')->with(EmptyClass::class)
             ->willReturn($objectManager)
         ;
 
-        $manager = new DemoEntityManager(EmptyClass::class, $registry->reveal());
+        $manager = new DemoEntityManager(EmptyClass::class, $registry);
 
-        static::assertSame($queryBuilder->reveal(), $manager->getQueryBuilder('alias', 'someindex'));
+        static::assertSame($queryBuilder, $manager->getQueryBuilder('alias', 'someindex'));
     }
 }

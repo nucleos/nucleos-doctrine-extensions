@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Nucleos\Doctrine\Tests\EventListener\ORM;
 
-use DateTime;
+use Closure;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
@@ -21,16 +21,14 @@ use Nucleos\Doctrine\EventListener\ORM\LifecycleDateListener;
 use Nucleos\Doctrine\Model\LifecycleDateTimeInterface;
 use Nucleos\Doctrine\Tests\Fixtures\ClassWithAllProperties;
 use Nucleos\Doctrine\Tests\Fixtures\EmptyClass;
+use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\MockObject\Rule\InvokedCount;
 use PHPUnit\Framework\TestCase;
-use Prophecy\Argument;
-use Prophecy\PhpUnit\ProphecyTrait;
 use ReflectionClass;
 use stdClass;
 
 final class LifecycleDateListenerTest extends TestCase
 {
-    use ProphecyTrait;
-
     public function testGetSubscribedEvents(): void
     {
         $listener = new LifecycleDateListener();
@@ -44,181 +42,185 @@ final class LifecycleDateListenerTest extends TestCase
 
     public function testPrePersist(): void
     {
-        $object = $this->prophesize(LifecycleDateTimeInterface::class);
-        $object->setCreatedAt(Argument::type(DateTime::class))
-            ->shouldBeCalled()
-        ;
-        $object->setUpdatedAt(Argument::type(DateTime::class))
-            ->shouldBeCalled()
-        ;
+        $object = $this->createMock(LifecycleDateTimeInterface::class);
+        $object->expects(static::once())->method('setCreatedAt');
+        $object->expects(static::once())->method('setUpdatedAt');
 
-        $eventArgs = $this->prophesize(LifecycleEventArgs::class);
-        $eventArgs->getObject()
+        $eventArgs = $this->createMock(LifecycleEventArgs::class);
+        $eventArgs->method('getObject')
             ->willReturn($object)
         ;
 
         $listener = new LifecycleDateListener();
-        $listener->prePersist($eventArgs->reveal());
+        $listener->prePersist($eventArgs);
     }
 
     public function testPrePersistForInvalidClass(): void
     {
-        $object = $this->prophesize(stdClass::class);
+        $object = $this->createMock(stdClass::class);
 
-        $entityManager = $this->prophesize(EntityManagerInterface::class);
+        $entityManager = $this->createMock(EntityManagerInterface::class);
 
-        $eventArgs = $this->prophesize(LifecycleEventArgs::class);
-        $eventArgs->getObject()
+        $eventArgs = $this->createMock(LifecycleEventArgs::class);
+        $eventArgs->method('getObject')
             ->willReturn($object)
         ;
-        $eventArgs->getEntityManager()
+        $eventArgs->method('getEntityManager')
             ->willReturn($entityManager)
         ;
 
         $listener = new LifecycleDateListener();
-        $listener->prePersist($eventArgs->reveal());
+        $listener->prePersist($eventArgs);
 
-        $entityManager->createQueryBuilder()->shouldNotHaveBeenCalled();
+        $entityManager->expects(static::never())->method('createQueryBuilder');
     }
 
     public function testPreUpdate(): void
     {
-        $object = $this->prophesize(LifecycleDateTimeInterface::class);
-        $object->setUpdatedAt(Argument::type(DateTime::class))
-            ->shouldBeCalled()
-        ;
+        $object = $this->createMock(LifecycleDateTimeInterface::class);
+        $object->expects(static::once())->method('setUpdatedAt');
 
-        $eventArgs = $this->prophesize(LifecycleEventArgs::class);
-        $eventArgs->getObject()
+        $eventArgs = $this->createMock(LifecycleEventArgs::class);
+        $eventArgs->method('getObject')
             ->willReturn($object)
         ;
 
         $listener = new LifecycleDateListener();
-        $listener->preUpdate($eventArgs->reveal());
+        $listener->preUpdate($eventArgs);
     }
 
     public function testPreUpdateForInvalidClass(): void
     {
-        $object = $this->prophesize(stdClass::class);
+        $object = $this->createMock(stdClass::class);
 
-        $entityManager = $this->prophesize(EntityManagerInterface::class);
+        $entityManager = $this->createMock(EntityManagerInterface::class);
 
-        $eventArgs = $this->prophesize(LifecycleEventArgs::class);
-        $eventArgs->getObject()
+        $eventArgs = $this->createMock(LifecycleEventArgs::class);
+        $eventArgs->method('getObject')
             ->willReturn($object)
         ;
-        $eventArgs->getEntityManager()
+        $eventArgs->method('getEntityManager')
             ->willReturn($entityManager)
         ;
 
         $listener = new LifecycleDateListener();
-        $listener->preUpdate($eventArgs->reveal());
+        $listener->preUpdate($eventArgs);
 
-        $entityManager->createQueryBuilder()->shouldNotHaveBeenCalled();
+        $entityManager->expects(static::never())->method('createQueryBuilder');
     }
 
     public function testLoadClassMetadataWithEmptyClass(): void
     {
-        $metadata = $this->prophesize(ClassMetadata::class);
-        $metadata->getReflectionClass()
+        $metadata = $this->createMock(ClassMetadata::class);
+        $metadata->method('getReflectionClass')
             ->willReturn(null)
         ;
-        $metadata->mapField(Argument::any())
-            ->shouldNotBeCalled()
-        ;
+        $metadata->expects(static::never())->method('mapField');
 
-        $eventArgs = $this->prophesize(LoadClassMetadataEventArgs::class);
-        $eventArgs->getClassMetadata()
+        $eventArgs = $this->createMock(LoadClassMetadataEventArgs::class);
+        $eventArgs->method('getClassMetadata')
             ->willReturn($metadata)
         ;
 
         $listener = new LifecycleDateListener();
-        $listener->loadClassMetadata($eventArgs->reveal());
+        $listener->loadClassMetadata($eventArgs);
     }
 
     public function testLoadClassMetadataWithInvalidClass(): void
     {
         $reflection = new ReflectionClass(EmptyClass::class);
 
-        $metadata = $this->prophesize(ClassMetadata::class);
-        $metadata->getReflectionClass()
+        $metadata = $this->createMock(ClassMetadata::class);
+        $metadata->method('getReflectionClass')
             ->willReturn($reflection)
         ;
-        $metadata->mapField(Argument::any())
-            ->shouldNotBeCalled()
-        ;
+        $metadata->expects(static::never())->method('mapField');
 
-        $eventArgs = $this->prophesize(LoadClassMetadataEventArgs::class);
-        $eventArgs->getClassMetadata()
+        $eventArgs = $this->createMock(LoadClassMetadataEventArgs::class);
+        $eventArgs->method('getClassMetadata')
             ->willReturn($metadata)
         ;
 
         $listener = new LifecycleDateListener();
-        $listener->loadClassMetadata($eventArgs->reveal());
+        $listener->loadClassMetadata($eventArgs);
     }
 
     public function testLoadClassMetadataWithValidClass(): void
     {
         $reflection = new ReflectionClass(ClassWithAllProperties::class);
 
-        $metadata = $this->prophesize(ClassMetadata::class);
-        $metadata->getReflectionClass()
+        $metadata = $this->createMock(ClassMetadata::class);
+        $metadata->method('getReflectionClass')
             ->willReturn($reflection)
         ;
-        $metadata->hasField('createdAt')
+        $metadata->expects($matcher = static::exactly(2))->method('hasField')
+            ->willReturnCallback($this->withParameter($matcher, [
+                ['createdAt'],
+                ['updatedAt'],
+            ]))
             ->willReturn(false)
         ;
-        $metadata->hasField('updatedAt')
+        $metadata->expects($matcher = static::exactly(2))->method('mapField')
+            ->willReturnCallback($this->withParameter($matcher, [
+                [[
+                    'type'      => 'datetime',
+                    'fieldName' => 'createdAt',
+                    'nullable'  => false,
+                ]],
+                [[
+                    'type'      => 'datetime',
+                    'fieldName' => 'updatedAt',
+                    'nullable'  => false,
+                ]],
+            ]))
             ->willReturn(false)
-        ;
-        $metadata->mapField([
-            'type'      => 'datetime',
-            'fieldName' => 'createdAt',
-            'nullable'  => false,
-        ])
-            ->shouldBeCalled()
-        ;
-        $metadata->mapField([
-            'type'      => 'datetime',
-            'fieldName' => 'updatedAt',
-            'nullable'  => false,
-        ])
-            ->shouldBeCalled()
         ;
 
-        $eventArgs = $this->prophesize(LoadClassMetadataEventArgs::class);
-        $eventArgs->getClassMetadata()
+        $eventArgs = $this->createMock(LoadClassMetadataEventArgs::class);
+        $eventArgs->method('getClassMetadata')
             ->willReturn($metadata)
         ;
 
         $listener = new LifecycleDateListener();
-        $listener->loadClassMetadata($eventArgs->reveal());
+        $listener->loadClassMetadata($eventArgs);
     }
 
     public function testLoadClassMetadataWithExistingProperty(): void
     {
         $reflection = new ReflectionClass(ClassWithAllProperties::class);
 
-        $metadata = $this->prophesize(ClassMetadata::class);
-        $metadata->getReflectionClass()
+        $metadata = $this->createMock(ClassMetadata::class);
+        $metadata->method('getReflectionClass')
             ->willReturn($reflection)
         ;
-        $metadata->hasField('createdAt')
+        $metadata->expects($matcher = static::exactly(2))->method('hasField')
+            ->willReturnCallback($this->withParameter($matcher, [
+                ['createdAt'],
+                ['updatedAt'],
+            ]))
             ->willReturn(true)
         ;
-        $metadata->hasField('updatedAt')
-            ->willReturn(true)
-        ;
-        $metadata->mapField(Argument::any())
-            ->shouldNotBeCalled()
-        ;
+        $metadata->expects(static::never())->method('mapField');
 
-        $eventArgs = $this->prophesize(LoadClassMetadataEventArgs::class);
-        $eventArgs->getClassMetadata()
+        $eventArgs = $this->createMock(LoadClassMetadataEventArgs::class);
+        $eventArgs->method('getClassMetadata')
             ->willReturn($metadata)
         ;
 
         $listener = new LifecycleDateListener();
-        $listener->loadClassMetadata($eventArgs->reveal());
+        $listener->loadClassMetadata($eventArgs);
+    }
+
+    /**
+     * @param array<array-key, mixed[]> $parameters
+     */
+    protected function withParameter(InvokedCount $matcher, array $parameters): Closure
+    {
+        return static function () use ($matcher, $parameters): void {
+            /** @psalm-suppress InternalMethod */
+            $callNumber = $matcher->numberOfInvocations();
+
+            Assert::assertEquals($parameters[$callNumber-1], \func_get_args(), sprintf('Call %s', $callNumber));
+        };
     }
 }

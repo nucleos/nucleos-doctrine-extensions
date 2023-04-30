@@ -18,12 +18,9 @@ use Doctrine\Persistence\ObjectManager;
 use Nucleos\Doctrine\Tests\Fixtures\DemoEntityManager;
 use Nucleos\Doctrine\Tests\Fixtures\EmptyClass;
 use PHPUnit\Framework\TestCase;
-use Prophecy\PhpUnit\ProphecyTrait;
 
 final class BaseQueryTraitTest extends TestCase
 {
-    use ProphecyTrait;
-
     /**
      * @var DemoEntityManager
      */
@@ -31,31 +28,29 @@ final class BaseQueryTraitTest extends TestCase
 
     protected function setUp(): void
     {
-        $repository = $this->prophesize(EntityRepository::class);
+        $repository = $this->createMock(EntityRepository::class);
 
-        $objectManager = $this->prophesize(ObjectManager::class);
-        $objectManager->getRepository(EmptyClass::class)
+        $objectManager = $this->createMock(ObjectManager::class);
+        $objectManager->method('getRepository')->with(EmptyClass::class)
             ->willReturn($repository)
         ;
 
-        $registry = $this->prophesize(ManagerRegistry::class);
-        $registry->getManagerForClass(EmptyClass::class)
+        $registry = $this->createMock(ManagerRegistry::class);
+        $registry->method('getManagerForClass')->with(EmptyClass::class)
             ->willReturn($objectManager)
         ;
 
-        $this->manager = new DemoEntityManager(EmptyClass::class, $registry->reveal());
+        $this->manager = new DemoEntityManager(EmptyClass::class, $registry);
     }
 
     public function testAddOrder(): void
     {
-        $builder = $this->prophesize(QueryBuilder::class);
+        $builder = $this->createMock(QueryBuilder::class);
 
-        $builder->addOrderBy('myalias.position', 'asc')
-            ->shouldBeCalled()
-        ;
+        $builder->addOrderBy('myalias.position', 'asc');
 
-        static::assertSame($builder->reveal(), $this->manager->addOrderToQueryBuilder(
-            $builder->reveal(),
+        static::assertSame($builder, $this->manager->addOrderToQueryBuilder(
+            $builder,
             ['position'],
             'myalias'
         ));
@@ -63,14 +58,12 @@ final class BaseQueryTraitTest extends TestCase
 
     public function testAddOrderWithOrder(): void
     {
-        $builder = $this->prophesize(QueryBuilder::class);
+        $builder = $this->createMock(QueryBuilder::class);
 
-        $builder->addOrderBy('myalias.position', 'desc')
-            ->shouldBeCalled()
-        ;
+        $builder->addOrderBy('myalias.position', 'desc');
 
-        static::assertSame($builder->reveal(), $this->manager->addOrderToQueryBuilder(
-            $builder->reveal(),
+        static::assertSame($builder, $this->manager->addOrderToQueryBuilder(
+            $builder,
             ['position'],
             'myalias',
             [],
@@ -80,17 +73,13 @@ final class BaseQueryTraitTest extends TestCase
 
     public function testAddOrderWithMultpleSorts(): void
     {
-        $builder = $this->prophesize(QueryBuilder::class);
+        $builder = $this->createMock(QueryBuilder::class);
 
-        $builder->addOrderBy('myalias.position', 'desc')
-            ->shouldBeCalled()
-        ;
-        $builder->addOrderBy('myalias.otherfield', 'desc')
-            ->shouldBeCalled()
-        ;
+        $builder->addOrderBy('myalias.position', 'desc');
+        $builder->addOrderBy('myalias.otherfield', 'desc');
 
-        static::assertSame($builder->reveal(), $this->manager->addOrderToQueryBuilder(
-            $builder->reveal(),
+        static::assertSame($builder, $this->manager->addOrderToQueryBuilder(
+            $builder,
             ['position', 'otherfield'],
             'myalias',
             [],
@@ -100,20 +89,14 @@ final class BaseQueryTraitTest extends TestCase
 
     public function testAddOrderWithMultpleSortAndOrders(): void
     {
-        $builder = $this->prophesize(QueryBuilder::class);
+        $builder = $this->createMock(QueryBuilder::class);
 
-        $builder->addOrderBy('myalias.position', 'desc')
-            ->shouldBeCalled()
-        ;
-        $builder->addOrderBy('myalias.otherfield', 'asc')
-            ->shouldBeCalled()
-        ;
-        $builder->addOrderBy('myalias.foo', 'desc')
-            ->shouldBeCalled()
-        ;
+        $builder->addOrderBy('myalias.position', 'desc');
+        $builder->addOrderBy('myalias.otherfield', 'asc');
+        $builder->addOrderBy('myalias.foo', 'desc');
 
-        static::assertSame($builder->reveal(), $this->manager->addOrderToQueryBuilder(
-            $builder->reveal(),
+        static::assertSame($builder, $this->manager->addOrderToQueryBuilder(
+            $builder,
             [
                 'position',
                 'otherfield' => 'asc',
@@ -127,14 +110,12 @@ final class BaseQueryTraitTest extends TestCase
 
     public function testAddOrderWithChildOrder(): void
     {
-        $builder = $this->prophesize(QueryBuilder::class);
+        $builder = $this->createMock(QueryBuilder::class);
 
-        $builder->addOrderBy('child.position', 'desc')
-            ->shouldBeCalled()
-        ;
+        $builder->addOrderBy('child.position', 'desc');
 
-        static::assertSame($builder->reveal(), $this->manager->addOrderToQueryBuilder(
-            $builder->reveal(),
+        static::assertSame($builder, $this->manager->addOrderToQueryBuilder(
+            $builder,
             ['child.position'],
             'myalias',
             [],
@@ -144,14 +125,12 @@ final class BaseQueryTraitTest extends TestCase
 
     public function testAddOrderWithAliasChildOrder(): void
     {
-        $builder = $this->prophesize(QueryBuilder::class);
+        $builder = $this->createMock(QueryBuilder::class);
 
-        $builder->addOrderBy('foo.position', 'desc')
-            ->shouldBeCalled()
-        ;
+        $builder->addOrderBy('foo.position', 'desc');
 
-        static::assertSame($builder->reveal(), $this->manager->addOrderToQueryBuilder(
-            $builder->reveal(),
+        static::assertSame($builder, $this->manager->addOrderToQueryBuilder(
+            $builder,
             ['f.position'],
             'myalias',
             ['f' => 'foo'],

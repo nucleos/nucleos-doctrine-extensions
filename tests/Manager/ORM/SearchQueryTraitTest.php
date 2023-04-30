@@ -19,14 +19,11 @@ use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
 use Nucleos\Doctrine\Tests\Fixtures\DemoEntityManager;
 use Nucleos\Doctrine\Tests\Fixtures\EmptyClass;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use Prophecy\PhpUnit\ProphecyTrait;
-use Prophecy\Prophecy\ObjectProphecy;
 
 final class SearchQueryTraitTest extends TestCase
 {
-    use ProphecyTrait;
-
     /**
      * @var DemoEntityManager
      */
@@ -34,54 +31,38 @@ final class SearchQueryTraitTest extends TestCase
 
     protected function setUp(): void
     {
-        $repository = $this->prophesize(EntityRepository::class);
+        $repository = $this->createMock(EntityRepository::class);
 
-        $objectManager = $this->prophesize(ObjectManager::class);
-        $objectManager->getRepository(EmptyClass::class)
+        $objectManager = $this->createMock(ObjectManager::class);
+        $objectManager->method('getRepository')->with(EmptyClass::class)
             ->willReturn($repository)
         ;
 
-        $registry = $this->prophesize(ManagerRegistry::class);
-        $registry->getManagerForClass(EmptyClass::class)
+        $registry = $this->createMock(ManagerRegistry::class);
+        $registry->method('getManagerForClass')->with(EmptyClass::class)
             ->willReturn($objectManager)
         ;
 
-        $this->manager = new DemoEntityManager(EmptyClass::class, $registry->reveal());
+        $this->manager = new DemoEntityManager(EmptyClass::class, $registry);
     }
 
     public function testSearchWhere(): void
     {
-        $builder = $this->prophesize(QueryBuilder::class);
+        $builder = $this->createMock(QueryBuilder::class);
         $orx     = $this->prepareOrx($builder);
 
-        $builder->setParameter('name0', 'foo')
-            ->shouldBeCalled()
-        ;
-        $builder->setParameter('name0_any', '% foo %')
-            ->shouldBeCalled()
-        ;
-        $builder->setParameter('name0_pre', '% foo')
-            ->shouldBeCalled()
-        ;
-        $builder->setParameter('name0_suf', 'foo %')
-            ->shouldBeCalled()
-        ;
+        $builder->setParameter('name0', 'foo');
+        $builder->setParameter('name0_any', '% foo %');
+        $builder->setParameter('name0_pre', '% foo');
+        $builder->setParameter('name0_suf', 'foo %');
 
-        $orx->add('field = :name0')
-            ->shouldBeCalled()
-        ;
-        $orx->add('field LIKE :name0_any')
-            ->shouldBeCalled()
-        ;
-        $orx->add('field LIKE :name0_pre')
-            ->shouldBeCalled()
-        ;
-        $orx->add('field LIKE :name0_suf')
-            ->shouldBeCalled()
-        ;
+        $orx->add('field = :name0');
+        $orx->add('field LIKE :name0_any');
+        $orx->add('field LIKE :name0_pre');
+        $orx->add('field LIKE :name0_suf');
 
-        static::assertSame($orx->reveal(), $this->manager->searchWhereQueryBuilder(
-            $builder->reveal(),
+        static::assertSame($orx, $this->manager->searchWhereQueryBuilder(
+            $builder,
             'field',
             ['foo']
         ));
@@ -89,18 +70,14 @@ final class SearchQueryTraitTest extends TestCase
 
     public function testStrictSearchWhere(): void
     {
-        $builder = $this->prophesize(QueryBuilder::class);
+        $builder = $this->createMock(QueryBuilder::class);
         $orx     = $this->prepareOrx($builder);
 
-        $builder->setParameter('name0', 'foo')
-            ->shouldBeCalled()
-        ;
-        $orx->add('field = :name0')
-            ->shouldBeCalled()
-        ;
+        $builder->setParameter('name0', 'foo');
+        $orx->add('field = :name0');
 
-        static::assertSame($orx->reveal(), $this->manager->searchWhereQueryBuilder(
-            $builder->reveal(),
+        static::assertSame($orx, $this->manager->searchWhereQueryBuilder(
+            $builder,
             'field',
             ['foo'],
             true
@@ -109,30 +86,18 @@ final class SearchQueryTraitTest extends TestCase
 
     public function testSearchWhereMultipleValues(): void
     {
-        $builder = $this->prophesize(QueryBuilder::class);
+        $builder = $this->createMock(QueryBuilder::class);
         $orx     = $this->prepareOrx($builder);
 
-        $builder->setParameter('name0', 'foo')
-            ->shouldBeCalled()
-        ;
-        $builder->setParameter('name1', 'bar')
-            ->shouldBeCalled()
-        ;
-        $builder->setParameter('name2', 'baz')
-            ->shouldBeCalled()
-        ;
-        $orx->add('field = :name0')
-            ->shouldBeCalled()
-        ;
-        $orx->add('field = :name1')
-            ->shouldBeCalled()
-        ;
-        $orx->add('field = :name2')
-            ->shouldBeCalled()
-        ;
+        $builder->setParameter('name0', 'foo');
+        $builder->setParameter('name1', 'bar');
+        $builder->setParameter('name2', 'baz');
+        $orx->add('field = :name0');
+        $orx->add('field = :name1');
+        $orx->add('field = :name2');
 
-        static::assertSame($orx->reveal(), $this->manager->searchWhereQueryBuilder(
-            $builder->reveal(),
+        static::assertSame($orx, $this->manager->searchWhereQueryBuilder(
+            $builder,
             'field',
             ['foo', 'bar', 'baz'],
             true
@@ -140,20 +105,20 @@ final class SearchQueryTraitTest extends TestCase
     }
 
     /**
-     * @param ObjectProphecy<QueryBuilder> $builder
+     * @param MockObject&QueryBuilder $builder
      *
-     * @return ObjectProphecy<Orx>
+     * @return MockObject&Orx
      */
-    private function prepareOrx(ObjectProphecy $builder): ObjectProphecy
+    private function prepareOrx(QueryBuilder $builder): MockObject
     {
-        $orx = $this->prophesize(Orx::class);
+        $orx = $this->createMock(Orx::class);
 
-        $expr = $this->prophesize(Expr::class);
-        $expr->orX()
+        $expr = $this->createMock(Expr::class);
+        $expr->method('orX')
             ->willReturn($orx)
         ;
 
-        $builder->expr()
+        $builder->method('expr')
             ->willReturn($expr)
         ;
 
