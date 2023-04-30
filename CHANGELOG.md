@@ -2,27 +2,31 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 4.9.0 - TBD
+## 4.9.0 - 2023-04-30
 
-### Added
 
-- Nothing.
+-----
 
-### Changed
+### Release Notes for [4.9.0](https://github.com/nucleos/nucleos-doctrine-extensions/milestone/18)
 
-- Nothing.
+Feature release (minor)
 
-### Deprecated
+### 4.9.0
 
-- Nothing.
+- Total issues resolved: **0**
+- Total pull requests resolved: **5**
+- Total contributors: **2**
 
-### Removed
+#### dependency
 
-- Nothing.
+ - [394: Drop symfony 6.1 support](https://github.com/nucleos/nucleos-doctrine-extensions/pull/394) thanks to @core23
+ - [391: Drop support for PHP 8.0](https://github.com/nucleos/nucleos-doctrine-extensions/pull/391) thanks to @core23
+ - [385: Update dependency doctrine/event-manager to ^1.0 || ^2.0](https://github.com/nucleos/nucleos-doctrine-extensions/pull/385) thanks to @renovate[bot]
 
-### Fixed
+#### Enhancement
 
-- Nothing.
+ - [393: Drop prophecy](https://github.com/nucleos/nucleos-doctrine-extensions/pull/393) thanks to @core23
+ - [392: Update build tools](https://github.com/nucleos/nucleos-doctrine-extensions/pull/392) thanks to @core23
 
 ## 4.8.1 - 2022-10-24
 
