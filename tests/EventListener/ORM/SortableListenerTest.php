@@ -21,15 +21,11 @@ use Nucleos\Doctrine\EventListener\ORM\SortableListener;
 use Nucleos\Doctrine\Tests\Fixtures\ClassWithAllProperties;
 use Nucleos\Doctrine\Tests\Fixtures\EmptyClass;
 use PHPUnit\Framework\TestCase;
-use Prophecy\Argument;
-use Prophecy\PhpUnit\ProphecyTrait;
 use ReflectionClass;
 use stdClass;
 
 final class SortableListenerTest extends TestCase
 {
-    use ProphecyTrait;
-
     public function testGetSubscribedEvents(): void
     {
         $listener = new SortableListener();
@@ -44,132 +40,124 @@ final class SortableListenerTest extends TestCase
 
     public function testPrePersistForInvalidClass(): void
     {
-        $object = $this->prophesize(stdClass::class);
+        $object = $this->createMock(stdClass::class);
 
-        $entityManager = $this->prophesize(EntityManagerInterface::class);
+        $entityManager = $this->createMock(EntityManagerInterface::class);
 
-        $eventArgs = $this->prophesize(PreUpdateEventArgs::class);
-        $eventArgs->getEntity()
+        $eventArgs = $this->createMock(PreUpdateEventArgs::class);
+        $eventArgs->method('getEntity')
             ->willReturn($object)
         ;
-        $eventArgs->getEntityManager()
+        $eventArgs->method('getEntityManager')
             ->willReturn($entityManager)
         ;
 
         $listener = new SortableListener();
-        $listener->prePersist($eventArgs->reveal());
+        $listener->prePersist($eventArgs);
 
-        $entityManager->createQueryBuilder()->shouldNotHaveBeenCalled();
+        $entityManager->expects(static::never())->method('createQueryBuilder');
     }
 
     public function testPreRemoveForInvalidClass(): void
     {
-        $object = $this->prophesize(stdClass::class);
+        $object = $this->createMock(stdClass::class);
 
-        $entityManager = $this->prophesize(EntityManagerInterface::class);
+        $entityManager = $this->createMock(EntityManagerInterface::class);
 
-        $eventArgs = $this->prophesize(LifecycleEventArgs::class);
-        $eventArgs->getEntity()
+        $eventArgs = $this->createMock(LifecycleEventArgs::class);
+        $eventArgs->method('getEntity')
             ->willReturn($object)
         ;
-        $eventArgs->getEntityManager()
+        $eventArgs->method('getEntityManager')
             ->willReturn($entityManager)
         ;
 
         $listener = new SortableListener();
-        $listener->preRemove($eventArgs->reveal());
+        $listener->preRemove($eventArgs);
 
-        $entityManager->createQueryBuilder()->shouldNotHaveBeenCalled();
+        $entityManager->expects(static::never())->method('createQueryBuilder');
     }
 
     public function testLoadClassMetadataWithEmptyClass(): void
     {
-        $metadata = $this->prophesize(ClassMetadata::class);
-        $metadata->getReflectionClass()
+        $metadata = $this->createMock(ClassMetadata::class);
+        $metadata->method('getReflectionClass')
             ->willReturn(null)
         ;
-        $metadata->mapField(Argument::any())
-            ->shouldNotBeCalled()
-        ;
+        $metadata->expects(static::never())->method('mapField');
 
-        $eventArgs = $this->prophesize(LoadClassMetadataEventArgs::class);
-        $eventArgs->getClassMetadata()
+        $eventArgs = $this->createMock(LoadClassMetadataEventArgs::class);
+        $eventArgs->method('getClassMetadata')
             ->willReturn($metadata)
         ;
 
         $listener = new SortableListener();
-        $listener->loadClassMetadata($eventArgs->reveal());
+        $listener->loadClassMetadata($eventArgs);
     }
 
     public function testLoadClassMetadataWithInvalidClass(): void
     {
         $reflection = new ReflectionClass(EmptyClass::class);
 
-        $metadata = $this->prophesize(ClassMetadata::class);
-        $metadata->getReflectionClass()
+        $metadata = $this->createMock(ClassMetadata::class);
+        $metadata->method('getReflectionClass')
             ->willReturn($reflection)
         ;
-        $metadata->mapField(Argument::any())
-            ->shouldNotBeCalled()
-        ;
+        $metadata->expects(static::never())->method('mapField');
 
-        $eventArgs = $this->prophesize(LoadClassMetadataEventArgs::class);
-        $eventArgs->getClassMetadata()
+        $eventArgs = $this->createMock(LoadClassMetadataEventArgs::class);
+        $eventArgs->method('getClassMetadata')
             ->willReturn($metadata)
         ;
 
         $listener = new SortableListener();
-        $listener->loadClassMetadata($eventArgs->reveal());
+        $listener->loadClassMetadata($eventArgs);
     }
 
     public function testLoadClassMetadataWithValidClass(): void
     {
         $reflection = new ReflectionClass(ClassWithAllProperties::class);
 
-        $metadata = $this->prophesize(ClassMetadata::class);
-        $metadata->getReflectionClass()
+        $metadata = $this->createMock(ClassMetadata::class);
+        $metadata->method('getReflectionClass')
             ->willReturn($reflection)
         ;
-        $metadata->hasField('position')
+        $metadata->method('hasField')->with('position')
             ->willReturn(false)
         ;
-        $metadata->mapField([
+        $metadata->expects(static::once())->method('mapField')->with([
             'type'      => 'integer',
             'fieldName' => 'position',
-        ])
-            ->shouldBeCalled()
-        ;
+        ]);
 
-        $eventArgs = $this->prophesize(LoadClassMetadataEventArgs::class);
-        $eventArgs->getClassMetadata()
+        $eventArgs = $this->createMock(LoadClassMetadataEventArgs::class);
+        $eventArgs->method('getClassMetadata')
             ->willReturn($metadata)
         ;
 
         $listener = new SortableListener();
-        $listener->loadClassMetadata($eventArgs->reveal());
+        $listener->loadClassMetadata($eventArgs);
     }
 
     public function testLoadClassMetadataWithExistingProperty(): void
     {
         $reflection = new ReflectionClass(ClassWithAllProperties::class);
 
-        $metadata = $this->prophesize(ClassMetadata::class);
-        $metadata->getReflectionClass()
+        $metadata = $this->createMock(ClassMetadata::class);
+        $metadata->method('getReflectionClass')
             ->willReturn($reflection)
         ;
-        $metadata->hasField('position')
+        $metadata->method('hasField')->with('position')
             ->willReturn(true)
         ;
-        $metadata->mapField(Argument::any())
-            ->shouldNotBeCalled()
-        ;
+        $metadata->expects(static::never())->method('mapField');
 
-        $eventArgs = $this->prophesize(LoadClassMetadataEventArgs::class);
-        $eventArgs->getClassMetadata()
+        $eventArgs = $this->createMock(LoadClassMetadataEventArgs::class);
+        $eventArgs->method('getClassMetadata')
             ->willReturn($metadata)
         ;
 
         $listener = new SortableListener();
-        $listener->loadClassMetadata($eventArgs->reveal());
+        $listener->loadClassMetadata($eventArgs);
     }
 }
