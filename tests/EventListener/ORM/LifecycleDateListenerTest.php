@@ -13,8 +13,9 @@ namespace Nucleos\Doctrine\Tests\EventListener\ORM;
 
 use Closure;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
+use Doctrine\ORM\Event\PrePersistEventArgs;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Nucleos\Doctrine\EventListener\ORM\LifecycleDateListener;
@@ -46,10 +47,7 @@ final class LifecycleDateListenerTest extends TestCase
         $object->expects(static::once())->method('setCreatedAt');
         $object->expects(static::once())->method('setUpdatedAt');
 
-        $eventArgs = $this->createMock(LifecycleEventArgs::class);
-        $eventArgs->method('getObject')
-            ->willReturn($object)
-        ;
+        $eventArgs = new PrePersistEventArgs($object, $this->createStub(EntityManagerInterface::class));
 
         $listener = new LifecycleDateListener();
         $listener->prePersist($eventArgs);
@@ -60,19 +58,10 @@ final class LifecycleDateListenerTest extends TestCase
         $object = $this->createMock(stdClass::class);
 
         $entityManager = $this->createMock(EntityManagerInterface::class);
-
-        $eventArgs = $this->createMock(LifecycleEventArgs::class);
-        $eventArgs->method('getObject')
-            ->willReturn($object)
-        ;
-        $eventArgs->method('getEntityManager')
-            ->willReturn($entityManager)
-        ;
+        $entityManager->expects(static::never())->method('createQueryBuilder');
 
         $listener = new LifecycleDateListener();
-        $listener->prePersist($eventArgs);
-
-        $entityManager->expects(static::never())->method('createQueryBuilder');
+        $listener->prePersist(new PrePersistEventArgs($object, $entityManager));
     }
 
     public function testPreUpdate(): void
@@ -80,13 +69,10 @@ final class LifecycleDateListenerTest extends TestCase
         $object = $this->createMock(LifecycleDateTimeInterface::class);
         $object->expects(static::once())->method('setUpdatedAt');
 
-        $eventArgs = $this->createMock(LifecycleEventArgs::class);
-        $eventArgs->method('getObject')
-            ->willReturn($object)
-        ;
+        $changeSet = [];
 
         $listener = new LifecycleDateListener();
-        $listener->preUpdate($eventArgs);
+        $listener->preUpdate(new PreUpdateEventArgs($object, $this->createStub(EntityManagerInterface::class), $changeSet));
     }
 
     public function testPreUpdateForInvalidClass(): void
@@ -94,19 +80,12 @@ final class LifecycleDateListenerTest extends TestCase
         $object = $this->createMock(stdClass::class);
 
         $entityManager = $this->createMock(EntityManagerInterface::class);
+        $entityManager->expects(static::never())->method('createQueryBuilder');
 
-        $eventArgs = $this->createMock(LifecycleEventArgs::class);
-        $eventArgs->method('getObject')
-            ->willReturn($object)
-        ;
-        $eventArgs->method('getEntityManager')
-            ->willReturn($entityManager)
-        ;
+        $changeSet = [];
 
         $listener = new LifecycleDateListener();
-        $listener->preUpdate($eventArgs);
-
-        $entityManager->expects(static::never())->method('createQueryBuilder');
+        $listener->preUpdate(new PreUpdateEventArgs($object, $entityManager, $changeSet));
     }
 
     public function testLoadClassMetadataWithEmptyClass(): void

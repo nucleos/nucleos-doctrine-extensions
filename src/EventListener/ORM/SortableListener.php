@@ -13,14 +13,16 @@ namespace Nucleos\Doctrine\EventListener\ORM;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
+use Doctrine\ORM\Event\PrePersistEventArgs;
+use Doctrine\ORM\Event\PreRemoveEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\MappingException;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\UnitOfWork;
+use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Nucleos\Doctrine\Model\PositionAwareInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
@@ -54,9 +56,9 @@ final class SortableListener implements EventSubscriber
         ];
     }
 
-    public function prePersist(LifecycleEventArgs $args): void
+    public function prePersist(PrePersistEventArgs $args): void
     {
-        if (!$args->getEntity() instanceof PositionAwareInterface) {
+        if (!$args->getObject() instanceof PositionAwareInterface) {
             return;
         }
 
@@ -65,11 +67,11 @@ final class SortableListener implements EventSubscriber
 
     public function preUpdate(PreUpdateEventArgs $args): void
     {
-        if (!$args->getEntity() instanceof PositionAwareInterface) {
+        if (!$args->getObject() instanceof PositionAwareInterface) {
             return;
         }
 
-        $position = $args->getEntity()->getPosition();
+        $position = $args->getObject()->getPosition();
 
         if ($args->hasChangedField('position')) {
             $position = $args->getOldValue('position');
@@ -78,12 +80,12 @@ final class SortableListener implements EventSubscriber
         $this->uniquePosition($args, $position);
     }
 
-    public function preRemove(LifecycleEventArgs $args): void
+    public function preRemove(PreRemoveEventArgs $args): void
     {
-        $entity = $args->getEntity();
+        $entity = $args->getObject();
 
         if ($entity instanceof PositionAwareInterface) {
-            $this->movePosition($args->getEntityManager(), $entity, -1);
+            $this->movePosition($args->getObjectManager(), $entity, -1);
         }
     }
 
@@ -110,17 +112,24 @@ final class SortableListener implements EventSubscriber
         }
     }
 
+    /**
+     * @param LifecycleEventArgs<EntityManagerInterface> $args
+     */
     private function uniquePosition(LifecycleEventArgs $args, ?int $oldPosition = null): void
     {
-        $entity = $args->getEntity();
+        $entity = $args->getObject();
 
-        if ($entity instanceof PositionAwareInterface) {
-            if (null === $entity->getPosition()) {
-                $position = $this->getNextPosition($args->getEntityManager(), $entity);
-                $entity->setPosition($position);
-            } elseif (null !== $oldPosition && $oldPosition !== $entity->getPosition()) {
-                $this->movePosition($args->getEntityManager(), $entity);
-            }
+        if (!$entity instanceof PositionAwareInterface) {
+            return;
+        }
+
+        $em = $args->getObjectManager();
+
+        if (null === $entity->getPosition()) {
+            $position = $this->getNextPosition($em, $entity);
+            $entity->setPosition($position);
+        } elseif (null !== $oldPosition && $oldPosition !== $entity->getPosition()) {
+            $this->movePosition($em, $entity);
         }
     }
 

@@ -12,8 +12,8 @@ declare(strict_types=1);
 namespace Nucleos\Doctrine\Tests\EventListener\ORM;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
+use Doctrine\ORM\Event\PrePersistEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\ClassMetadata;
@@ -42,19 +42,10 @@ final class UniqueActiveListenerTest extends TestCase
         $object = $this->createMock(stdClass::class);
 
         $entityManager = $this->createMock(EntityManagerInterface::class);
-
-        $eventArgs = $this->createMock(PreUpdateEventArgs::class);
-        $eventArgs->method('getEntity')
-            ->willReturn($object)
-        ;
-        $eventArgs->method('getEntityManager')
-            ->willReturn($entityManager)
-        ;
+        $entityManager->expects(static::never())->method('createQueryBuilder');
 
         $listener = new UniqueActiveListener();
-        $listener->prePersist($eventArgs);
-
-        $entityManager->expects(static::never())->method('createQueryBuilder');
+        $listener->prePersist(new PrePersistEventArgs($object, $entityManager));
     }
 
     public function testPreUpdateForInvalidClass(): void
@@ -62,19 +53,12 @@ final class UniqueActiveListenerTest extends TestCase
         $object = $this->createMock(stdClass::class);
 
         $entityManager = $this->createMock(EntityManagerInterface::class);
+        $entityManager->expects(static::never())->method('createQueryBuilder');
 
-        $eventArgs = $this->createMock(LifecycleEventArgs::class);
-        $eventArgs->method('getEntity')
-            ->willReturn($object)
-        ;
-        $eventArgs->method('getEntityManager')
-            ->willReturn($entityManager)
-        ;
+        $changeSet = [];
 
         $listener = new UniqueActiveListener();
-        $listener->preUpdate($eventArgs);
-
-        $entityManager->expects(static::never())->method('createQueryBuilder');
+        $listener->preUpdate(new PreUpdateEventArgs($object, $entityManager, $changeSet));
     }
 
     public function testLoadClassMetadataWithEmptyClass(): void

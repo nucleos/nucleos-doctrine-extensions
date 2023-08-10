@@ -45,7 +45,7 @@ final class TablePrefixEventListener implements EventSubscriber
         }
 
         $classMetadata = $args->getClassMetadata();
-        $entityManager = $args->getEntityManager();
+        $entityManager = $args->getObjectManager();
 
         $this->addTablePrefix($classMetadata);
         $this->addSequencePrefix($classMetadata, $entityManager);
