@@ -12,12 +12,15 @@ declare(strict_types=1);
 namespace Nucleos\Doctrine\EventListener\ORM;
 
 use Doctrine\Common\EventSubscriber;
-use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
+use Doctrine\ORM\Event\PrePersistEventArgs;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\MappingException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\UnitOfWork;
+use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Nucleos\Doctrine\Model\UniqueActiveInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
@@ -50,12 +53,12 @@ final class UniqueActiveListener implements EventSubscriber
         ];
     }
 
-    public function prePersist(LifecycleEventArgs $args): void
+    public function prePersist(PrePersistEventArgs $args): void
     {
         $this->uniqueActive($args);
     }
 
-    public function preUpdate(LifecycleEventArgs $args): void
+    public function preUpdate(PreUpdateEventArgs $args): void
     {
         $this->uniqueActive($args);
     }
@@ -81,9 +84,12 @@ final class UniqueActiveListener implements EventSubscriber
         }
     }
 
+    /**
+     * @param LifecycleEventArgs<EntityManagerInterface> $args
+     */
     private function uniqueActive(LifecycleEventArgs $args): void
     {
-        $entity = $args->getEntity();
+        $entity = $args->getObject();
 
         if (!$entity instanceof UniqueActiveInterface) {
             return;
@@ -93,7 +99,8 @@ final class UniqueActiveListener implements EventSubscriber
             return;
         }
 
-        $em   = $args->getEntityManager();
+        $em   = $args->getObjectManager();
+
         $uow  = $em->getUnitOfWork();
         $meta = $em->getClassMetadata(\get_class($entity));
 

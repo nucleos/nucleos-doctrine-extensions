@@ -12,9 +12,9 @@ declare(strict_types=1);
 namespace Nucleos\Doctrine\Tests\EventListener\ORM;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
-use Doctrine\ORM\Event\PreUpdateEventArgs;
+use Doctrine\ORM\Event\PrePersistEventArgs;
+use Doctrine\ORM\Event\PreRemoveEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Nucleos\Doctrine\EventListener\ORM\SortableListener;
@@ -43,19 +43,10 @@ final class SortableListenerTest extends TestCase
         $object = $this->createMock(stdClass::class);
 
         $entityManager = $this->createMock(EntityManagerInterface::class);
-
-        $eventArgs = $this->createMock(PreUpdateEventArgs::class);
-        $eventArgs->method('getEntity')
-            ->willReturn($object)
-        ;
-        $eventArgs->method('getEntityManager')
-            ->willReturn($entityManager)
-        ;
+        $entityManager->expects(static::never())->method('createQueryBuilder');
 
         $listener = new SortableListener();
-        $listener->prePersist($eventArgs);
-
-        $entityManager->expects(static::never())->method('createQueryBuilder');
+        $listener->prePersist(new PrePersistEventArgs($object, $entityManager));
     }
 
     public function testPreRemoveForInvalidClass(): void
@@ -63,19 +54,10 @@ final class SortableListenerTest extends TestCase
         $object = $this->createMock(stdClass::class);
 
         $entityManager = $this->createMock(EntityManagerInterface::class);
-
-        $eventArgs = $this->createMock(LifecycleEventArgs::class);
-        $eventArgs->method('getEntity')
-            ->willReturn($object)
-        ;
-        $eventArgs->method('getEntityManager')
-            ->willReturn($entityManager)
-        ;
+        $entityManager->expects(static::never())->method('createQueryBuilder');
 
         $listener = new SortableListener();
-        $listener->preRemove($eventArgs);
-
-        $entityManager->expects(static::never())->method('createQueryBuilder');
+        $listener->preRemove(new PreRemoveEventArgs($object, $entityManager));
     }
 
     public function testLoadClassMetadataWithEmptyClass(): void

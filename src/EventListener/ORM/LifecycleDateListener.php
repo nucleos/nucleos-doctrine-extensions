@@ -12,10 +12,10 @@ declare(strict_types=1);
 namespace Nucleos\Doctrine\EventListener\ORM;
 
 use DateTime;
-use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
+use Doctrine\ORM\Event\PrePersistEventArgs;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
-use Doctrine\ORM\Mapping\MappingException;
 use Nucleos\Doctrine\Model\LifecycleDateTimeInterface;
 
 final class LifecycleDateListener extends AbstractListener
@@ -29,10 +29,7 @@ final class LifecycleDateListener extends AbstractListener
         ];
     }
 
-    /**
-     * Start lifecycle.
-     */
-    public function prePersist(LifecycleEventArgs $args): void
+    public function prePersist(PrePersistEventArgs $args): void
     {
         $object = $args->getObject();
 
@@ -42,10 +39,7 @@ final class LifecycleDateListener extends AbstractListener
         }
     }
 
-    /**
-     * Update LifecycleDateTime.
-     */
-    public function preUpdate(LifecycleEventArgs $args): void
+    public function preUpdate(PreUpdateEventArgs $args): void
     {
         $object = $args->getObject();
 
@@ -54,9 +48,6 @@ final class LifecycleDateListener extends AbstractListener
         }
     }
 
-    /**
-     * @throws MappingException
-     */
     public function loadClassMetadata(LoadClassMetadataEventArgs $eventArgs): void
     {
         $meta = $eventArgs->getClassMetadata();
