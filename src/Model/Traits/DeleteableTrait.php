@@ -15,10 +15,7 @@ use DateTime;
 
 trait DeleteableTrait
 {
-    /**
-     * @var DateTime|null
-     */
-    protected $deletedAt;
+    protected ?DateTime $deletedAt = null;
 
     public function getDeletedAt(): ?DateTime
     {

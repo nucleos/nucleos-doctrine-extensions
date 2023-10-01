@@ -15,10 +15,7 @@ use DateTime;
 
 trait ConfirmableTrait
 {
-    /**
-     * @var DateTime|null
-     */
-    protected $confirmedAt;
+    protected ?DateTime $confirmedAt = null;
 
     public function getConfirmedAt(): ?DateTime
     {
