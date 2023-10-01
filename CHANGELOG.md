@@ -2,27 +2,24 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 4.11.0 - TBD
+## 4.11.0 - 2023-10-01
 
-### Added
 
-- Nothing.
+-----
 
-### Changed
+### Release Notes for [4.11.0](https://github.com/nucleos/nucleos-doctrine-extensions/milestone/23)
 
-- Nothing.
+Feature release (minor)
 
-### Deprecated
+### 4.11.0
 
-- Nothing.
+- Total issues resolved: **0**
+- Total pull requests resolved: **1**
+- Total contributors: **1**
 
-### Removed
+#### Enhancement
 
-- Nothing.
-
-### Fixed
-
-- Nothing.
+ - [396: Add type hints](https://github.com/nucleos/nucleos-doctrine-extensions/pull/396) thanks to @core23
 
 ## 4.10.0 - 2023-08-10
 
