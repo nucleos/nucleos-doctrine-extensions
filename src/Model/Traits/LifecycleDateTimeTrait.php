@@ -15,15 +15,9 @@ use DateTime;
 
 trait LifecycleDateTimeTrait
 {
-    /**
-     * @var DateTime|null
-     */
-    protected $createdAt;
+    protected ?DateTime $createdAt = null;
 
-    /**
-     * @var DateTime|null
-     */
-    protected $updatedAt;
+    protected ?DateTime $updatedAt = null;
 
     public function setCreatedAt(?DateTime $createdAt): void
     {

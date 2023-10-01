@@ -13,10 +13,7 @@ namespace Nucleos\Doctrine\Model\Traits;
 
 trait SortableTrait
 {
-    /**
-     * @var int|null
-     */
-    protected $position;
+    protected ?int $position = null;
 
     public function setPosition(?int $position): void
     {

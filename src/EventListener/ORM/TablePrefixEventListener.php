@@ -21,10 +21,7 @@ use Doctrine\ORM\Mapping\ClassMetadataInfo;
 
 final class TablePrefixEventListener implements EventSubscriber
 {
-    /**
-     * @var string|null
-     */
-    private $prefix;
+    private ?string $prefix;
 
     public function __construct(?string $prefix)
     {

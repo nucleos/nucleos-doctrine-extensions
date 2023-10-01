@@ -27,14 +27,8 @@ use Symfony\Component\PropertyAccess\PropertyAccessor;
 
 final class UniqueActiveListener implements EventSubscriber
 {
-    /**
-     * @var PropertyAccessor
-     */
-    private $propertyAccessor;
+    private PropertyAccessor $propertyAccessor;
 
-    /**
-     * @param PropertyAccessor $propertyAccessor
-     */
     public function __construct(PropertyAccessor $propertyAccessor = null)
     {
         if (null === $propertyAccessor) {
