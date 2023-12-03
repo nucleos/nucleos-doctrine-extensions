@@ -15,9 +15,6 @@ use DateTime;
 
 interface DeletableInterface
 {
-    /**
-     * @return DateTime
-     */
     public function getDeletedAt(): ?DateTime;
 
     public function setDeletedAt(?DateTime $deletedAt): void;

@@ -49,7 +49,7 @@ final class BaseQueryTraitTest extends TestCase
 
         $builder->addOrderBy('myalias.position', 'asc');
 
-        static::assertSame($builder, $this->manager->addOrderToQueryBuilder(
+        self::assertSame($builder, $this->manager->addOrderToQueryBuilder(
             $builder,
             ['position'],
             'myalias'
@@ -62,7 +62,7 @@ final class BaseQueryTraitTest extends TestCase
 
         $builder->addOrderBy('myalias.position', 'desc');
 
-        static::assertSame($builder, $this->manager->addOrderToQueryBuilder(
+        self::assertSame($builder, $this->manager->addOrderToQueryBuilder(
             $builder,
             ['position'],
             'myalias',
@@ -78,7 +78,7 @@ final class BaseQueryTraitTest extends TestCase
         $builder->addOrderBy('myalias.position', 'desc');
         $builder->addOrderBy('myalias.otherfield', 'desc');
 
-        static::assertSame($builder, $this->manager->addOrderToQueryBuilder(
+        self::assertSame($builder, $this->manager->addOrderToQueryBuilder(
             $builder,
             ['position', 'otherfield'],
             'myalias',
@@ -95,7 +95,7 @@ final class BaseQueryTraitTest extends TestCase
         $builder->addOrderBy('myalias.otherfield', 'asc');
         $builder->addOrderBy('myalias.foo', 'desc');
 
-        static::assertSame($builder, $this->manager->addOrderToQueryBuilder(
+        self::assertSame($builder, $this->manager->addOrderToQueryBuilder(
             $builder,
             [
                 'position',
@@ -114,7 +114,7 @@ final class BaseQueryTraitTest extends TestCase
 
         $builder->addOrderBy('child.position', 'desc');
 
-        static::assertSame($builder, $this->manager->addOrderToQueryBuilder(
+        self::assertSame($builder, $this->manager->addOrderToQueryBuilder(
             $builder,
             ['child.position'],
             'myalias',
@@ -129,7 +129,7 @@ final class BaseQueryTraitTest extends TestCase
 
         $builder->addOrderBy('foo.position', 'desc');
 
-        static::assertSame($builder, $this->manager->addOrderToQueryBuilder(
+        self::assertSame($builder, $this->manager->addOrderToQueryBuilder(
             $builder,
             ['f.position'],
             'myalias',

@@ -30,7 +30,7 @@ final class UniqueActiveListenerTest extends TestCase
     {
         $listener = new UniqueActiveListener();
 
-        static::assertSame([
+        self::assertSame([
             Events::prePersist,
             Events::preUpdate,
             Events::loadClassMetadata,
@@ -42,7 +42,7 @@ final class UniqueActiveListenerTest extends TestCase
         $object = $this->createMock(stdClass::class);
 
         $entityManager = $this->createMock(EntityManagerInterface::class);
-        $entityManager->expects(static::never())->method('createQueryBuilder');
+        $entityManager->expects(self::never())->method('createQueryBuilder');
 
         $listener = new UniqueActiveListener();
         $listener->prePersist(new PrePersistEventArgs($object, $entityManager));
@@ -53,7 +53,7 @@ final class UniqueActiveListenerTest extends TestCase
         $object = $this->createMock(stdClass::class);
 
         $entityManager = $this->createMock(EntityManagerInterface::class);
-        $entityManager->expects(static::never())->method('createQueryBuilder');
+        $entityManager->expects(self::never())->method('createQueryBuilder');
 
         $changeSet = [];
 
@@ -67,7 +67,7 @@ final class UniqueActiveListenerTest extends TestCase
         $metadata->method('getReflectionClass')
             ->willReturn(null)
         ;
-        $metadata->expects(static::never())->method('mapField');
+        $metadata->expects(self::never())->method('mapField');
 
         $eventArgs = $this->createMock(LoadClassMetadataEventArgs::class);
         $eventArgs->method('getClassMetadata')
@@ -86,7 +86,7 @@ final class UniqueActiveListenerTest extends TestCase
         $metadata->method('getReflectionClass')
             ->willReturn($reflection)
         ;
-        $metadata->expects(static::never())->method('mapField');
+        $metadata->expects(self::never())->method('mapField');
 
         $eventArgs = $this->createMock(LoadClassMetadataEventArgs::class);
         $eventArgs->method('getClassMetadata')
@@ -108,7 +108,7 @@ final class UniqueActiveListenerTest extends TestCase
         $metadata->method('hasField')->with('active')
             ->willReturn(false)
         ;
-        $metadata->expects(static::once())->method('mapField')->with([
+        $metadata->expects(self::once())->method('mapField')->with([
             'type'      => 'integer',
             'fieldName' => 'active',
         ]);
@@ -133,7 +133,7 @@ final class UniqueActiveListenerTest extends TestCase
         $metadata->method('hasField')->with('active')
             ->willReturn(true)
         ;
-        $metadata->expects(static::never())->method('mapField');
+        $metadata->expects(self::never())->method('mapField');
 
         $eventArgs = $this->createMock(LoadClassMetadataEventArgs::class);
         $eventArgs->method('getClassMetadata')

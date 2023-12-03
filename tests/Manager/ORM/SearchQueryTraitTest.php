@@ -61,7 +61,7 @@ final class SearchQueryTraitTest extends TestCase
         $orx->add('field LIKE :name0_pre');
         $orx->add('field LIKE :name0_suf');
 
-        static::assertSame($orx, $this->manager->searchWhereQueryBuilder(
+        self::assertSame($orx, $this->manager->searchWhereQueryBuilder(
             $builder,
             'field',
             ['foo']
@@ -76,7 +76,7 @@ final class SearchQueryTraitTest extends TestCase
         $builder->setParameter('name0', 'foo');
         $orx->add('field = :name0');
 
-        static::assertSame($orx, $this->manager->searchWhereQueryBuilder(
+        self::assertSame($orx, $this->manager->searchWhereQueryBuilder(
             $builder,
             'field',
             ['foo'],
@@ -96,7 +96,7 @@ final class SearchQueryTraitTest extends TestCase
         $orx->add('field = :name1');
         $orx->add('field = :name2');
 
-        static::assertSame($orx, $this->manager->searchWhereQueryBuilder(
+        self::assertSame($orx, $this->manager->searchWhereQueryBuilder(
             $builder,
             'field',
             ['foo', 'bar', 'baz'],

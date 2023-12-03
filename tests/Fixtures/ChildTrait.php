@@ -11,6 +11,4 @@ declare(strict_types=1);
 
 namespace Nucleos\Doctrine\Tests\Fixtures;
 
-trait ChildTrait
-{
-}
+trait ChildTrait {}

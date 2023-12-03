@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.7.7@e028ba46ba0d7f9a78bc3201c251e137383e145f">
+<files psalm-version="5.16.0@2897ba636551a8cb61601cc26f6ccfbba6c36591">
   <file src="src/Bridge/Symfony/DependencyInjection/Configuration.php">
     <ArgumentTypeCoercion>
       <code>$rootNode</code>
@@ -7,9 +7,6 @@
     <PossiblyNullReference>
       <code>end</code>
     </PossiblyNullReference>
-    <PossiblyUndefinedMethod>
-      <code>end</code>
-    </PossiblyUndefinedMethod>
   </file>
   <file src="src/EventListener/ORM/ConfirmableListener.php">
     <TypeDoesNotContainNull>

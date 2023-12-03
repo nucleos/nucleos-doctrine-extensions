@@ -86,7 +86,7 @@ final class IdToUuidMigration implements LoggerAwareInterface
     }
 
     /**
-     * @param null|callable(mixed $id, string $uuid): void $callback
+     * @param callable(mixed $id, string $uuid): void|null $callback
      */
     public function migrate(string $tableName, string $idField = 'id', callable $callback = null): void
     {
@@ -300,7 +300,7 @@ final class IdToUuidMigration implements LoggerAwareInterface
     }
 
     /**
-     * @param null|callable(mixed $id, string $uuid): void $callback
+     * @param callable(mixed $id, string $uuid): void|null $callback
      */
     private function handleCallback(?callable $callback): void
     {
