@@ -97,8 +97,8 @@ final class IdToUuidMigrationTest extends KernelTestCase
         $this->createItem($schema);
         $schemaManager->migrateSchema($schema);
 
-        static::assertTrue($schemaManager->tablesExist('category'));
-        static::assertTrue($schemaManager->tablesExist('item'));
+        self::assertTrue($schemaManager->tablesExist('category'));
+        self::assertTrue($schemaManager->tablesExist('item'));
     }
 
     /**
@@ -147,20 +147,20 @@ final class IdToUuidMigrationTest extends KernelTestCase
     private function verifyCategoryData(Connection $connection): void
     {
         $result = $connection->fetchAllAssociative('SELECT id, parent_id FROM category');
-        static::assertCount(4, $result);
+        self::assertCount(4, $result);
 
         foreach ($result as $data) {
-            static::assertTrue(36 === \strlen($data['id']));
+            self::assertTrue(36 === \strlen($data['id']));
         }
     }
 
     private function verifyItemData(Connection $connection): void
     {
         $result = $connection->fetchAllAssociative('SELECT id, category_id FROM item');
-        static::assertCount(3, $result);
+        self::assertCount(3, $result);
 
         foreach ($result as $data) {
-            static::assertFalse(36 === \strlen($data['id']));
+            self::assertFalse(36 === \strlen($data['id']));
         }
     }
 }

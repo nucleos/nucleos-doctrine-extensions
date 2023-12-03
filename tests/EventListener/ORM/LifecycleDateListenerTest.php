@@ -34,7 +34,7 @@ final class LifecycleDateListenerTest extends TestCase
     {
         $listener = new LifecycleDateListener();
 
-        static::assertSame([
+        self::assertSame([
             Events::prePersist,
             Events::preUpdate,
             Events::loadClassMetadata,
@@ -44,8 +44,8 @@ final class LifecycleDateListenerTest extends TestCase
     public function testPrePersist(): void
     {
         $object = $this->createMock(LifecycleDateTimeInterface::class);
-        $object->expects(static::once())->method('setCreatedAt');
-        $object->expects(static::once())->method('setUpdatedAt');
+        $object->expects(self::once())->method('setCreatedAt');
+        $object->expects(self::once())->method('setUpdatedAt');
 
         $eventArgs = new PrePersistEventArgs($object, $this->createStub(EntityManagerInterface::class));
 
@@ -58,7 +58,7 @@ final class LifecycleDateListenerTest extends TestCase
         $object = $this->createMock(stdClass::class);
 
         $entityManager = $this->createMock(EntityManagerInterface::class);
-        $entityManager->expects(static::never())->method('createQueryBuilder');
+        $entityManager->expects(self::never())->method('createQueryBuilder');
 
         $listener = new LifecycleDateListener();
         $listener->prePersist(new PrePersistEventArgs($object, $entityManager));
@@ -67,7 +67,7 @@ final class LifecycleDateListenerTest extends TestCase
     public function testPreUpdate(): void
     {
         $object = $this->createMock(LifecycleDateTimeInterface::class);
-        $object->expects(static::once())->method('setUpdatedAt');
+        $object->expects(self::once())->method('setUpdatedAt');
 
         $changeSet = [];
 
@@ -80,7 +80,7 @@ final class LifecycleDateListenerTest extends TestCase
         $object = $this->createMock(stdClass::class);
 
         $entityManager = $this->createMock(EntityManagerInterface::class);
-        $entityManager->expects(static::never())->method('createQueryBuilder');
+        $entityManager->expects(self::never())->method('createQueryBuilder');
 
         $changeSet = [];
 
@@ -94,7 +94,7 @@ final class LifecycleDateListenerTest extends TestCase
         $metadata->method('getReflectionClass')
             ->willReturn(null)
         ;
-        $metadata->expects(static::never())->method('mapField');
+        $metadata->expects(self::never())->method('mapField');
 
         $eventArgs = $this->createMock(LoadClassMetadataEventArgs::class);
         $eventArgs->method('getClassMetadata')
@@ -113,7 +113,7 @@ final class LifecycleDateListenerTest extends TestCase
         $metadata->method('getReflectionClass')
             ->willReturn($reflection)
         ;
-        $metadata->expects(static::never())->method('mapField');
+        $metadata->expects(self::never())->method('mapField');
 
         $eventArgs = $this->createMock(LoadClassMetadataEventArgs::class);
         $eventArgs->method('getClassMetadata')
@@ -132,14 +132,14 @@ final class LifecycleDateListenerTest extends TestCase
         $metadata->method('getReflectionClass')
             ->willReturn($reflection)
         ;
-        $metadata->expects($matcher = static::exactly(2))->method('hasField')
+        $metadata->expects($matcher = self::exactly(2))->method('hasField')
             ->willReturnCallback($this->withParameter($matcher, [
                 ['createdAt'],
                 ['updatedAt'],
             ]))
             ->willReturn(false)
         ;
-        $metadata->expects($matcher = static::exactly(2))->method('mapField')
+        $metadata->expects($matcher = self::exactly(2))->method('mapField')
             ->willReturnCallback($this->withParameter($matcher, [
                 [[
                     'type'      => 'datetime',
@@ -172,14 +172,14 @@ final class LifecycleDateListenerTest extends TestCase
         $metadata->method('getReflectionClass')
             ->willReturn($reflection)
         ;
-        $metadata->expects($matcher = static::exactly(2))->method('hasField')
+        $metadata->expects($matcher = self::exactly(2))->method('hasField')
             ->willReturnCallback($this->withParameter($matcher, [
                 ['createdAt'],
                 ['updatedAt'],
             ]))
             ->willReturn(true)
         ;
-        $metadata->expects(static::never())->method('mapField');
+        $metadata->expects(self::never())->method('mapField');
 
         $eventArgs = $this->createMock(LoadClassMetadataEventArgs::class);
         $eventArgs->method('getClassMetadata')

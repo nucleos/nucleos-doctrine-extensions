@@ -42,6 +42,6 @@ final class EntityManagerTraitTest extends TestCase
 
         $manager = new DemoEntityManager(EmptyClass::class, $registry);
 
-        static::assertSame($queryBuilder, $manager->getQueryBuilder('alias', 'someindex'));
+        self::assertSame($queryBuilder, $manager->getQueryBuilder('alias', 'someindex'));
     }
 }

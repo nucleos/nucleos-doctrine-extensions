@@ -28,18 +28,18 @@ final class SortableTraitTest extends TestCase
 
     public function testPositionWithDefault(): void
     {
-        static::assertNull($this->trait->getPosition());
+        self::assertNull($this->trait->getPosition());
     }
 
     public function testPosition(): void
     {
         $this->trait->setPosition(14);
 
-        static::assertSame(14, $this->trait->getPosition());
+        self::assertSame(14, $this->trait->getPosition());
     }
 
     public function testGetPositionGroup(): void
     {
-        static::assertSame([], $this->trait->getPositionGroup());
+        self::assertSame([], $this->trait->getPositionGroup());
     }
 }

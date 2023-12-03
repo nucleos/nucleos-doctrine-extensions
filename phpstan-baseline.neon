@@ -91,6 +91,11 @@ parameters:
 			path: tests/Bridge/Symfony/Bundle/BundleIntegrationTest.php
 
 		-
+			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\TestCase\\:\\:createStub\\(\\)\\.$#"
+			count: 2
+			path: tests/EventListener/ORM/LifecycleDateListenerTest.php
+
+		-
 			message: "#^Call to function assert\\(\\) with true will always evaluate to true\\.$#"
 			count: 1
 			path: tests/Fixtures/DemoEntityManager.php

@@ -26,7 +26,7 @@ final class DeletableListenerTest extends TestCase
     {
         $listener = new DeletableListener();
 
-        static::assertSame([
+        self::assertSame([
             Events::loadClassMetadata,
         ], $listener->getSubscribedEvents());
     }
@@ -37,7 +37,7 @@ final class DeletableListenerTest extends TestCase
         $metadata->method('getReflectionClass')
             ->willReturn(null)
         ;
-        $metadata->expects(static::never())->method('mapField');
+        $metadata->expects(self::never())->method('mapField');
 
         $eventArgs = $this->createMock(LoadClassMetadataEventArgs::class);
         $eventArgs->method('getClassMetadata')
@@ -56,7 +56,7 @@ final class DeletableListenerTest extends TestCase
         $metadata->method('getReflectionClass')
             ->willReturn($reflection)
         ;
-        $metadata->expects(static::never())->method('mapField');
+        $metadata->expects(self::never())->method('mapField');
 
         $eventArgs = $this->createMock(LoadClassMetadataEventArgs::class);
         $eventArgs->method('getClassMetadata')
@@ -78,7 +78,7 @@ final class DeletableListenerTest extends TestCase
         $metadata->method('hasField')->with('deletedAt')
             ->willReturn(false)
         ;
-        $metadata->expects(static::once())->method('mapField')->with([
+        $metadata->expects(self::once())->method('mapField')->with([
             'type'      => 'datetime',
             'fieldName' => 'deletedAt',
             'nullable'  => true,
@@ -104,7 +104,7 @@ final class DeletableListenerTest extends TestCase
         $metadata->method('hasField')->with('deletedAt')
             ->willReturn(true)
         ;
-        $metadata->expects(static::never())->method('mapField');
+        $metadata->expects(self::never())->method('mapField');
 
         $eventArgs = $this->createMock(LoadClassMetadataEventArgs::class);
         $eventArgs->method('getClassMetadata')

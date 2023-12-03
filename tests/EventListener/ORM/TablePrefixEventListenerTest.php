@@ -21,7 +21,7 @@ final class TablePrefixEventListenerTest extends TestCase
     {
         $listener = new TablePrefixEventListener('acme_');
 
-        static::assertSame([
+        self::assertSame([
             Events::loadClassMetadata,
         ], $listener->getSubscribedEvents());
     }

@@ -29,25 +29,25 @@ final class DeleteableTraitTest extends TestCase
 
     public function testIsDeletedWithDefault(): void
     {
-        static::assertNull($this->trait->getDeletedAt());
+        self::assertNull($this->trait->getDeletedAt());
     }
 
     public function testGetDeletedAtWithDefault(): void
     {
-        static::assertFalse($this->trait->isDeleted());
+        self::assertFalse($this->trait->isDeleted());
     }
 
     public function testSetUnDeleted(): void
     {
         $this->trait->setDeleted(true);
 
-        static::assertTrue($this->trait->isDeleted());
-        static::assertNotNull($this->trait->getDeletedAt());
+        self::assertTrue($this->trait->isDeleted());
+        self::assertNotNull($this->trait->getDeletedAt());
 
         $this->trait->setDeleted(false);
 
-        static::assertFalse($this->trait->isDeleted());
-        static::assertNull($this->trait->getDeletedAt());
+        self::assertFalse($this->trait->isDeleted());
+        self::assertNull($this->trait->getDeletedAt());
     }
 
     public function testSetDeletedAt(): void
@@ -56,7 +56,7 @@ final class DeleteableTraitTest extends TestCase
 
         $this->trait->setDeletedAt($now);
 
-        static::assertSame($now, $this->trait->getDeletedAt());
-        static::assertTrue($this->trait->isDeleted());
+        self::assertSame($now, $this->trait->getDeletedAt());
+        self::assertTrue($this->trait->isDeleted());
     }
 }

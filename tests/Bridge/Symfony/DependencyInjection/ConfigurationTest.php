@@ -29,7 +29,7 @@ final class ConfigurationTest extends TestCase
             ],
         ];
 
-        static::assertSame($expected, $config);
+        self::assertSame($expected, $config);
     }
 
     public function testOptions(): void
@@ -48,6 +48,6 @@ final class ConfigurationTest extends TestCase
             ],
         ];
 
-        static::assertSame($expected, $config);
+        self::assertSame($expected, $config);
     }
 }

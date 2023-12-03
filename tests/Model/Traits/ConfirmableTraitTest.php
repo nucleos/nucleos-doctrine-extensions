@@ -29,25 +29,25 @@ final class ConfirmableTraitTest extends TestCase
 
     public function testIsConfirmedWithDefault(): void
     {
-        static::assertNull($this->trait->getConfirmedAt());
+        self::assertNull($this->trait->getConfirmedAt());
     }
 
     public function testGetConfirmedAtWithDefault(): void
     {
-        static::assertFalse($this->trait->isConfirmed());
+        self::assertFalse($this->trait->isConfirmed());
     }
 
     public function testSetUnConfirmed(): void
     {
         $this->trait->setConfirmed(true);
 
-        static::assertTrue($this->trait->isConfirmed());
-        static::assertNotNull($this->trait->getConfirmedAt());
+        self::assertTrue($this->trait->isConfirmed());
+        self::assertNotNull($this->trait->getConfirmedAt());
 
         $this->trait->setConfirmed(false);
 
-        static::assertFalse($this->trait->isConfirmed());
-        static::assertNull($this->trait->getConfirmedAt());
+        self::assertFalse($this->trait->isConfirmed());
+        self::assertNull($this->trait->getConfirmedAt());
     }
 
     public function testSetConfirmedAt(): void
@@ -56,7 +56,7 @@ final class ConfirmableTraitTest extends TestCase
 
         $this->trait->setConfirmedAt($now);
 
-        static::assertSame($now, $this->trait->getConfirmedAt());
-        static::assertTrue($this->trait->isConfirmed());
+        self::assertSame($now, $this->trait->getConfirmedAt());
+        self::assertTrue($this->trait->isConfirmed());
     }
 }

@@ -30,7 +30,7 @@ final class SortableListenerTest extends TestCase
     {
         $listener = new SortableListener();
 
-        static::assertSame([
+        self::assertSame([
             Events::prePersist,
             Events::preUpdate,
             Events::preRemove,
@@ -43,7 +43,7 @@ final class SortableListenerTest extends TestCase
         $object = $this->createMock(stdClass::class);
 
         $entityManager = $this->createMock(EntityManagerInterface::class);
-        $entityManager->expects(static::never())->method('createQueryBuilder');
+        $entityManager->expects(self::never())->method('createQueryBuilder');
 
         $listener = new SortableListener();
         $listener->prePersist(new PrePersistEventArgs($object, $entityManager));
@@ -54,7 +54,7 @@ final class SortableListenerTest extends TestCase
         $object = $this->createMock(stdClass::class);
 
         $entityManager = $this->createMock(EntityManagerInterface::class);
-        $entityManager->expects(static::never())->method('createQueryBuilder');
+        $entityManager->expects(self::never())->method('createQueryBuilder');
 
         $listener = new SortableListener();
         $listener->preRemove(new PreRemoveEventArgs($object, $entityManager));
@@ -66,7 +66,7 @@ final class SortableListenerTest extends TestCase
         $metadata->method('getReflectionClass')
             ->willReturn(null)
         ;
-        $metadata->expects(static::never())->method('mapField');
+        $metadata->expects(self::never())->method('mapField');
 
         $eventArgs = $this->createMock(LoadClassMetadataEventArgs::class);
         $eventArgs->method('getClassMetadata')
@@ -85,7 +85,7 @@ final class SortableListenerTest extends TestCase
         $metadata->method('getReflectionClass')
             ->willReturn($reflection)
         ;
-        $metadata->expects(static::never())->method('mapField');
+        $metadata->expects(self::never())->method('mapField');
 
         $eventArgs = $this->createMock(LoadClassMetadataEventArgs::class);
         $eventArgs->method('getClassMetadata')
@@ -107,7 +107,7 @@ final class SortableListenerTest extends TestCase
         $metadata->method('hasField')->with('position')
             ->willReturn(false)
         ;
-        $metadata->expects(static::once())->method('mapField')->with([
+        $metadata->expects(self::once())->method('mapField')->with([
             'type'      => 'integer',
             'fieldName' => 'position',
         ]);
@@ -132,7 +132,7 @@ final class SortableListenerTest extends TestCase
         $metadata->method('hasField')->with('position')
             ->willReturn(true)
         ;
-        $metadata->expects(static::never())->method('mapField');
+        $metadata->expects(self::never())->method('mapField');
 
         $eventArgs = $this->createMock(LoadClassMetadataEventArgs::class);
         $eventArgs->method('getClassMetadata')

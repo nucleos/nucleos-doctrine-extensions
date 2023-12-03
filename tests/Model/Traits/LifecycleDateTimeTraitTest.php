@@ -29,12 +29,12 @@ final class LifecycleDateTimeTraitTest extends TestCase
 
     public function testIsCreatedWithDefault(): void
     {
-        static::assertNull($this->trait->getCreatedAt());
+        self::assertNull($this->trait->getCreatedAt());
     }
 
     public function testIsUpdatedWithDefault(): void
     {
-        static::assertNull($this->trait->getCreatedAt());
+        self::assertNull($this->trait->getCreatedAt());
     }
 
     public function testSetCreated(): void
@@ -43,11 +43,11 @@ final class LifecycleDateTimeTraitTest extends TestCase
 
         $this->trait->setCreatedAt($now);
 
-        static::assertSame($now, $this->trait->getCreatedAt());
+        self::assertSame($now, $this->trait->getCreatedAt());
 
         $this->trait->setCreatedAt(null);
 
-        static::assertNull($this->trait->getCreatedAt());
+        self::assertNull($this->trait->getCreatedAt());
     }
 
     public function testSetUpdated(): void
@@ -56,10 +56,10 @@ final class LifecycleDateTimeTraitTest extends TestCase
 
         $this->trait->setUpdatedAt($now);
 
-        static::assertSame($now, $this->trait->getUpdatedAt());
+        self::assertSame($now, $this->trait->getUpdatedAt());
 
         $this->trait->setUpdatedAt(null);
 
-        static::assertNull($this->trait->getUpdatedAt());
+        self::assertNull($this->trait->getUpdatedAt());
     }
 }
