@@ -2,27 +2,30 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 4.12.0 - TBD
+## 4.12.0 - 2023-12-05
 
-### Added
 
-- Nothing.
+-----
 
-### Changed
+### Release Notes for [4.12.0](https://github.com/nucleos/nucleos-doctrine-extensions/milestone/25)
 
-- Nothing.
+Feature release (minor)
 
-### Deprecated
+### 4.12.0
 
-- Nothing.
+- Total issues resolved: **0**
+- Total pull requests resolved: **4**
+- Total contributors: **2**
 
-### Removed
+#### dependency
 
-- Nothing.
+ - [400: Bump to symfony ^6.4 || ^7.0](https://github.com/nucleos/nucleos-doctrine-extensions/pull/400) thanks to @core23
+ - [398: Update dependency symfony/phpunit-bridge to v7](https://github.com/nucleos/nucleos-doctrine-extensions/pull/398) thanks to @renovate[bot]
+ - [397: Update dependency matthiasnoback/symfony-dependency-injection-test to v5](https://github.com/nucleos/nucleos-doctrine-extensions/pull/397) thanks to @renovate[bot]
 
-### Fixed
+#### Enhancement
 
-- Nothing.
+ - [399: Update tools ](https://github.com/nucleos/nucleos-doctrine-extensions/pull/399) thanks to @core23
 
 ## 4.11.0 - 2023-10-01
 
