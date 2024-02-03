@@ -9,6 +9,7 @@
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
+use Doctrine\ORM\Events;
 use Nucleos\Doctrine\EventListener\ORM\ConfirmableListener;
 use Nucleos\Doctrine\EventListener\ORM\DeletableListener;
 use Nucleos\Doctrine\EventListener\ORM\LifecycleDateListener;
@@ -22,28 +23,61 @@ return static function (ContainerConfigurator $container): void {
     $container->services()
 
         ->set(ConfirmableListener::class)
-            ->tag('doctrine.event_subscriber')
+            ->tag('doctrine.event_listener', [
+                'event' => Events::loadClassMetadata,
+            ])
 
         ->set(DeletableListener::class)
-            ->tag('doctrine.event_subscriber')
+            ->tag('doctrine.event_listener', [
+                'event' => Events::loadClassMetadata,
+            ])
 
         ->set(LifecycleDateListener::class)
-            ->tag('doctrine.event_subscriber')
+            ->tag('doctrine.event_listener', [
+                'event' => Events::prePersist,
+            ])
+            ->tag('doctrine.event_listener', [
+                'event' => Events::preUpdate,
+            ])
+            ->tag('doctrine.event_listener', [
+                'event' => Events::loadClassMetadata,
+            ])
 
         ->set(SortableListener::class)
-            ->tag('doctrine.event_subscriber')
+            ->tag('doctrine.event_listener', [
+                'event' => Events::prePersist,
+            ])
+            ->tag('doctrine.event_listener', [
+                'event' => Events::preUpdate,
+            ])
+            ->tag('doctrine.event_listener', [
+                'event' => Events::preRemove,
+            ])
+            ->tag('doctrine.event_listener', [
+                'event' => Events::loadClassMetadata,
+            ])
             ->args([
                 new Reference('property_accessor'),
             ])
 
         ->set(UniqueActiveListener::class)
-            ->tag('doctrine.event_subscriber')
+            ->tag('doctrine.event_listener', [
+                'event' => Events::prePersist,
+            ])
+            ->tag('doctrine.event_listener', [
+                'event' => Events::preUpdate,
+            ])
+            ->tag('doctrine.event_listener', [
+                'event' => Events::loadClassMetadata,
+            ])
             ->args([
                 new Reference('property_accessor'),
             ])
 
         ->set(TablePrefixEventListener::class)
-            ->tag('doctrine.event_subscriber')
+            ->tag('doctrine.event_listener', [
+                'event' => Events::loadClassMetadata,
+            ])
             ->args([
                 new Parameter('nucleos_doctrine.table.prefix'),
             ])
