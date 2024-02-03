@@ -2,27 +2,24 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 4.13.0 - TBD
+## 4.13.0 - 2024-02-03
 
-### Added
 
-- Nothing.
+-----
 
-### Changed
+### Release Notes for [4.13.0](https://github.com/nucleos/nucleos-doctrine-extensions/milestone/27)
 
-- Nothing.
+Feature release (minor)
 
-### Deprecated
+### 4.13.0
 
-- Nothing.
+- Total issues resolved: **0**
+- Total pull requests resolved: **1**
+- Total contributors: **1**
 
-### Removed
+#### Bug
 
-- Nothing.
-
-### Fixed
-
-- Nothing.
+ - [402: Register extensions on symfony 7](https://github.com/nucleos/nucleos-doctrine-extensions/pull/402) thanks to @core23
 
 ## 4.12.0 - 2023-12-05
 
