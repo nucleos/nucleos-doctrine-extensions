@@ -11,8 +11,6 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Nucleos\Doctrine\Tests\Bridge\Symfony\App\Controller\SampleTestController;
-
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->extension('framework', ['secret' => 'MySecret']);
 
@@ -25,16 +23,4 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             'Nucleos\Doctrine\Tests\Bridge\Symfony\App\Migrations' => \dirname(__DIR__).'/Migrations',
         ],
     ]);
-
-    $services = $containerConfigurator->services();
-
-    $services->defaults()
-        ->autowire()
-        ->autoconfigure()
-    ;
-
-    $services
-        ->set(SampleTestController::class)
-        ->tag('controller.service_arguments')
-    ;
 };

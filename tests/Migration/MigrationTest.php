@@ -16,6 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Output\BufferedOutput;
 
 /**
  * @group integration
@@ -29,12 +30,10 @@ final class MigrationTest extends KernelTestCase
 
         $application = new Application($kernel);
         $application->setAutoExit(false);
+        $application->setCatchExceptions(false);
 
         $this->runCommand($application, 'doctrine:database:drop', [
             '--force' => true,
-            '--quiet' => true,
-        ]);
-        $this->runCommand($application, 'doctrine:database:create', [
             '--quiet' => true,
         ]);
         $this->runCommand($application, 'doctrine:migrations:migrate', [
@@ -54,9 +53,10 @@ final class MigrationTest extends KernelTestCase
      */
     private function runCommand(Application $application, string $command, array $arguments): void
     {
-        $arguments['command']  =$command;
+        $arguments['command'] = $command;
 
-        $status = $application->run(new ArrayInput($arguments));
+        $output = new BufferedOutput();
+        $status = $application->run(new ArrayInput($arguments), $output);
 
         self::assertSame(Command::SUCCESS, $status, sprintf('Command "%s" failed', $command));
     }

@@ -17,6 +17,7 @@ use Doctrine\DBAL\Schema\Column;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\DBAL\Schema\Table;
 use Doctrine\DBAL\Types\Types;
+use Exception;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -30,7 +31,7 @@ use Symfony\Component\Uid\Uuid;
  *     uuid_key:    string,
  *     nullable:    bool,
  *     name:        string,
- *     primaryKey:  Column[],
+ *     primaryKey:  string[],
  *     onDelete?:   string
  * }
  * @psalm-type Index = array{
@@ -79,9 +80,7 @@ final class IdToUuidMigration implements LoggerAwareInterface
     public function __construct(Connection $connection, ?LoggerInterface $logger = null)
     {
         $this->connection    = $connection;
-        $this->schemaManager = method_exists($this->connection, 'createSchemaManager')
-                             ? $this->connection->createSchemaManager()
-                             : $this->connection->getSchemaManager();
+        $this->schemaManager = $this->connection->createSchemaManager();
         $this->logger        = $logger ?? new NullLogger();
     }
 
@@ -134,7 +133,7 @@ final class IdToUuidMigration implements LoggerAwareInterface
                     'uuid_key'     => $key.'_to_uuid',
                     'nullable'     => $this->isForeignKeyNullable($table, $key),
                     'name'         => $foreignKey->getName(),
-                    'primaryKey'   => $table->getPrimaryKeyColumns(),
+                    'primaryKey'   => $this->getPrimaryKeyColumns($table),
                 ];
 
                 $onDelete = $foreignKey->onDelete();
@@ -214,7 +213,7 @@ final class IdToUuidMigration implements LoggerAwareInterface
     {
         $this->section('Adding new "uuid" fields');
 
-        $schema = $this->schemaManager->createSchema();
+        $schema = $this->schemaManager->introspectSchema();
 
         $table = $schema->getTable($this->table);
         $table->addColumn(self::UUID_FIELD, self::UUID_TYPE, [
@@ -227,7 +226,7 @@ final class IdToUuidMigration implements LoggerAwareInterface
             $table->addColumn($foreignKey['uuid_key'], self::UUID_TYPE, [
                 'length'              => self::UUID_LENGTH,
                 'notnull'             => false,
-                'customSchemaOptions' => ['FIRST'],
+                'platformOptions'     => ['FIRST'],
             ]);
         }
 
@@ -270,7 +269,7 @@ final class IdToUuidMigration implements LoggerAwareInterface
         $this->section('Adding UUIDs to tables with foreign keys');
 
         foreach ($this->foreignKeys as $foreignKey) {
-            $primaryKeys = array_map(static fn (Column $column) => $column->getName(), $foreignKey['primaryKey']);
+            $primaryKeys = array_map(static fn (string $column) => $column, $foreignKey['primaryKey']);
 
             $selectPk = implode(',', $primaryKeys);
 
@@ -319,7 +318,7 @@ final class IdToUuidMigration implements LoggerAwareInterface
     {
         $this->section('Deleting indexes');
 
-        $schema = $this->schemaManager->createSchema();
+        $schema = $this->schemaManager->introspectSchema();
 
         foreach ($this->indexes as $index) {
             $table = $schema->getTable($index['table']);
@@ -336,7 +335,7 @@ final class IdToUuidMigration implements LoggerAwareInterface
     {
         $this->section('Deleting previous foreign keys');
 
-        $schema = $this->schemaManager->createSchema();
+        $schema = $this->schemaManager->introspectSchema();
 
         foreach ($this->foreignKeys as $foreignKey) {
             $table = $schema->getTable($foreignKey['table']);
@@ -353,7 +352,7 @@ final class IdToUuidMigration implements LoggerAwareInterface
     {
         $this->section('Deleting previous primary keys');
 
-        $schema = $this->schemaManager->createSchema();
+        $schema = $this->schemaManager->introspectSchema();
 
         foreach ($this->foreignKeys as $foreignKey) {
             $table = $schema->getTable($foreignKey['table']);
@@ -370,14 +369,14 @@ final class IdToUuidMigration implements LoggerAwareInterface
     {
         $this->section('Recreate id fields');
 
-        $schema = $this->schemaManager->createSchema();
+        $schema = $this->schemaManager->introspectSchema();
 
         $table  = $schema->getTable($this->table);
         $table->dropColumn($this->idField);
         $table->addColumn($this->idField, self::UUID_TYPE, [
             'length'              => self::UUID_LENGTH,
             'notnull'             => false,
-            'customSchemaOptions' => ['FIRST'],
+            'platformOptions'     => ['FIRST'],
         ]);
 
         foreach ($this->foreignKeys as $foreignKey) {
@@ -408,7 +407,7 @@ final class IdToUuidMigration implements LoggerAwareInterface
     {
         $this->section('Drop temporary foreign key uuid fields');
 
-        $schema = $this->schemaManager->createSchema();
+        $schema = $this->schemaManager->introspectSchema();
 
         foreach ($this->foreignKeys as $foreignKey) {
             $table  = $schema->getTable($foreignKey['table']);
@@ -423,7 +422,7 @@ final class IdToUuidMigration implements LoggerAwareInterface
     {
         $this->section('Creating the new primary key');
 
-        $schema = $this->schemaManager->createSchema();
+        $schema = $this->schemaManager->introspectSchema();
         $table  = $schema->getTable($this->table);
 
         $table->dropPrimaryKey();
@@ -438,20 +437,20 @@ final class IdToUuidMigration implements LoggerAwareInterface
     {
         $this->section('Restore constraints and indexes');
 
-        $schema = $this->schemaManager->createSchema();
+        $schema = $this->schemaManager->introspectSchema();
 
         foreach ($this->foreignKeys as $foreignKey) {
             $table = $schema->getTable($foreignKey['table']);
 
             if ([] !== $foreignKey['primaryKey']) {
-                $primaryKeys = array_map(static fn (Column $column) => $column->getName(), $foreignKey['primaryKey']);
+                $primaryKeys = array_map(static fn (string $column) => $column, $foreignKey['primaryKey']);
 
-                if (!$table->hasPrimaryKey()) {
+                if (null === $table->getPrimaryKey()) {
                     $table->setPrimaryKey($primaryKeys);
                 }
             }
 
-            $table->changeColumn($foreignKey['key'], [
+            $table->modifyColumn($foreignKey['key'], [
                 'notnull' => !$foreignKey['nullable'],
             ]);
             $table->addForeignKeyConstraint($this->table, [$foreignKey['key']], [$this->idField], [
@@ -478,7 +477,7 @@ final class IdToUuidMigration implements LoggerAwareInterface
     {
         /** @var Column $key */
         foreach ($foreignKey['primaryKey'] as $key) {
-            if ($key->getName() === $foreignKey['key']) {
+            if ($key === $foreignKey['key']) {
                 return true;
             }
         }
@@ -494,11 +493,25 @@ final class IdToUuidMigration implements LoggerAwareInterface
             }
         }
 
-        throw new RuntimeException('Unable to find '.$key.'in '.$table->getName());
+        throw new RuntimeException('Unable to find '.$key.' in '.$table->getName());
     }
 
     private function updateSchema(Schema $schema): void
     {
         $this->schemaManager->migrateSchema($schema);
+    }
+
+    /**
+     * @return string[]
+     */
+    private function getPrimaryKeyColumns(Table $table): array
+    {
+        $primaryKey = $table->getPrimaryKey();
+
+        if (null === $primaryKey) {
+            throw new Exception('Table '.$table->getName().' has no primary key.');
+        }
+
+        return $primaryKey->getColumns();
     }
 }
