@@ -88,17 +88,15 @@ final class IdToUuidMigrationTest extends KernelTestCase
 
     private function createSchema(Connection $connection): void
     {
-        $schemaManager = method_exists($connection, 'createSchemaManager')
-                             ? $connection->createSchemaManager()
-                             : $connection->getSchemaManager();
+        $schemaManager = $connection->createSchemaManager();
 
-        $schema        = $schemaManager->createSchema();
+        $schema        = $schemaManager->introspectSchema();
         $this->createCategory($schema);
         $this->createItem($schema);
         $schemaManager->migrateSchema($schema);
 
-        self::assertTrue($schemaManager->tablesExist('category'));
-        self::assertTrue($schemaManager->tablesExist('item'));
+        self::assertTrue($schemaManager->tablesExist(['category']));
+        self::assertTrue($schemaManager->tablesExist(['item']));
     }
 
     /**

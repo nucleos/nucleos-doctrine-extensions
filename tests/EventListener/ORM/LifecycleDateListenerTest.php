@@ -152,7 +152,6 @@ final class LifecycleDateListenerTest extends TestCase
                     'nullable'  => false,
                 ]],
             ]))
-            ->willReturn(false)
         ;
 
         $eventArgs = $this->createMock(LoadClassMetadataEventArgs::class);
