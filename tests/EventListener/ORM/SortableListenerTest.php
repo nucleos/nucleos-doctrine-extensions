@@ -62,6 +62,10 @@ final class SortableListenerTest extends TestCase
 
     public function testLoadClassMetadataWithEmptyClass(): void
     {
+        if (!class_exists('Doctrine\Persistence\Reflection\RuntimePublicReflectionProperty')) {
+            self::markTestSkipped('Legacy test for doctrine/persistence < 4');
+        }
+
         $metadata = $this->createMock(ClassMetadata::class);
         $metadata->method('getReflectionClass')
             ->willReturn(null)
