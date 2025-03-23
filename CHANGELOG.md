@@ -2,27 +2,29 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 4.17.0 - TBD
+## 4.17.0 - 2025-03-23
 
-### Added
 
-- Nothing.
+-----
 
-### Changed
+### Release Notes for [4.17.0](https://github.com/nucleos/nucleos-doctrine-extensions/milestone/35)
 
-- Nothing.
+Feature release (minor)
 
-### Deprecated
+### 4.17.0
 
-- Nothing.
+- Total issues resolved: **0**
+- Total pull requests resolved: **3**
+- Total contributors: **2**
 
-### Removed
+#### dependency
 
-- Nothing.
+ - [419: Update dependency doctrine/persistence to ^1.3 || ^2.0 || ^3.0 || ^4.0](https://github.com/nucleos/nucleos-doctrine-extensions/pull/419) thanks to @core23
+ - [410: Update dependency doctrine/persistence to v4](https://github.com/nucleos/nucleos-doctrine-extensions/pull/410) thanks to @renovate[bot]
 
-### Fixed
+#### Enhancement
 
-- Nothing.
+ - [418: Remove ci pipeline overrides ](https://github.com/nucleos/nucleos-doctrine-extensions/pull/418) thanks to @core23
 
 ## 4.16.0 - 2025-02-09
 
