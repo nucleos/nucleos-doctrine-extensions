@@ -16,7 +16,7 @@ use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Event\PrePersistEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
-use Nucleos\Doctrine\Model\LifecycleDateTimeInterface;
+use Nucleos\Doctrine\Model\LifecycleAware;
 
 final class LifecycleDateListener extends AbstractListener
 {
@@ -33,7 +33,7 @@ final class LifecycleDateListener extends AbstractListener
     {
         $object = $args->getObject();
 
-        if ($object instanceof LifecycleDateTimeInterface) {
+        if ($object instanceof LifecycleAware) {
             $object->setCreatedAt(new DateTimeImmutable());
             $object->setUpdatedAt(new DateTimeImmutable());
         }
@@ -43,7 +43,7 @@ final class LifecycleDateListener extends AbstractListener
     {
         $object = $args->getObject();
 
-        if ($object instanceof LifecycleDateTimeInterface) {
+        if ($object instanceof LifecycleAware) {
             $object->setUpdatedAt(new DateTimeImmutable());
         }
     }
@@ -54,7 +54,7 @@ final class LifecycleDateListener extends AbstractListener
 
         $reflClass = $meta->getReflectionClass();
 
-        if (null === $reflClass || !$reflClass->implementsInterface(LifecycleDateTimeInterface::class)) {
+        if (null === $reflClass || !$reflClass->implementsInterface(LifecycleAware::class)) {
             return;
         }
 

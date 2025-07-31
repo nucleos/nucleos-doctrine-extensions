@@ -25,35 +25,35 @@ composer require nucleos/doctrine-extensions
 
 ### Confirmable entities
 
-If you need entities that needs to be confirmed, just implement the `Nucleos\Doctrine\Model\ConfirmableInterface`
+If you need entities that needs to be confirmed, just implement the `Nucleos\Doctrine\Model\Confirmable`
 in your entity class.
 
 If you don't need the symfony framework, you need to register the `Nucleos\Doctrine\EventListener\ORM\ConfirmableListener`.
 
 ### Deleteable entities
 
-If you need entities that should be soft deleted, just implement the `Nucleos\Doctrine\Model\DeletableInterface`
+If you need entities that should be soft deleted, just implement the `Nucleos\Doctrine\Model\Deletable`
 in your entity class.
 
 If you don't need the symfony framework, you need to register the `Nucleos\Doctrine\EventListener\ORM\DeletableListener`.
 
 ### Lifecyle aware enties
 
-If you need lifecyle information (creation / update date), just implement the `Nucleos\Doctrine\Model\LifecycleDateTimeInterface`
+If you need lifecyle information (creation / update date), just implement the `Nucleos\Doctrine\Model\LifecycleAware`
 in your entity class.
 
 If you don't need the symfony framework, you need to register the `Nucleos\Doctrine\EventListener\ORM\LifecycleDateListener`.
 
 ### Position aware entities
 
-If you need sortable entities, just implement the `Nucleos\Doctrine\Model\PositionAwareInterface`
+If you need sortable entities, just implement the `Nucleos\Doctrine\Model\PositionAware`
 in your entity class.
 
 If you don't need the symfony framework, you need to register the `Nucleos\Doctrine\EventListener\ORM\SortableListener`.
 
 ### Unique active entities
 
-If you need entities that should only have one active state, just implement the `Nucleos\Doctrine\Model\UniqueActiveInterface`
+If you need entities that should only have one active state, just implement the `Nucleos\Doctrine\Model\UniqueActiveAware`
 in your entity class.
 
 If you don't need the symfony framework, you need to register the `Nucleos\Doctrine\EventListener\ORM\UniqueActiveListener`.

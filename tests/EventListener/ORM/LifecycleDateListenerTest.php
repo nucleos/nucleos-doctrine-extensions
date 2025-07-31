@@ -19,7 +19,7 @@ use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Nucleos\Doctrine\EventListener\ORM\LifecycleDateListener;
-use Nucleos\Doctrine\Model\LifecycleDateTimeInterface;
+use Nucleos\Doctrine\Model\LifecycleAware;
 use Nucleos\Doctrine\Tests\Fixtures\ClassWithAllProperties;
 use Nucleos\Doctrine\Tests\Fixtures\EmptyClass;
 use PHPUnit\Framework\Assert;
@@ -43,7 +43,7 @@ final class LifecycleDateListenerTest extends TestCase
 
     public function testPrePersist(): void
     {
-        $object = $this->createMock(LifecycleDateTimeInterface::class);
+        $object = $this->createMock(LifecycleAware::class);
         $object->expects(self::once())->method('setCreatedAt');
         $object->expects(self::once())->method('setUpdatedAt');
 
@@ -66,7 +66,7 @@ final class LifecycleDateListenerTest extends TestCase
 
     public function testPreUpdate(): void
     {
-        $object = $this->createMock(LifecycleDateTimeInterface::class);
+        $object = $this->createMock(LifecycleAware::class);
         $object->expects(self::once())->method('setUpdatedAt');
 
         $changeSet = [];

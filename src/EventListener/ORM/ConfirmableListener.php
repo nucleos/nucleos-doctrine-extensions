@@ -14,7 +14,7 @@ namespace Nucleos\Doctrine\EventListener\ORM;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\MappingException;
-use Nucleos\Doctrine\Model\ConfirmableInterface;
+use Nucleos\Doctrine\Model\Confirmable;
 
 final class ConfirmableListener extends AbstractListener
 {
@@ -34,7 +34,7 @@ final class ConfirmableListener extends AbstractListener
 
         $reflClass = $meta->getReflectionClass();
 
-        if (null === $reflClass || !$reflClass->implementsInterface(ConfirmableInterface::class)) {
+        if (null === $reflClass || !$reflClass->implementsInterface(Confirmable::class)) {
             return;
         }
 

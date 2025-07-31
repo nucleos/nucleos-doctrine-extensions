@@ -23,7 +23,7 @@ use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\UnitOfWork;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
-use Nucleos\Doctrine\Model\PositionAwareInterface;
+use Nucleos\Doctrine\Model\PositionAware;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 
@@ -52,7 +52,7 @@ final class SortableListener implements EventSubscriber
 
     public function prePersist(PrePersistEventArgs $args): void
     {
-        if (!$args->getObject() instanceof PositionAwareInterface) {
+        if (!$args->getObject() instanceof PositionAware) {
             return;
         }
 
@@ -61,7 +61,7 @@ final class SortableListener implements EventSubscriber
 
     public function preUpdate(PreUpdateEventArgs $args): void
     {
-        if (!$args->getObject() instanceof PositionAwareInterface) {
+        if (!$args->getObject() instanceof PositionAware) {
             return;
         }
 
@@ -78,7 +78,7 @@ final class SortableListener implements EventSubscriber
     {
         $entity = $args->getObject();
 
-        if ($entity instanceof PositionAwareInterface) {
+        if ($entity instanceof PositionAware) {
             $this->movePosition($args->getObjectManager(), $entity, -1);
         }
     }
@@ -92,7 +92,7 @@ final class SortableListener implements EventSubscriber
 
         $reflClass = $meta->getReflectionClass();
 
-        if (null === $reflClass || !$reflClass->implementsInterface(PositionAwareInterface::class)) {
+        if (null === $reflClass || !$reflClass->implementsInterface(PositionAware::class)) {
             return;
         }
 
@@ -113,7 +113,7 @@ final class SortableListener implements EventSubscriber
     {
         $entity = $args->getObject();
 
-        if (!$entity instanceof PositionAwareInterface) {
+        if (!$entity instanceof PositionAware) {
             return;
         }
 
@@ -127,7 +127,7 @@ final class SortableListener implements EventSubscriber
         }
     }
 
-    private function movePosition(EntityManagerInterface $em, PositionAwareInterface $entity, int $direction = 1): void
+    private function movePosition(EntityManagerInterface $em, PositionAware $entity, int $direction = 1): void
     {
         $uow  = $em->getUnitOfWork();
         $meta = $em->getClassMetadata(\get_class($entity));
@@ -150,7 +150,7 @@ final class SortableListener implements EventSubscriber
         $qb->getQuery()->execute();
     }
 
-    private function getNextPosition(EntityManagerInterface $em, PositionAwareInterface $entity): int
+    private function getNextPosition(EntityManagerInterface $em, PositionAware $entity): int
     {
         $meta = $em->getClassMetadata(\get_class($entity));
 
@@ -166,7 +166,7 @@ final class SortableListener implements EventSubscriber
         try {
             $result = $qb->getQuery()->getOneOrNullResult();
 
-            if ($result instanceof PositionAwareInterface && null !== $result->getPosition()) {
+            if ($result instanceof PositionAware && null !== $result->getPosition()) {
                 return $result->getPosition() + 1;
             }
         } catch (NonUniqueResultException $ignored) {
@@ -175,7 +175,7 @@ final class SortableListener implements EventSubscriber
         return 0;
     }
 
-    private function addGroupFilter(QueryBuilder $qb, PositionAwareInterface $entity, ?UnitOfWork $uow = null): void
+    private function addGroupFilter(QueryBuilder $qb, PositionAware $entity, ?UnitOfWork $uow = null): void
     {
         foreach ($entity->getPositionGroup() as $field) {
             $value = $this->propertyAccessor->getValue($entity, $field);

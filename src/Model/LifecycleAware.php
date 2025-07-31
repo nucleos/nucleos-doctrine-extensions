@@ -13,7 +13,7 @@ namespace Nucleos\Doctrine\Model;
 
 use DateTimeImmutable;
 
-interface LifecycleDateTimeInterface
+interface LifecycleAware
 {
     public function getCreatedAt(): ?DateTimeImmutable;
 

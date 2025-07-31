@@ -11,16 +11,16 @@ declare(strict_types=1);
 
 namespace Nucleos\Doctrine\Model;
 
-interface UniqueActiveInterface
+interface PositionAware
 {
-    public function setActive(bool $active): void;
+    public function getPosition(): ?int;
 
-    public function isActive(): bool;
+    public function setPosition(?int $position): void;
 
     /**
-     * Get list of unique fields.
+     * Get list of position fields.
      *
      * @return string[]
      */
-    public function getUniqueActiveFields(): array;
+    public function getPositionGroup(): array;
 }

@@ -13,7 +13,7 @@ namespace Nucleos\Doctrine\Model;
 
 use DateTimeImmutable;
 
-interface DeletableInterface
+interface Deletable
 {
     public function getDeletedAt(): ?DateTimeImmutable;
 
