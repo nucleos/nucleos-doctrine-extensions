@@ -11,18 +11,18 @@ declare(strict_types=1);
 
 namespace Nucleos\Doctrine\Model\Traits;
 
-use DateTime;
+use DateTimeImmutable;
 
 trait ConfirmableTrait
 {
-    protected ?DateTime $confirmedAt = null;
+    protected ?DateTimeImmutable $confirmedAt = null;
 
-    public function getConfirmedAt(): ?DateTime
+    public function getConfirmedAt(): ?DateTimeImmutable
     {
         return $this->confirmedAt;
     }
 
-    public function setConfirmedAt(?DateTime $confirmedAt): void
+    public function setConfirmedAt(?DateTimeImmutable $confirmedAt): void
     {
         $this->confirmedAt = $confirmedAt;
     }
@@ -30,7 +30,7 @@ trait ConfirmableTrait
     public function setConfirmed(bool $confirmed): void
     {
         if ($confirmed) {
-            $this->setConfirmedAt(new DateTime());
+            $this->setConfirmedAt(new DateTimeImmutable());
         } else {
             $this->setConfirmedAt(null);
         }
