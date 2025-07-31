@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Nucleos\Doctrine\EventListener\ORM;
 
 use Doctrine\Common\EventSubscriber;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping\ClassMetadata;
 
 abstract class AbstractListener implements EventSubscriber
@@ -23,7 +24,7 @@ abstract class AbstractListener implements EventSubscriber
         }
 
         $metadata->mapField([
-            'type'      => 'datetime',
+            'type'      => Types::DATETIME_IMMUTABLE,
             'fieldName' => $field,
             'nullable'  => $nullable,
         ]);

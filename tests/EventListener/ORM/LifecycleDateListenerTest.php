@@ -146,12 +146,12 @@ final class LifecycleDateListenerTest extends TestCase
         $metadata->expects($matcher = self::exactly(2))->method('mapField')
             ->willReturnCallback($this->withParameter($matcher, [
                 [[
-                    'type'      => 'datetime',
+                    'type'      => 'datetime_immutable',
                     'fieldName' => 'createdAt',
                     'nullable'  => false,
                 ]],
                 [[
-                    'type'      => 'datetime',
+                    'type'      => 'datetime_immutable',
                     'fieldName' => 'updatedAt',
                     'nullable'  => false,
                 ]],

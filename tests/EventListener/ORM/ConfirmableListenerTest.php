@@ -83,7 +83,7 @@ final class ConfirmableListenerTest extends TestCase
             ->willReturn(false)
         ;
         $metadata->expects(self::once())->method('mapField')->with([
-            'type'      => 'datetime',
+            'type'      => 'datetime_immutable',
             'fieldName' => 'confirmedAt',
             'nullable'  => true,
         ]);
