@@ -39,7 +39,7 @@
         }
     ],
     "require": {
-        "php": "^8.2",
+        "php": "^8.3",
         "doctrine/common": "^2.12 || ^3.0",
         "doctrine/dbal": "^3.8 || ^4.0",
         "doctrine/event-manager": "^1.0 || ^2.0",
