@@ -11,13 +11,13 @@ declare(strict_types=1);
 
 namespace Nucleos\Doctrine\Model;
 
-use DateTime;
+use DateTimeImmutable;
 
 interface DeletableInterface
 {
-    public function getDeletedAt(): ?DateTime;
+    public function getDeletedAt(): ?DateTimeImmutable;
 
-    public function setDeletedAt(?DateTime $deletedAt): void;
+    public function setDeletedAt(?DateTimeImmutable $deletedAt): void;
 
     public function setDeleted(bool $deleted): void;
 

@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Nucleos\Doctrine\Tests\Model\Traits;
 
-use DateTime;
+use DateTimeImmutable;
 use Nucleos\Doctrine\Tests\Fixtures\ClassWithAllProperties;
 use PHPUnit\Framework\TestCase;
 
@@ -39,7 +39,7 @@ final class LifecycleDateTimeTraitTest extends TestCase
 
     public function testSetCreated(): void
     {
-        $now = new DateTime();
+        $now = new DateTimeImmutable();
 
         $this->trait->setCreatedAt($now);
 
@@ -52,7 +52,7 @@ final class LifecycleDateTimeTraitTest extends TestCase
 
     public function testSetUpdated(): void
     {
-        $now = new DateTime();
+        $now = new DateTimeImmutable();
 
         $this->trait->setUpdatedAt($now);
 

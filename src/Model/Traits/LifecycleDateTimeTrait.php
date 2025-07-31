@@ -11,30 +11,30 @@ declare(strict_types=1);
 
 namespace Nucleos\Doctrine\Model\Traits;
 
-use DateTime;
+use DateTimeImmutable;
 
 trait LifecycleDateTimeTrait
 {
-    protected ?DateTime $createdAt = null;
+    protected ?DateTimeImmutable $createdAt = null;
 
-    protected ?DateTime $updatedAt = null;
+    protected ?DateTimeImmutable $updatedAt = null;
 
-    public function setCreatedAt(?DateTime $createdAt): void
+    public function setCreatedAt(?DateTimeImmutable $createdAt): void
     {
         $this->createdAt = $createdAt;
     }
 
-    public function getCreatedAt(): ?DateTime
+    public function getCreatedAt(): ?DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setUpdatedAt(?DateTime $updatedAt): void
+    public function setUpdatedAt(?DateTimeImmutable $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
     }
 
-    public function getUpdatedAt(): ?DateTime
+    public function getUpdatedAt(): ?DateTimeImmutable
     {
         return $this->updatedAt;
     }

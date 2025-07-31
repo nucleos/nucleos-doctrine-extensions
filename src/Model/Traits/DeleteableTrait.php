@@ -11,18 +11,18 @@ declare(strict_types=1);
 
 namespace Nucleos\Doctrine\Model\Traits;
 
-use DateTime;
+use DateTimeImmutable;
 
 trait DeleteableTrait
 {
-    protected ?DateTime $deletedAt = null;
+    protected ?DateTimeImmutable $deletedAt = null;
 
-    public function getDeletedAt(): ?DateTime
+    public function getDeletedAt(): ?DateTimeImmutable
     {
         return $this->deletedAt;
     }
 
-    public function setDeletedAt(?DateTime $deletedAt): void
+    public function setDeletedAt(?DateTimeImmutable $deletedAt): void
     {
         $this->deletedAt = $deletedAt;
     }
@@ -30,7 +30,7 @@ trait DeleteableTrait
     public function setDeleted(bool $deleted): void
     {
         if ($deleted) {
-            $this->setDeletedAt(new DateTime());
+            $this->setDeletedAt(new DateTimeImmutable());
         } else {
             $this->setDeletedAt(null);
         }

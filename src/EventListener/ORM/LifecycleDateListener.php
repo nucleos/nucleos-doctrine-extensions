@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Nucleos\Doctrine\EventListener\ORM;
 
-use DateTime;
+use DateTimeImmutable;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Event\PrePersistEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
@@ -34,8 +34,8 @@ final class LifecycleDateListener extends AbstractListener
         $object = $args->getObject();
 
         if ($object instanceof LifecycleDateTimeInterface) {
-            $object->setCreatedAt(new DateTime());
-            $object->setUpdatedAt(new DateTime());
+            $object->setCreatedAt(new DateTimeImmutable());
+            $object->setUpdatedAt(new DateTimeImmutable());
         }
     }
 
@@ -44,7 +44,7 @@ final class LifecycleDateListener extends AbstractListener
         $object = $args->getObject();
 
         if ($object instanceof LifecycleDateTimeInterface) {
-            $object->setUpdatedAt(new DateTime());
+            $object->setUpdatedAt(new DateTimeImmutable());
         }
     }
 

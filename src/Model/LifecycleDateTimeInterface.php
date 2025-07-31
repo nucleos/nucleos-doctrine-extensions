@@ -11,15 +11,15 @@ declare(strict_types=1);
 
 namespace Nucleos\Doctrine\Model;
 
-use DateTime;
+use DateTimeImmutable;
 
 interface LifecycleDateTimeInterface
 {
-    public function getCreatedAt(): ?DateTime;
+    public function getCreatedAt(): ?DateTimeImmutable;
 
-    public function getUpdatedAt(): ?DateTime;
+    public function getUpdatedAt(): ?DateTimeImmutable;
 
-    public function setCreatedAt(?DateTime $createdAt): void;
+    public function setCreatedAt(?DateTimeImmutable $createdAt): void;
 
-    public function setUpdatedAt(?DateTime $updatedAt): void;
+    public function setUpdatedAt(?DateTimeImmutable $updatedAt): void;
 }

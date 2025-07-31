@@ -11,13 +11,13 @@ declare(strict_types=1);
 
 namespace Nucleos\Doctrine\Model;
 
-use DateTime;
+use DateTimeImmutable;
 
 interface ConfirmableInterface
 {
-    public function getConfirmedAt(): ?DateTime;
+    public function getConfirmedAt(): ?DateTimeImmutable;
 
-    public function setConfirmedAt(?DateTime $confirmedAt): void;
+    public function setConfirmedAt(?DateTimeImmutable $confirmedAt): void;
 
     public function setConfirmed(bool $confirmed): void;
 

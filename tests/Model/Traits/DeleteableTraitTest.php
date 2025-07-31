@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Nucleos\Doctrine\Tests\Model\Traits;
 
-use DateTime;
+use DateTimeImmutable;
 use Nucleos\Doctrine\Tests\Fixtures\ClassWithAllProperties;
 use PHPUnit\Framework\TestCase;
 
@@ -52,7 +52,7 @@ final class DeleteableTraitTest extends TestCase
 
     public function testSetDeletedAt(): void
     {
-        $now = new DateTime();
+        $now = new DateTimeImmutable();
 
         $this->trait->setDeletedAt($now);
 
