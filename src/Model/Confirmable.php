@@ -13,7 +13,7 @@ namespace Nucleos\Doctrine\Model;
 
 use DateTimeImmutable;
 
-interface ConfirmableInterface
+interface Confirmable
 {
     public function getConfirmedAt(): ?DateTimeImmutable;
 

@@ -14,7 +14,7 @@ namespace Nucleos\Doctrine\EventListener\ORM;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\MappingException;
-use Nucleos\Doctrine\Model\DeletableInterface;
+use Nucleos\Doctrine\Model\Deletable;
 
 final class DeletableListener extends AbstractListener
 {
@@ -34,7 +34,7 @@ final class DeletableListener extends AbstractListener
 
         $reflClass = $meta->getReflectionClass();
 
-        if (null === $reflClass || !$reflClass->implementsInterface(DeletableInterface::class)) {
+        if (null === $reflClass || !$reflClass->implementsInterface(Deletable::class)) {
             return;
         }
 

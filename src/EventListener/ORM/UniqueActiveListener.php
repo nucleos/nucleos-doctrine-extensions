@@ -21,7 +21,7 @@ use Doctrine\ORM\Mapping\MappingException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\UnitOfWork;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
-use Nucleos\Doctrine\Model\UniqueActiveInterface;
+use Nucleos\Doctrine\Model\UniqueActiveAware;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 
@@ -66,7 +66,7 @@ final class UniqueActiveListener implements EventSubscriber
 
         $reflClass = $meta->getReflectionClass();
 
-        if (null === $reflClass || !$reflClass->implementsInterface(UniqueActiveInterface::class)) {
+        if (null === $reflClass || !$reflClass->implementsInterface(UniqueActiveAware::class)) {
             return;
         }
 
@@ -85,7 +85,7 @@ final class UniqueActiveListener implements EventSubscriber
     {
         $entity = $args->getObject();
 
-        if (!$entity instanceof UniqueActiveInterface) {
+        if (!$entity instanceof UniqueActiveAware) {
             return;
         }
 
@@ -115,7 +115,7 @@ final class UniqueActiveListener implements EventSubscriber
         $qb->getQuery()->execute();
     }
 
-    private function addFieldFilter(QueryBuilder $qb, UniqueActiveInterface $entity, UnitOfWork $uow): void
+    private function addFieldFilter(QueryBuilder $qb, UniqueActiveAware $entity, UnitOfWork $uow): void
     {
         foreach ($entity->getUniqueActiveFields() as $field) {
             $value = $this->propertyAccessor->getValue($entity, $field);

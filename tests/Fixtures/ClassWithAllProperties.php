@@ -11,17 +11,17 @@ declare(strict_types=1);
 
 namespace Nucleos\Doctrine\Tests\Fixtures;
 
-use Nucleos\Doctrine\Model\ConfirmableInterface;
-use Nucleos\Doctrine\Model\DeletableInterface;
-use Nucleos\Doctrine\Model\LifecycleDateTimeInterface;
-use Nucleos\Doctrine\Model\PositionAwareInterface;
+use Nucleos\Doctrine\Model\Confirmable;
+use Nucleos\Doctrine\Model\Deletable;
+use Nucleos\Doctrine\Model\LifecycleAware;
+use Nucleos\Doctrine\Model\PositionAware;
 use Nucleos\Doctrine\Model\Traits\ConfirmableTrait;
 use Nucleos\Doctrine\Model\Traits\DeleteableTrait;
 use Nucleos\Doctrine\Model\Traits\LifecycleDateTimeTrait;
 use Nucleos\Doctrine\Model\Traits\SortableTrait;
-use Nucleos\Doctrine\Model\UniqueActiveInterface;
+use Nucleos\Doctrine\Model\UniqueActiveAware;
 
-final class ClassWithAllProperties implements DeletableInterface, ConfirmableInterface, LifecycleDateTimeInterface, PositionAwareInterface, UniqueActiveInterface
+final class ClassWithAllProperties implements Deletable, Confirmable, LifecycleAware, PositionAware, UniqueActiveAware
 {
     use ConfirmableTrait;
     use DeleteableTrait;
