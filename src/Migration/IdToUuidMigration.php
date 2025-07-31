@@ -36,7 +36,7 @@ use Symfony\Component\Uid\Uuid;
  * @phpstan-type Index = array{
  *     table:   string,
  *     name:    string,
- *     columns: string[],
+ *     columns: non-empty-list<string>,
  *     primary: bool,
  *     unique:  bool
  * }
@@ -442,6 +442,7 @@ final class IdToUuidMigration implements LoggerAwareInterface
             $table = $schema->getTable($foreignKey['table']);
 
             if ([] !== $foreignKey['primaryKey']) {
+                /** @var non-empty-list<string> $primaryKeys */
                 $primaryKeys = array_map(static fn (string $column) => $column, $foreignKey['primaryKey']);
 
                 if (null === $table->getPrimaryKey()) {
