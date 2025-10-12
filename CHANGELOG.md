@@ -2,27 +2,28 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 5.1.0 - TBD
+## 5.1.0 - 2025-10-12
 
-### Added
 
-- Nothing.
+-----
 
-### Changed
+### Release Notes for [5.1.0](https://github.com/nucleos/nucleos-doctrine-extensions/milestone/39)
 
-- Nothing.
+Feature release (minor)
 
-### Deprecated
+### 5.1.0
 
-- Nothing.
+- Total issues resolved: **0**
+- Total pull requests resolved: **2**
+- Total contributors: **1**
 
-### Removed
+#### Enhancement
 
-- Nothing.
+ - [429: Update phpstan baseline for deprecated class](https://github.com/nucleos/nucleos-doctrine-extensions/pull/429) thanks to @core23
 
-### Fixed
+#### dependency
 
-- Nothing.
+ - [428: Add support for doctrine/doctrine-bundle 3](https://github.com/nucleos/nucleos-doctrine-extensions/pull/428) thanks to @core23
 
 ## 4.18.0 - TBD
 
