@@ -109,6 +109,12 @@ parameters:
 			path: src/Test/ORM/EntityManagerMockFactory.php
 
 		-
+			message: '#^Call to protected method getMockBuilder\(\) of class PHPUnit\\Framework\\TestCase\.$#'
+			identifier: method.protected
+			count: 6
+			path: src/Test/ORM/EntityManagerMockFactory.php
+
+		-
 			message: '#^Class Doctrine\\ORM\\Mapping\\ClassMetadataInfo not found\.$#'
 			identifier: class.notFound
 			count: 1
