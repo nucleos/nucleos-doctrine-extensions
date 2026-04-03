@@ -50,7 +50,7 @@
     },
     "require-dev": {
         "doctrine/doctrine-bundle": "^2.18 || ^3.0",
-        "doctrine/doctrine-migrations-bundle": "^3.2",
+        "doctrine/doctrine-migrations-bundle": "^3.2 || ^4.0",
         "ergebnis/composer-normalize": "^2.0.1",
         "symfony/browser-kit": "^7.4 || ^8.0",
         "symfony/dependency-injection": "^7.4 || ^8.0",
