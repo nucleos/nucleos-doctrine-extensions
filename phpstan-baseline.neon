@@ -7,25 +7,25 @@ parameters:
 			path: src/EventListener/ORM/AbstractListener.php
 
 		-
-			message: '#^Strict comparison using \=\=\= between null and ReflectionClass\<object\> will always evaluate to false\.$#'
+			message: '#^Strict comparison using \=\=\= between null and ReflectionClass\<covariant object\> will always evaluate to false\.$#'
 			identifier: identical.alwaysFalse
 			count: 1
 			path: src/EventListener/ORM/ConfirmableListener.php
 
 		-
-			message: '#^Strict comparison using \=\=\= between null and ReflectionClass\<object\> will always evaluate to false\.$#'
+			message: '#^Strict comparison using \=\=\= between null and ReflectionClass\<covariant object\> will always evaluate to false\.$#'
 			identifier: identical.alwaysFalse
 			count: 1
 			path: src/EventListener/ORM/DeletableListener.php
 
 		-
-			message: '#^Strict comparison using \=\=\= between null and ReflectionClass\<object\> will always evaluate to false\.$#'
+			message: '#^Strict comparison using \=\=\= between null and ReflectionClass\<covariant object\> will always evaluate to false\.$#'
 			identifier: identical.alwaysFalse
 			count: 1
 			path: src/EventListener/ORM/LifecycleDateListener.php
 
 		-
-			message: '#^Strict comparison using \=\=\= between null and ReflectionClass\<object\> will always evaluate to false\.$#'
+			message: '#^Strict comparison using \=\=\= between null and ReflectionClass\<covariant object\> will always evaluate to false\.$#'
 			identifier: identical.alwaysFalse
 			count: 1
 			path: src/EventListener/ORM/SortableListener.php
@@ -85,7 +85,7 @@ parameters:
 			path: src/EventListener/ORM/TablePrefixEventListener.php
 
 		-
-			message: '#^Strict comparison using \=\=\= between null and ReflectionClass\<object\> will always evaluate to false\.$#'
+			message: '#^Strict comparison using \=\=\= between null and ReflectionClass\<covariant object\> will always evaluate to false\.$#'
 			identifier: identical.alwaysFalse
 			count: 1
 			path: src/EventListener/ORM/UniqueActiveListener.php

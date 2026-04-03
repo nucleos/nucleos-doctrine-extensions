@@ -14,5 +14,6 @@ jobs:
     with:
       PHP_EXTENSIONS: ""
       PHP_VERSIONS: '8.3,8.4'
+      SYMFONY_VERSIONS: "7.4,8.0"
     secrets:
       CODECOV_TOKEN: "${{ secrets.CODECOV_TOKEN }}"
