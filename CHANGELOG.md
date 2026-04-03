@@ -2,27 +2,26 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 5.2.0 - TBD
+## 5.2.0 - 2026-04-03
 
-### Added
 
-- Nothing.
+-----
 
-### Changed
+### Release Notes for [5.2.0](https://github.com/nucleos/nucleos-doctrine-extensions/milestone/42)
 
-- Nothing.
+Feature release (minor)
 
-### Deprecated
+### 5.2.0
 
-- Nothing.
+- Total issues resolved: **0**
+- Total pull requests resolved: **3**
+- Total contributors: **2**
 
-### Removed
+#### dependency
 
-- Nothing.
-
-### Fixed
-
-- Nothing.
+ - [436: Add support for doctrine-migrations-bundle 4](https://github.com/nucleos/nucleos-doctrine-extensions/pull/436) thanks to @core23
+ - [435: Add support for symfony 8](https://github.com/nucleos/nucleos-doctrine-extensions/pull/435) thanks to @core23
+ - [430: Update dependency symfony/phpunit-bridge to v8](https://github.com/nucleos/nucleos-doctrine-extensions/pull/430) thanks to @renovate[bot]
 
 ## 5.1.0 - 2025-10-12
 
