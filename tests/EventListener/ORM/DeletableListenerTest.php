@@ -79,7 +79,8 @@ final class DeletableListenerTest extends TestCase
         $metadata->method('getReflectionClass')
             ->willReturn($reflection)
         ;
-        $metadata->method('hasField')->with('deletedAt')
+        $metadata->expects(self::once())->method('hasField')
+            ->with('deletedAt')
             ->willReturn(false)
         ;
         $metadata->expects(self::once())->method('mapField')->with([
@@ -105,7 +106,8 @@ final class DeletableListenerTest extends TestCase
         $metadata->method('getReflectionClass')
             ->willReturn($reflection)
         ;
-        $metadata->method('hasField')->with('deletedAt')
+        $metadata->expects(self::once())->method('hasField')
+            ->with('deletedAt')
             ->willReturn(true)
         ;
         $metadata->expects(self::never())->method('mapField');

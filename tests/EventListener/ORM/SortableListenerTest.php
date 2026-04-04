@@ -108,7 +108,8 @@ final class SortableListenerTest extends TestCase
         $metadata->method('getReflectionClass')
             ->willReturn($reflection)
         ;
-        $metadata->method('hasField')->with('position')
+        $metadata->expects(self::once())->method('hasField')
+            ->with('position')
             ->willReturn(false)
         ;
         $metadata->expects(self::once())->method('mapField')->with([
@@ -133,7 +134,8 @@ final class SortableListenerTest extends TestCase
         $metadata->method('getReflectionClass')
             ->willReturn($reflection)
         ;
-        $metadata->method('hasField')->with('position')
+        $metadata->expects(self::once())->method('hasField')
+            ->with('position')
             ->willReturn(true)
         ;
         $metadata->expects(self::never())->method('mapField');

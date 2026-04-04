@@ -79,7 +79,8 @@ final class ConfirmableListenerTest extends TestCase
         $metadata->method('getReflectionClass')
             ->willReturn($reflection)
         ;
-        $metadata->method('hasField')->with('confirmedAt')
+        $metadata->expects(self::once())->method('hasField')
+            ->with('confirmedAt')
             ->willReturn(false)
         ;
         $metadata->expects(self::once())->method('mapField')->with([
@@ -105,7 +106,8 @@ final class ConfirmableListenerTest extends TestCase
         $metadata->method('getReflectionClass')
             ->willReturn($reflection)
         ;
-        $metadata->method('hasField')->with('confirmedAt')
+        $metadata->expects(self::once())->method('hasField')
+            ->with('confirmedAt')
             ->willReturn(true)
         ;
         $metadata->expects(self::never())->method('mapField');
